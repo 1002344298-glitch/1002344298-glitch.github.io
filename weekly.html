@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>具身智能行业周报 — 擎仓机器人产品部</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#f0f2f5;font-family:'Microsoft YaHei','PingFang SC',sans-serif;color:#1a1a1a;line-height:1.6}
+.header{background:linear-gradient(135deg,#0D1F33 0%,#1B3A5C 70%,#2E6B9E 100%);color:#fff;padding:22px 40px;display:flex;justify-content:space-between;align-items:center}
+.header h1{font-size:22px;font-weight:700;letter-spacing:2px}
+.header .date{font-size:13px;opacity:.85}
+.week-summary{background:#f7f9fb;border-radius:8px;padding:14px 20px;margin:0 24px 16px;max-width:1600px;font-size:12px;color:#444;line-height:1.7}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:0 24px 16px;max-width:1600px;margin:0 auto}
+.card{background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.card-header{padding:14px 20px;font-size:15px;font-weight:700;color:#fff}
+.card-body{padding:14px 20px;max-height:1100px;overflow-y:auto}
+.card-body::-webkit-scrollbar{width:5px}
+.card-body::-webkit-scrollbar-thumb{background:#ccc;border-radius:10px}
+.sub-header{font-size:13px;font-weight:700;padding:10px 14px;margin:8px 0 10px;border-radius:6px;color:#fff}
+.news-item{padding:10px 0;border-bottom:1px solid #eee}
+.news-item:last-child{border-bottom:none}
+.tag{display:inline-block;font-size:10px;padding:2px 8px;border-radius:3px;margin-right:8px;font-weight:600}
+.tag-hot{background:#FFF0F0;color:#D43838}
+.tag-new{background:#E8F4FD;color:#2E6B9E}
+.tag-trend{background:#FFF8E8;color:#B06A2E}
+.tag-intl{background:#F3E5F5;color:#7B1FA2}
+.news-item .title{font-size:13px;font-weight:600;color:#1a1a1a;margin:4px 0}
+.news-item .title a{color:inherit;text-decoration:none}
+.news-item .title a:hover{color:#2E6B9E}
+.news-item .desc{font-size:11.5px;color:#666;line-height:1.5}
+.news-item .source{font-size:10px;color:#999;margin-top:3px}
+.week-label{font-size:12px;font-weight:700;color:#555;margin:10px 0 6px;padding-left:4px;border-left:3px solid #ccc}
+.history-divider{text-align:center;margin:18px 0 12px;font-size:12px;color:#999;border-top:1px dashed #ddd;padding-top:12px;letter-spacing:2px}
+.history-section{opacity:.82;font-size:95%}
+.history-sub{font-size:11px;font-weight:700;color:#888;margin:10px 0 4px}
+.footer{text-align:center;padding:12px;color:#999;font-size:11px}
+@media(max-width:1000px){.grid{grid-template-columns:1fr}}
+</style></head><body>
+<div class="header"><div><h1>🤖 具身智能行业周报</h1><div style="font-size:12px;opacity:.75;margin-top:4px">Embodied AI Weekly Briefing · 擎仓机器人产品部</div></div><div style="text-align:right"><div class="date">周一9.7</div></div></div>
+<div class="week-summary" style="margin-top:16px"><b>📌 本周关键词：</b>梅卡曼德港股上市（眼脑手第一股）· 特斯拉T链首批5000台订单 · Sharpa 45亿押注灵巧操作 · 优必选15亿落子山西 · Meta开源HumanCLAW · 星尘SmoothRL在线强化学习 · 远盾东阿全球最大单体数据工厂 · 全国训练场超70家</div><div class="grid">
+
+<div class="card">
+<div class="card-header" style="background:linear-gradient(135deg,#0D1F33,#1B3A5C)">📊 商务动态</div>
+<div class="card-body">
+
+<div class="sub-header" style="background:linear-gradient(135deg,#3B7DD8,#2E6B9E)">🏭 一、中标项目与落地场景</div>
+
+    <div class="news-item">
+    <span class="tag tag-hot">落地</span><span class="tag tag-new">9月</span>
+    <div class="title"><a href="https://finance.eastmoney.com/a/202609043864714836.html" target="_blank">优必选15亿落子山西：共建工业能源矿山特种机器人智造基地</a></div>
+    <div class="desc">山西转型综改示范区与优必选签约，总投资15亿元的「山西具身智能创新中心暨工业能源矿山特种机器人智能智造项目」落地潇河园区，分两期建设，二期为优必选机器人工厂，目标建成华北核心智造基地；优必选上半年营收12.69亿元（+104.2%）。</div>
+    <div class="source">东方财富 · 9月4日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">量产</span><span class="tag tag-new">9月</span>
+    <div class="title"><a href="https://www.sina.cn/news/detail/5340247460153677.html" target="_blank">特斯拉T链首批5000台批量订单落地：9月周产目标1000台</a></div>
+    <div class="desc">核心供应商反馈，特斯拉9月首次一次性下达约5000台Optimus机器人订单，为T链首个批量级订单、量产拐点信号；要求8月完成数百台、9月周产提至1000台、年底提至2000-2500台，弗里蒙特产线良率逐步爬坡。</div>
+    <div class="source">新浪 · 9月</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">定点</span><span class="tag tag-new">9月</span>
+    <div class="title"><a href="https://jg-static.eeo.com.cn/article/info?id=2b3e66ed6ccc409ca8c24c5bf2b02b9b" target="_blank">中海达中标头部新势力车企人形机器人量产项目，已完成小批量交付</a></div>
+    <div class="desc">中海达（300177）获国内头部新势力车企全新一代人形机器人量产项目定点，已完成小批量交付；上半年海外收入同比增长29.24%，通讯/定位天线与具身定点双线开花。</div>
+    <div class="source">经济观察网 · 9月4日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">预售</span><span class="tag tag-new">9月</span>
+    <div class="title"><a href="https://www.guandian.hk/article/20260904/597302.html" target="_blank">银河通用首个人形机器人「银河星仔」全网预订，24小时订单破200台</a></div>
+    <div class="desc">9月3日开启全网预订，面向文旅导览、演艺及商业展示场景，24小时订单突破200台；银河通用上半年出货超1100台，正向消费级人形市场延伸。</div>
+    <div class="source">观点网 · 9月4日</div>
+    </div>
+
+<div class="sub-header" style="background:linear-gradient(135deg,#1F5090,#1B3A5C)">🏢 二、头部公司组织变动</div>
+
+    <div class="news-item">
+    <span class="tag tag-hot">人事</span><span class="tag tag-new">9月</span>
+    <div class="title"><a href="https://api.aitntnews.com/newDetail.html?newId=28979" target="_blank">理想引入世界模型专家刘宇，新设「具身行为部」专攻机器人基座模型</a></div>
+    <div class="desc">理想新设「具身行为部」，引入自动驾驶领域8年老将刘宇任负责人、向基座模型负责人詹锟汇报，为机器人单独研发基座模型（不做智驾通用底座）；近一年理想在智驾/芯片/机器人流失13位核心高管。</div>
+    <div class="source">21财经 · 9月5日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">组织</span><span class="tag tag-new">9月</span>
+    <div class="title"><a href="https://evchuhai.com/market/nio-exec-founds-robotics-company" target="_blank">蔚来智驾负责人任少卿独立创立具身机器人公司，蔚来仅做战略投资方</a></div>
+    <div class="desc">任少卿创立的独立具身智能公司获蔚来战略投资，其本人继续掌管蔚来智驾；车企将烧钱的本体/量产业务剥离出上市公司体系，自动驾驶高管跨界具身成趋势。</div>
+    <div class="source">电动汽车出海 · 9月3日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">人事</span><span class="tag tag-new">9月</span>
+    <div class="title"><a href="https://news.qq.com/rain/a/20260904A061P400" target="_blank">前字节RL专家孙鹏博加盟星尘智能，扩充机器人强化学习团队</a></div>
+    <div class="desc">前字节跳动强化学习专家、前腾讯Robotics X智能体中心负责人孙鹏博9月2日加盟星尘智能，与其SmoothRL在线强化学习框架发布同步，具身「大脑」人才争夺加剧。</div>
+    <div class="source">腾讯新闻 · 9月4日</div>
+    </div>
+
+<div class="sub-header" style="background:linear-gradient(135deg,#2E6B9E,#1F5090)">💰 三、资金变动</div>
+
+    <div class="news-item">
+    <span class="tag tag-hot">IPO</span><span class="tag tag-new">9月</span>
+    <div class="title"><a href="https://hbxw.hebnews.cn/news/625327.html" target="_blank">梅卡曼德港交所上市：具身「眼脑手」第一股，首日市值125亿港元</a></div>
+    <div class="desc">9月1日挂牌（09615.HK），发行价101.7港元、募资23.53亿港元，首日市值约125亿；全球「AI+3D视觉引导机器人组件」市占22.1%居首，Baillie Gifford等9家基石认购1.86亿美元。</div>
+    <div class="source">河北日报 · 9月1日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">重磅</span><span class="tag tag-new">9月</span>
+    <div class="title"><a href="https://baijiahao.baidu.com/s?id=1875355402901457114" target="_blank">Sharpa（大裂谷）累计融资超45亿、估值220亿：资本重注「灵巧操作」</a></div>
+    <div class="desc">阿里、腾讯、美团、京东等产业资本与红杉中国、启明等机构集体入局，投后估值220亿；创始团队出自禾赛核心班底，押注触觉感知+力控制的灵巧操作这一「会干活」核心课题。</div>
+    <div class="source">百度百家号 · 9月4日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">融资</span><span class="tag tag-new">9月</span>
+    <div class="title"><a href="http://www.jushenyanxishe.com/archives/501033" target="_blank">泉智博完成数亿元B轮融资，一体化关节模组2025出货超10万台</a></div>
+    <div class="desc">毅达资本、海通开元等领投，主营机器人一体化关节模组（占整机成本30%-60%），2025年出货超10万台、2026年6月单月发货超6万台，国产关节供应链加速放量。</div>
+    <div class="source">具身研习社 · 9月5日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">融资</span><span class="tag tag-new">9月</span>
+    <div class="title"><a href="https://dahecube.com/article.html?artid=285518" target="_blank">天工机器人完成数亿元A轮融资，前京东VP肖军带队做分拣机器人</a></div>
+    <div class="desc">初芯基金领投、经纬创投与合肥国资跟投，资金用于分拣类机器人扩产、人形分拣机器人研发及海外拓展；其「天工Ultra」刚以8.64秒刷新人形百米世界纪录。</div>
+    <div class="source">大河财立方 · 9月6日</div>
+    </div>
+
+<div class="sub-header" style="background:linear-gradient(135deg,#1565C0,#0D47A1)">📋 四、项目招标（进行中）</div>
+
+    <div class="news-item">
+    <span class="tag tag-hot">政策</span><span class="tag tag-new">9月</span>
+    <div class="title"><a href="http://field.10jqka.com.cn/20260804/c678656416.shtml" target="_blank">工信部等七部门揭榜挂帅：设「人形机器人与具身智能技术」专题</a></div>
+    <div class="desc">攻关具身多模态大模型、世界模型、群体智能、全身运动控制、端侧芯片、高质量数据集与灵巧操作等，推荐单位报送9月7日截止，入围单位两年内完成任务。</div>
+    <div class="source">同花顺 · 9月</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">招标</span><span class="tag tag-new">9月</span>
+    <div class="title"><a href="https://ggzyfw.beijing.gov.cn/jyxxcggg/20260904/5698840.html" target="_blank">北京招标「具身智能机器人装调创新空间」250.6万，9月28日截标</a></div>
+    <div class="desc">采购集成具身机器人装调与测试设备，构建「部件组装—整机调试—功能测试—维护管理」实训环境，高校与公共平台实训类采购延续密集态势。</div>
+    <div class="source">北京市公共资源交易平台 · 9月4日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">招标</span><span class="tag tag-new">9月</span>
+    <div class="title"><a href="https://bj.zhiliaobiaoxun.com/article/111837426" target="_blank">信通院招标人形仿生灵巧手测试验证平台，预算85.2万</a></div>
+    <div class="desc">采购仿生触觉灵巧手、足压感知鞋垫、全身运动分析系统等，响应文件9月10日截止，检测机构开始补足灵巧手/触觉测评能力。</div>
+    <div class="source">智联标讯 · 9月</div>
+    </div>
+<div class="history-divider">📅 往期回顾</div>
+<div class="history-section">
+
+<div class="week-label">8月24日 — 8月30日</div>
+
+<div class="history-sub">一、中标项目与落地场景</div>
+    <div class="news-item">
+    <span class="tag tag-hot">量产</span>
+    <div class="title">敏实×智元塞尔维亚工厂启动量产：一期2000万欧元、规划年产2万台</div>
+    <div class="desc">中国具身智能「整机出海」落地欧洲。</div>
+    <div class="source">界面新闻 · 8月29日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">业绩</span>
+    <div class="title">均普智能半年报：具身营收6452万占比5.25%，上半年下线900台</div>
+    <div class="desc">BMS产线6台机器人协同、北美车企装配项目验收。</div>
+    <div class="source">证券时报 · 8月26日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">供应链</span>
+    <div class="title">长盈精密半年报：具身营收2.43亿同比+537%，交付86万件</div>
+    <div class="desc">承接整机组装，从零部件迈向整机交付。</div>
+    <div class="source">格隆汇 · 8月26日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">核心件</span>
+    <div class="title">雷赛智能半年报：无框力矩电机在手订单破100万台</div>
+    <div class="desc">人形机器人成第二增长曲线。</div>
+    <div class="source">证券时报 · 8月26日</div>
+    </div>
+
+<div class="history-sub">二、头部公司组织变动</div>
+    <div class="news-item">
+    <span class="tag tag-hot">人事</span>
+    <div class="title">前小鹏产品副总裁陈永海加盟众擎任运营总裁</div>
+    <div class="desc">车企高管密集流入量产时代人才争夺。</div>
+    <div class="source">机器人大讲堂 · 8月</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">人事</span>
+    <div class="title">极智嘉刘凯调任非执行董事、专注具身技术研发</div>
+    <div class="desc">技术研发与公司治理分工趋势。</div>
+    <div class="source">观点网 · 8月28日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">IPO</span>
+    <div class="title">智元披露董事会班底：港股IPO目标估值400-500亿港元</div>
+    <div class="desc">9名合伙人过半华为背景。</div>
+    <div class="source">智通财经 · 8月</div>
+    </div>
+
+<div class="history-sub">三、资金变动</div>
+    <div class="news-item">
+    <span class="tag tag-hot">重磅</span>
+    <div class="title">小鹏机器人完成超9亿美元首轮融资，刷新国内单轮私募纪录</div>
+    <div class="desc">IDG领投、腾讯阿里入局，投后估值超63亿美元。</div>
+    <div class="source">21世纪经济报道 · 8月25日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">行情</span>
+    <div class="title">小鹏融资引爆A股机器人板块：石头科技20CM涨停</div>
+    <div class="desc">兆威机电封板，产业链个股跟涨。</div>
+    <div class="source">网易财经 · 8月25日</div>
+    </div>
+
+<div class="history-sub">四、项目招标</div>
+    <div class="news-item">
+    <span class="tag tag-hot">政策</span>
+    <div class="title">发改委定调：以实训场+中试基地构建高质量真机数据采集系统</div>
+    <div class="desc">提升数据供给质量与规模。</div>
+    <div class="source">腾讯新闻 · 8月28日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">政策</span>
+    <div class="title">工信部+国资委启动人形机器人「实景实训」专项行动</div>
+    <div class="desc">年底万台进「作业模式」。</div>
+    <div class="source">机器人行业日报 · 8月29日</div>
+    </div>
+
+<div class="week-label">8月17日 — 8月23日</div>
+
+<div class="history-sub">一、中标项目与落地场景</div>
+    <div class="news-item">
+    <span class="tag tag-hot">订单</span>
+    <div class="title">优必选U1订单13361台、智身科技量产1.5万台、星动纪元千台级交付</div>
+    <div class="desc">行业从「秀肌肉」转向「接订单」。</div>
+    <div class="source">河南日报 · 8月20日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">签约</span>
+    <div class="title">WRC闭幕签约：数字华夏康养订单超1000台、跨维智能3000万意向</div>
+    <div class="desc">消费节售出机器人及智能产品超14万件。</div>
+    <div class="source">DoNews · 8月23日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">量产</span>
+    <div class="title">2026 H1人形出货超4万台占全球97%，全年预计破10万台</div>
+    <div class="desc">1-5月国内机器人规上营收突破900亿元（+26.9%）。</div>
+    <div class="source">SmartHey · 8月23日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">赛场</span>
+    <div class="title">第二届世界人形机器人运动会：天工Ultra 9.39秒跑完100米</div>
+    <div class="desc">16国666队2056台参赛，人形机器人从「炫技」进阶「实战」。</div>
+    <div class="source">新浪财经 · 8月22日</div>
+    </div>
+
+<div class="history-sub">二、头部公司组织变动</div>
+    <div class="news-item">
+    <span class="tag tag-hot">重磅</span>
+    <div class="title">银河通用发布双足ET1+全球首场自主网球赛，赴港IPO估值30-40亿美元</div>
+    <div class="desc">AstraBrain-Agent架构实现即时感知-决策-全身控制。</div>
+    <div class="source">Edgen · 8月22日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">分拆</span>
+    <div class="title">奇瑞孵化墨甲机器人启动IPO筹备，投后估值25亿元</div>
+    <div class="desc">车企分拆机器人资产独立上市成为新趋势。</div>
+    <div class="source">搜狐 · 8月21日</div>
+    </div>
+
+<div class="history-sub">三、资金变动</div>
+    <div class="news-item">
+    <span class="tag tag-hot">IPO</span>
+    <div class="title">宇树科技科创板首日暴涨460%，王兴兴身家超千亿成90后新首富</div>
+    <div class="desc">收盘845元、市值约3418亿，中一签浮盈47万。</div>
+    <div class="source">证券之星 · 8月19日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">IPO</span>
+    <div class="title">具身智能密集赴港超50家：本末动力递表、梅卡曼德过讯</div>
+    <div class="desc">港交所18C章+「科企专线」保密递表红利驱动。</div>
+    <div class="source">证券时报 · 8月23日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">IPO</span>
+    <div class="title">逐际动力保密递表港股，估值150亿、半年融资4亿美元</div>
+    <div class="desc">累计数千台订单超一半来自海外。</div>
+    <div class="source">证券之星(港) · 8月19日</div>
+    </div>
+
+<div class="history-sub">四、项目招标</div>
+    <div class="news-item">
+    <span class="tag tag-hot">发榜</span>
+    <div class="title">49家央企首次集体亮相WRC，发布12大真实场景公开「发榜」</div>
+    <div class="desc">成立「中央企业机器人创新联合体」。</div>
+    <div class="source">凤凰网 · 8月20日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">采购</span>
+    <div class="title">国家电网68亿采购8500台具身设备，含500台带电作业人形</div>
+    <div class="desc">南方电网产融、中石油昆仑各1.36亿战配宇树。</div>
+    <div class="source">凤凰网 · 8月20日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">趋势</span>
+    <div class="title">招标趋势：企业端从「买样机」转向「订单验证」</div>
+    <div class="desc">采购逻辑从「看演示」转向「看交付与ROI」。</div>
+    <div class="source">综合整理 · 8月24日</div>
+    </div>
+
+<div class="week-label">8月10日 — 8月16日</div>
+
+<div class="history-sub">一、中标项目与落地场景</div>
+    <div class="news-item">
+    <span class="tag tag-hot">布局</span>
+    <div class="title">京东AI半年考：研发涨53%、五年80个机器人基地、宿迁首个数采社区</div>
+    <div class="desc">京东上半年研发投入增53.2%，五年全国布局80余个机器人基地，宿迁落地全国首个数采社区。</div>
+    <div class="source">同花顺 · 8月14日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">大会</span>
+    <div class="title">北京亦庄近20家企业预热WRC：机器人从展台走向产线</div>
+    <div class="desc">8月19-23日第十届WRC 300余家参展，人形机器人从实验室原型走向真实工业产线。</div>
+    <div class="source">澎湃新闻 · 8月14日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">量产</span>
+    <div class="title">优必选Walker S2亮相WRC：3分钟自主换电+集群协同</div>
+    <div class="desc">已在汽车工厂完成搬运、分拣等工序测试。</div>
+    <div class="source">太平洋电脑网 · 8月14日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">场景</span>
+    <div class="title">浙江人形NAVIAI：社区养老/生鲜店实测3个月</div>
+    <div class="desc">已在宁波社区养老中心、杭州生鲜店实测3个月，WRC现场炒菜扫地。</div>
+    <div class="source">今日头条 · 8月14日</div>
+    </div>
+
+<div class="history-sub">二、头部公司组织变动</div>
+    <div class="news-item">
+    <span class="tag tag-hot">重磅</span>
+    <div class="title">银河通用IPO前夜「十出九进」大换血：尹方鸣接任董事长</div>
+    <div class="desc">宇树首位天使投资人尹方鸣接任董事长，正值冲击上市关键期。</div>
+    <div class="source">网易 · 8月16日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">变动</span>
+    <div class="title">智元罗剑岚去向坐实：加入上海创智学院任全职导师</div>
+    <div class="desc">个人主页删除智元任职，主导SERL/HIL-SERL、AgiBot World等成果。</div>
+    <div class="source">澎湃新闻 · 8月</div>
+    </div>
+
+<div class="history-sub">三、资金变动</div>
+    <div class="news-item">
+    <span class="tag tag-hot">IPO</span>
+    <div class="title">睿尔曼智能加入IPO大潮、科沃斯押注</div>
+    <div class="desc">港股排队具身企业超50家。</div>
+    <div class="source">东方财富 · 8月16日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">IPO</span>
+    <div class="title">梅卡曼德传预路演筹23亿港元</div>
+    <div class="desc">美团/红杉/IDG/英特尔为股东。</div>
+    <div class="source">Now财经 · 8月</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">融资</span>
+    <div class="title">原力无限A轮+A+轮近10亿</div>
+    <div class="desc">「Ego原生世界模型」加速具身大脑。</div>
+    <div class="source">钛媒体 · 8月14日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">融资</span>
+    <div class="title">诺因5亿天使++轮（经纬领投）</div>
+    <div class="desc">消费级家庭机器人赛道升温。</div>
+    <div class="source">机器人家 · 8月10日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">融资</span>
+    <div class="title">戴盟获蚂蚁领投数亿、发布Daimon-TWM</div>
+    <div class="desc">全球首个触觉锚定世界模型。</div>
+    <div class="source">证券时报 · 8月10日</div>
+    </div>
+
+<div class="history-sub">四、项目招标</div>
+    <div class="news-item">
+    <span class="tag tag-hot">中标</span>
+    <div class="title">河南技师学院458.66万中标AI实训设备（含通用人形2套）</div>
+    <div class="desc">招商局检测车辆技术研究院中标。</div>
+    <div class="source">智联标讯 · 8月11日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">零部件</span>
+    <div class="title">湖北荆楚直线型电驱动关节三次评标，杭州新剑机电第一候选</div>
+    <div class="desc">核心零部件招标开始出现。</div>
+    <div class="source">公告 · 8月12日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">趋势</span>
+    <div class="title">招标趋势：高校仍为绝对主力，企业端多走直采</div>
+    <div class="desc">WRC期间多家厂商密集释放量产落地订单。</div>
+    <div class="source">综合整理 · 8月17日</div>
+    </div>
+<div class="week-label">8月3日 — 8月9日</div>
+
+<div class="history-sub">一、中标项目与落地场景</div>
+<div class="news-item">
+<span class="tag tag-hot">中标</span>
+<div class="title">具身智能标讯爆发：H1达345条，3000万以上大单追平去年全年</div>
+<div class="desc">标讯从2024年37条→2025年376条→2026 H1达345条；天津某项目单笔3930万元为8月最大，科研教育仍是最大落地场景，工业仅占9%。</div>
+<div class="source">千里马招标网 · 8月</div>
+</div>
+<div class="news-item">
+<span class="tag tag-hot">落地</span>
+<div class="title">京东×五八智能战略合作：四足+人形产业化，首个案例年底前落地</div>
+<div class="desc">8月5日签约，聚焦公共安全、应急、能源、城市服务，计划12月31日前落地首个成熟案例，五八智能产品入驻京东渠道。</div>
+<div class="source">太平洋电脑网 · 8月5日</div>
+</div>
+<div class="news-item">
+<span class="tag tag-hot">工业</span>
+<div class="title">国奥科技G-Tools工业具身机器人落地博世产线：重复定位±2μm，精密力控±0.05N</div>
+<div class="desc">已批量出货落地博世产线，覆盖半导体、面板、精密电子，标志国产具身机器人进入精密制造核心环节。</div>
+<div class="source">高工机器人 · 8月</div>
+</div>
+<div class="news-item">
+<span class="tag tag-trend">场景</span>
+<div class="title">江苏发布具身智能十大典型应用场景：轨交巡检、导盲助残、电力运维领跑</div>
+<div class="desc">涵盖轨交巡检、智慧交通、导盲助残（哈工大"小苏导盲犬"驻点测试）、工业制造等，场景从"能做什么"进入"在哪用"。</div>
+<div class="source">江苏新闻 · 8月7日</div>
+</div>
+<div class="news-item">
+<span class="tag tag-trend">量产</span>
+<div class="title">智元"部署态元年"：下半年推A3 Ultra主攻24h工业部署</div>
+<div class="desc">智元提出2026是"部署态元年"；优必选H1新增订单超10亿元，空客100台Walker S2为全球首单航空制造人形订单。</div>
+<div class="source">福布斯中国 · 8月</div>
+</div>
+
+<div class="history-sub">二、头部公司组织变动</div>
+<div class="news-item">
+<span class="tag tag-hot">重磅</span>
+<div class="title">智元IPO前夜首曝9位合伙人：5位华为系，"科学家让位军团"</div>
+<div class="desc">熊彦任联席总裁统管中央研发、张修征管商业化；罗剑岚不再列合伙人但未离职，过半合伙人具华为背景。</div>
+<div class="source">36氪 · 8月3日</div>
+</div>
+<div class="news-item">
+<span class="tag tag-hot">组织</span>
+<div class="title">小米新设具身智能与应用部：前字节孔涛挂帅，统一指挥</div>
+<div class="desc">8月7日新设"具身智能与应用部"，孔涛出任负责人，收拢VLA团队与机器人具身研发部；8月5日刚开源Xiaomi-Robotics-1。</div>
+<div class="source">PChome · 8月7日</div>
+</div>
+<div class="news-item">
+<span class="tag tag-trend">变动</span>
+<div class="title">鹿明机器人联席CTO丁琰离职：任期不足280天</div>
+<div class="desc">丁琰（UMI无本体数采早期研究者）入职不足280天即离职，行业从"技术探索期"进入"商业验证期"。</div>
+<div class="source">新浪财经 · 8月6日</div>
+</div>
+
+<div class="history-sub">三、资金变动</div>
+<div class="news-item">
+<span class="tag tag-hot">IPO</span>
+<div class="title">宇树IPO定价150.80元：发行市值610亿，DeepSeek战投</div>
+<div class="desc">219倍PE、募资60.99亿（85%投向模型研发）；9家战配含DeepSeek、腾讯、社保基金；2025年人形出货5500台全球第一。</div>
+<div class="source">福布斯中国 · 8月7日</div>
+</div>
+<div class="news-item">
+<span class="tag tag-hot">IPO</span>
+<div class="title">自变量(X2)秘密递表港交所：WUM统一架构，估值翻倍至200亿+</div>
+<div class="desc">4-6月连完成B→C四轮融资，估值从100亿飙至200亿+；行业唯一全自研端到端预训练具身模型公司。</div>
+<div class="source">钛媒体 · 8月6日</div>
+</div>
+<div class="news-item">
+<span class="tag tag-hot">融资</span>
+<div class="title">蚂蚁灵波15亿首轮+帕西尼10亿战融：H1行业融资935亿同比5倍</div>
+<div class="desc">蚂蚁灵波启动15亿首轮（"一脑多机"）；帕西尼完成10亿战略融资；H1国内具身融资935亿（+5倍）、322笔。</div>
+<div class="source">Edgen / 东方财富 · 8月</div>
+</div>
+<div class="news-item">
+<span class="tag tag-trend">估值</span>
+<div class="title">行业进入"赛马时代"：219倍PE的宇树能否撑起估值锚？</div>
+<div class="desc">宇树610亿定价首次建立真实营收估值锚；东海证券预计2029年全球人形市场1500亿元。</div>
+<div class="source">东方财富 · 8月9日</div>
+</div>
+<div class="news-item">
+<span class="tag tag-hot">IPO</span>
+<div class="title">宇树上市，具身智能开始第一次"清场"——80%企业可能无法存活</div>
+<div class="desc">钛媒体：宇树上市是行业洗牌起点，从"广泛撒网"进入"赛马时代"，缺乏商业闭环的企业面临生存压力。</div>
+<div class="source">钛媒体 · 8月10日</div>
+</div>
+
+<div class="history-sub">四、项目招标</div>
+<div class="news-item">
+<span class="tag tag-hot">招标</span>
+<div class="title">东北大学128万招标人形+四足机器人平台（9月1日截标）</div>
+<div class="desc">采购端边异构空地协同控制开发平台，含人形+四足，预算128万元。</div>
+<div class="source">东北大学采购网 · 8月9日</div>
+</div>
+<div class="news-item">
+<span class="tag tag-hot">招标</span>
+<div class="title">深圳技术大学133万招标具身智能多形态硬件平台（8月18日截标）</div>
+<div class="desc">预算133万元，不接受进口、不接受联合体。</div>
+<div class="source">中国政府采购网 · 8月7日</div>
+</div>
+<div class="news-item">
+<span class="tag tag-hot">招标</span>
+<div class="title">温州职业技术学院176万招标具身智能训练实训室（8月28日截标）</div>
+<div class="desc">预算175.9万元；同期台州科技职院81万招标数采实训设备。</div>
+<div class="source">中国政府采购网 · 8月8日</div>
+</div>
+<div class="news-item">
+<span class="tag tag-hot">招标</span>
+<div class="title">西安工程大学70万二次招标类人机器人（8月31日截标）</div>
+<div class="desc">专门面向中小企业；重庆大学8月采购意向266万（通用具身+服务机器人等）。</div>
+<div class="source">中国政府采购网 · 8月7日</div>
+</div>
+<div class="news-item">
+<span class="tag tag-trend">企业</span>
+<div class="title">中国电信广东86万询比采购多模态具身+人形+四足+机械臂（8月3日截标）</div>
+<div class="desc">本月少数来自真实企业的具身机器人招标，最高限价86万（不含税）。</div>
+<div class="source">国电投电子商务平台 · 7月23日</div>
+</div>
+<div class="news-item">
+<span class="tag tag-trend">趋势</span>
+<div class="title">招标趋势：8月高校实训招标密集，企业端采购仍以邀标/直采为主</div>
+<div class="desc">高校/职业院校为公开招标绝对主力，人形+四足成标配；企业端金额偏小，大额工业采购多走直采。</div>
+<div class="source">综合整理 · 8月10日</div>
+</div>
+
+</div></div></div>
+
+<div class="card">
+<div class="card-header" style="background:linear-gradient(135deg,#1B3A5C,#0D1F33)">🧠🔧 技术动态</div>
+<div class="card-body">
+
+<div class="sub-header" style="background:linear-gradient(135deg,#7B1FA2,#4A148C)">🧬 一、算法与大模型</div>
+
+    <div class="news-item">
+    <span class="tag tag-intl">国际</span><span class="tag tag-new">9月</span>
+    <div class="title"><a href="https://www.jiqizhixin.com/articles/2026-09-04-8" target="_blank">Meta开源HumanCLAW：首个评测基础模型「行动智能」的基准，最佳成功率仅16.8%</a></div>
+    <div class="desc">Meta联合南洋理工等把「高层决策」与「低层运动控制」解耦，让冻结的VLM每0.5秒做一次技能决策、扩散先验转成全身动作；41个场景1218条长程任务中，9个前沿VLM完整交互成功率最高仅16.8%，证明「看懂世界」≠「能通过身体行动」。</div>
+    <div class="source">机器之心 · 9月4日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">强化学习</span><span class="tag tag-new">9月</span>
+    <div class="title"><a href="https://www.guandian.cn/article/20260904/597182.html" target="_blank">星尘智能发布在线RL框架SmoothRL：动态投掷成功率39%→94%</a></div>
+    <div class="desc">针对大模型异步推理下「模型计划的动作」与「机器人实际做的动作」错位问题，把动作块划分为提交/执行/丢弃三区、只对执行区做强化学习；真机测试给笔戴帽8%→83%、快递开箱30%→90%，首次在真实高动态任务验证在线RL。</div>
+    <div class="source">观点网 · 9月4日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">趋势</span><span class="tag tag-new">9月</span>
+    <div class="title"><a href="https://fund.eastmoney.com/a/202609063866118560.html" target="_blank">具身大脑「百模大战」提前打响：30家涉足世界模型、100+开源具身基模</a></div>
+    <div class="desc">一年半全球已现100多款开源具身基础模型、至少30家公司发布或涉足世界模型；VLA仍是主流但面临长程成功率衰减（单动作99%→30步约74%），世界模型被推到竞争中心。</div>
+    <div class="source">每日经济新闻 · 9月6日</div>
+    </div>
+
+<div class="sub-header" style="background:linear-gradient(135deg,#E67E22,#BF360C)">🦾 二、硬件模组（本体/灵巧手/传感器/关节）</div>
+
+    <div class="news-item">
+    <span class="tag tag-hot">灵巧手</span><span class="tag tag-new">9月</span>
+    <div class="title"><a href="https://www.360kuai.com/pc/92b8f43b9e9d30a19" target="_blank">Sharpa Wave灵巧手：22DOF、指尖1000+触觉像素，纳入NVIDIA Isaac GR00T参考设计</a></div>
+    <div class="desc">自研动态触觉阵列DTA，2mm空间分辨率、50mN力灵敏度、30fps触觉帧率、寿命超100万次抓取；已纳入英伟达Isaac GR00T参考人形机器人设计，「会跑步的机器人很多、会干活的很少」，触觉成为破局关键。</div>
+    <div class="source">搜维尔科技 · 9月</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">关节</span><span class="tag tag-new">9月</span>
+    <div class="title"><a href="http://www.jushenyanxishe.com/archives/501033" target="_blank">泉智博一体化关节模组放量：2025出货超10万台、6月单月发货6万+</a></div>
+    <div class="desc">一体化关节模组占整机成本30%-60%，泉智博2025年出货超10万台、2026年6月单月发货超6万台并获数亿元B轮融资；国产关节供应链从「卖单品」走向「量产供货」。</div>
+    <div class="source">具身研习社 · 9月5日</div>
+    </div>
+
+<div class="sub-header" style="background:linear-gradient(135deg,#26A69A,#00695C)">📊 三、具身数据</div>
+
+    <div class="news-item">
+    <span class="tag tag-hot">基地</span><span class="tag tag-new">9月</span>
+    <div class="title"><a href="https://xinsanban.10jqka.com.cn/20260904/c679606054.shtml" target="_blank">远盾东阿「全球单体最大」具身数据超级工厂签约：年采集360万小时</a></div>
+    <div class="desc">9月4日签约，总投资1.1亿元、建筑面积2.2万㎡，规划居家服务/医疗养老/无人商超等270余套实景采集场景，建成后年数据采集量超360万小时，构建「采集—标注—训练」闭环。</div>
+    <div class="source">同花顺 · 9月4日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">开源</span><span class="tag tag-new">9月</span>
+    <div class="title"><a href="https://www.beinet.net.cn/jjyw/cyfz/202609/t14464482.html" target="_blank">北京「数据超级工厂」RoboMIND开源数据集全球下载破2000万次</a></div>
+    <div class="desc">北京人形机器人创新中心近6000㎡实训空间、40余实景分区、150余台机器人+150套无本体采集设备，年产能18万小时；开源数据集RoboMIND累计释放30万余条双臂轨迹，全球下载量居首。</div>
+    <div class="source">北京商报网 · 9月</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">训练场</span><span class="tag tag-new">9月</span>
+    <div class="title"><a href="https://zjnews.zjol.com.cn/zjnews/202609/t20260907_31893197.shtml" target="_blank">宁波人形机器人训练场投运：家庭/商超/工业三大实景训练区</a></div>
+    <div class="desc">一期1620㎡，围绕家庭服务、商超零售、工业制造搭建实景训练区，部署多品牌多型号数采设备，定位开发/培训/运营三大平台，长三角训练场集群再添一城。</div>
+    <div class="source">浙江在线 · 9月7日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">趋势</span><span class="tag tag-new">9月</span>
+    <div class="title"><a href="https://m.dzplus.dzng.com/share/general/0/NEWS3654925IWYTZFWFQFDZG" target="_blank">全国已建成超70家训练场，数据质量国标11月1日实施</a></div>
+    <div class="desc">信通院报告：全国建成启用超70家训练场、40多家在建，形成长三角/京津冀/珠三角三大集群；《具身智能数据集质量要求及评估方法》11月1日实施，数据建设从「规模导向」转向「质量导向」。</div>
+    <div class="source">大众网 · 9月</div>
+    </div>
+<div class="history-divider">📅 往期回顾</div>
+<div class="history-section">
+
+<div class="week-label">8月24日 — 8月30日</div>
+
+<div class="history-sub">一、算法与大模型</div>
+    <div class="news-item">
+    <span class="tag tag-hot">开源</span>
+    <div class="title">乐聚开源工业垂域大模型KUAVO-VLA：成功率48.27%、成本降50%</div>
+    <div class="desc">成功率近基模3倍，新技能开发成本降50%以上。</div>
+    <div class="source">搜狐 · 8月26日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-intl">国际</span>
+    <div class="title">Perceptron发布Isaac 0.5开源基座（360亿参数），LIBERO 97.2%</div>
+    <div class="desc">视频密集预训练将遥操作数据需求降约210倍。</div>
+    <div class="source">Business Wire · 8月28日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">自回归</span>
+    <div class="title">星海图G0.5 Max开源：自回归VLA「像GPT一样逐token输出动作」</div>
+    <div class="desc">京东前置仓在线接单、机器人组装机器人实景。</div>
+    <div class="source">财联社 · 8月</div>
+    </div>
+
+<div class="history-sub">二、硬件模组</div>
+    <div class="news-item">
+    <span class="tag tag-hot">整机</span>
+    <div class="title">开普勒K3大黄蜂：新增腰部自由度、双臂30kg重载</div>
+    <div class="desc">年产千台产线，80%关键零部件自研。</div>
+    <div class="source">湖北日报 · 8月28日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">整机</span>
+    <div class="title">优必选U1 Pro首发16.98万、主打情感陪伴</div>
+    <div class="desc">上半年人形销量16123台、同比+268%。</div>
+    <div class="source">机器人行业日报 · 8月29日</div>
+    </div>
+
+<div class="history-sub">三、具身数据</div>
+    <div class="news-item">
+    <span class="tag tag-hot">基地</span>
+    <div class="title">贵安首个具身智能数据工厂投用+惠水民众实景采集</div>
+    <div class="desc">3000㎡六大数据区，贯通采集治理交易。</div>
+    <div class="source">中新网 · 8月26日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">训练场</span>
+    <div class="title">北京首个人形数据训练中心升级：4D高斯光场+世界模型</div>
+    <div class="desc">年产高质量数据近2000万条。</div>
+    <div class="source">新京报 · 8月28日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">合作</span>
+    <div class="title">奥比中光×灵初智能：软硬协同推进无本体数据采集</div>
+    <div class="desc">贯通前端采集到后端数据管理全链路。</div>
+    <div class="source">亿邦动力 · 8月28日</div>
+    </div>
+
+<div class="week-label">8月17日 — 8月23日</div>
+
+<div class="history-sub">一、算法与大模型</div>
+    <div class="news-item">
+    <span class="tag tag-hot">自进化</span>
+    <div class="title">宇树王兴兴推进「物理AI模型自进化」，让模型自己写控制代码</div>
+    <div class="desc">上市后焦点从「能否做出来」转向「能否规模化销售」。</div>
+    <div class="source">东方财富 · 8月22日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">重磅</span>
+    <div class="title">蚂蚁灵波「一脑多机」2.0：LingBot-VLA 2.0适配17品牌20构型</div>
+    <div class="desc">已在国大药房夜班分拣、工厂上下料、仓储分拣落地。</div>
+    <div class="source">中国高新网 · 8月20日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">国内</span>
+    <div class="title">北京人形创新中心发布具身大一统模型Pelican Unify+天工Omni</div>
+    <div class="desc">整合感知-理解-决策-控制，全栈开放。</div>
+    <div class="source">OFweek · 8月19日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">类脑</span>
+    <div class="title">智平方NeuroVLA类脑系统「皮层-小脑-脊髓」三层体系</div>
+    <div class="desc">全球首个类脑式具身系统，可摸出形状、掂出轻重。</div>
+    <div class="source">中国电子报 · 8月20日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">生态</span>
+    <div class="title">WRC成立世界模型专家委员会、发布44项新技术新方案</div>
+    <div class="desc">世界模型从路线之争走向生态共建。</div>
+    <div class="source">新京报 · 8月23日</div>
+    </div>
+
+<div class="history-sub">二、硬件模组</div>
+    <div class="news-item">
+    <span class="tag tag-hot">触觉</span>
+    <div class="title">华威科「万象」触觉传感器：0.01N精度、400点/cm²断层领先</div>
+    <div class="desc">已被智元OmniPicker 3、松灵UMI夹爪选用量产验证。</div>
+    <div class="source">DoNews · 8月20日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">灵巧手</span>
+    <div class="title">星动纪元XHAND 1 PRO：21自由度+18全掌触觉传感器</div>
+    <div class="desc">面向高精度数采与算法训练，±0.1mm定位。</div>
+    <div class="source">搜狐 · 8月20日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">新品</span>
+    <div class="title">禾赛Sharpa Wave SE触觉灵巧手：22自由度、力灵敏度0.02N</div>
+    <div class="desc">主打开发者/科研高质价比。</div>
+    <div class="source">盖世汽车 · 8月19日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">三指</span>
+    <div class="title">灵巧智能TriVLA三指基模+TriUMI夹爪，解决仿真难零迁移</div>
+    <div class="desc">覆盖拾取/拧转/插拔/精密装配。</div>
+    <div class="source">同花顺 · 8月18日</div>
+    </div>
+
+<div class="history-sub">三、具身数据</div>
+    <div class="news-item">
+    <span class="tag tag-hot">融资</span>
+    <div class="title">觅蜂科技获中国电信领投数亿元，三大运营商落子具身数据</div>
+    <div class="desc">MEgo Engine全链路自动化效率提升10倍。</div>
+    <div class="source">东方财富 · 8月17日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">数采</span>
+    <div class="title">Current Robotics（元流）：人类全身数据规模化采集+世界模型</div>
+    <div class="desc">百度/高瓴/复星+智元/星海图入局。</div>
+    <div class="source">搜狐 · 8月20日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">趋势</span>
+    <div class="title">WRC数采设备成主角，直击「触觉数据饥渴」</div>
+    <div class="desc">柔性触觉数采手套/夹爪密集发布。</div>
+    <div class="source">综合整理 · 8月24日</div>
+    </div>
+
+<div class="week-label">8月10日 — 8月16日</div>
+
+<div class="history-sub">一、算法与大模型</div>
+    <div class="news-item">
+    <span class="tag tag-hot">国内</span>
+    <div class="title">优必选Thinker-WM登顶Libero、Thinker-VLA推理效率提升176%</div>
+    <div class="desc">复杂工序操作成功率高达99%。</div>
+    <div class="source">太平洋电脑网 · 8月14日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">国内</span>
+    <div class="title">自变量物流分拣成功率超98%：WUM世界统一模型</div>
+    <div class="desc">挑战主流VLA「多模块拼凑」范式。</div>
+    <div class="source">国金证券 · 8月16日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">趋势</span>
+    <div class="title">类脑架构成全球共识，万台交付时代开启</div>
+    <div class="desc">NeuroVLA「皮层-小脑-脊髓」三层体系从一家之言演变为共识。</div>
+    <div class="source">投资者网 · 8月16日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">国内</span>
+    <div class="title">北京人形创新中心发布Pelican Unify+天工Omni</div>
+    <div class="desc">具身大一统模型+全栈开放平台。</div>
+    <div class="source">北京市政府网 · 8月14日</div>
+    </div>
+
+<div class="history-sub">二、硬件模组</div>
+    <div class="news-item">
+    <span class="tag tag-hot">灵巧手</span>
+    <div class="title">章鱼动力OctoH-Hand绳驱灵巧手：首创「数采孪生」</div>
+    <div class="desc">腱绳传动、执行器后置，数采手套与灵巧手构型一一对应。</div>
+    <div class="source">高工机器人 · 8月14日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">灵巧手</span>
+    <div class="title">兆威机电B21仿生灵巧手：指关节内置动力单元</div>
+    <div class="desc">指关节独立驱动+多关节协同。</div>
+    <div class="source">搜狐/兆威 · 8月14日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">触觉</span>
+    <div class="title">傲意ROHand全系列灵巧手：三维磁触觉+150Hz力传感</div>
+    <div class="desc">AP003量产三维磁触觉灵巧手，另首发工业三爪执行器。</div>
+    <div class="source">同花顺 · 8月15日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">关节</span>
+    <div class="title">清能德创JMDH关节模组：GaN功率器件+一体化</div>
+    <div class="desc">RJM一体化关节模组集成谐波减速器+无框电机+双编码器。</div>
+    <div class="source">中国机器人网 · 8月14日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">趋势</span>
+    <div class="title">WRC硬件信号：灵巧手/关节转向「量产方案」，腱绳驱动成主流</div>
+    <div class="desc">供应链从卖单品走向卖量产方案。</div>
+    <div class="source">综合整理 · 8月17日</div>
+    </div>
+
+<div class="history-sub">三、具身数据</div>
+    <div class="news-item">
+    <span class="tag tag-hot">基地</span>
+    <div class="title">上海杨浦建成全国首座高质量真机数据示范平台，宇树「登岛」</div>
+    <div class="desc">上海技术交易所×刻行时空×宇树共建，引入电子存证与权益登记。</div>
+    <div class="source">上观新闻 · 8月11日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">开源</span>
+    <div class="title">京东开源EgoLive、宿迁建全国首个数采社区</div>
+    <div class="desc">行业规模最大人类视角数据集。</div>
+    <div class="source">世界浙商网 · 8月14日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">社区</span>
+    <div class="title">山东泰安「泰山数采谷」发动居民当「数据采集师」</div>
+    <div class="desc">覆盖居家/工厂/药店场景。</div>
+    <div class="source">湖北云网 · 8月13日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">合作</span>
+    <div class="title">无锡×渊澈太初共建「物理世界神经数据基座」</div>
+    <div class="desc">肌电感知切入具身数据。</div>
+    <div class="source">新浪财经 · 8月15日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">订单</span>
+    <div class="title">元点科技40天两轮融资、启动它石智航千万级数据订单</div>
+    <div class="desc">数据服务从内部成本转为独立合同。</div>
+    <div class="source">钛媒体 · 8月12日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">融资</span>
+    <div class="title">觅蜂科技获中国电信领投数亿元</div>
+    <div class="desc">三大运营商悉数落子具身数据。</div>
+    <div class="source">东方财富 · 8月17日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">趋势</span>
+    <div class="title">具身数据「商品化」加速：真实场景数采+交易订单+产业方入股</div>
+    <div class="desc">数据缺口仍约99%，数采能力成核心竞争维度。</div>
+    <div class="source">综合整理 · 8月17日</div>
+    </div>
+<div class="week-label">8月3日 — 8月9日</div>
+
+<div class="history-sub">一、算法与大模型</div>
+<div class="news-item">
+<span class="tag tag-hot">国内</span>
+<div class="title">具身大脑进入"类脑架构"深水区：VLA+世界模型融合成共识，NeuroVLA领跑</div>
+<div class="desc">智平方NeuroVLA构建"皮层-小脑-脊髓"三层类脑体系（脊髓层0.4W、20ms安全反射）；世界模型是VLA体系核心组件。</div>
+<div class="source">搜狐/中国商人 · 8月5日</div>
+</div>
+<div class="news-item">
+<span class="tag tag-hot">国内</span>
+<div class="title">卓世ZoeInside-VLA登顶MolmoSpaces全球榜首：4B轻量模型超越英伟达、MIT</div>
+<div class="desc">4B参数MoT架构，引入失败与恢复操作数据，让机器人学会从失败中恢复。</div>
+<div class="source">中国产业经济信息网 · 8月3日</div>
+</div>
+<div class="news-item">
+<span class="tag tag-hot">国内</span>
+<div class="title">宇树并行WMA+VLA双路线，自变量WUM挑战"多模块拼凑"范式</div>
+<div class="desc">宇树开源UnifoLM-WMA-0/VLA-0，IPO募资85%投向模型；自变量押注WUM世界统一模型。</div>
+<div class="source">和讯科技 / 钛媒体 · 8月7日</div>
+</div>
+<div class="news-item">
+<span class="tag tag-hot">国内</span>
+<div class="title">清华Motus（CVPR 2026）：一个模型贯通理解、预测与控制，RoboTwin 88.66%</div>
+<div class="desc">三专家MoT架构，RoboTwin 2.0平均88.66%；上交大ChronoFlow-Policy提出"Flow is interface"。</div>
+<div class="source">CVPR/ECCV 2026 · 8月</div>
+</div>
+<div class="news-item">
+<span class="tag tag-intl">国际</span>
+<div class="title">Google Gemini Robotics 2：首个全身VLA三件套；ω-0隐式WAM实现"边走边干"</div>
+<div class="desc">全身VLA控制Apptronik Apollo 2+22DOF手，ER 2具身推理层、On-Device 2<200例适配。</div>
+<div class="source">Google DeepMind / arXiv · 8月</div>
+</div>
+<div class="news-item">
+<span class="tag tag-trend">观点</span>
+<div class="title">复旦陈涛：具身底层模型架构急需突破，两年内难迎具身"GPT时刻"</div>
+<div class="desc">主流VLA缺失败数据难以自主纠错；更务实路径是细分任务能力，"原生大脑"是未来方向。</div>
+<div class="source">羊城晚报 · 8月6日</div>
+</div>
+
+<div class="history-sub">二、硬件模组</div>
+<div class="news-item">
+<span class="tag tag-hot">重磅</span>
+<div class="title">中科慧思发布三款灵巧手：L1千元级+D1五指+M1模块化，F系列37DOF预发布</div>
+<div class="desc">L1（6DOF/千元级）、D1（20路传感）、M1（标准化+可换指尖）；蓝思科技入局解决"贵而不稳"。</div>
+<div class="source">东方财富 · 8月9日</div>
+</div>
+<div class="news-item">
+<span class="tag tag-hot">触觉</span>
+<div class="title">帕西尼全球首个足底多维触觉传感器PX-FOOTRIX + 港智创信芯片级MEMS六维力</div>
+<div class="desc">双足首次获得完整足底触觉；港智创信8mm硅基MEMS六维力传感器，量产后有望颠覆成本结构。</div>
+<div class="source">腾讯新闻 / 大众日报 · 8月7-8日</div>
+</div>
+<div class="news-item">
+<span class="tag tag-hot">关节</span>
+<div class="title">瑞萨电子首次亮相中国具身智能产业大会：传感器融合灵巧手+关节编码器方案</div>
+<div class="desc">芯片巨头从"卖料"走向"卖方案"，供应链加速成熟。</div>
+<div class="source">证券时报 · 8月6日</div>
+</div>
+<div class="news-item">
+<span class="tag tag-hot">量产</span>
+<div class="title">曦诺Xynova Flex 2：全球首款量产23DOF混合驱动灵巧手仅400g；星动XHAND 1 PRO发布</div>
+<div class="desc">23自由度腱绳+直驱混合，抓取峰值12kg；GGII预计2026年灵巧手销7.02万只（+265%）。</div>
+<div class="source">智东西 · 7月/8月</div>
+</div>
+<div class="news-item">
+<span class="tag tag-trend">数据</span>
+<div class="title">灵巧手四大痛点：贵而不稳、集成难、有手无脑、技术路线未收敛</div>
+<div class="desc">2023-2026.5国内灵巧手融资57笔约128亿，但开源精细操作数据仅几万条；答案在制造不在设计。</div>
+<div class="source">中国证券报 · 8月8日</div>
+</div>
+<div class="news-item">
+<span class="tag tag-hot">本体</span>
+<div class="title">黄仁勋与宇树合作打造人形机器人底座 + 特斯拉Optimus V3量产预期升温</div>
+<div class="desc">英伟达与宇树合作开发计算底座；特斯拉链预计年内发布第一代Optimus量产产品。</div>
+<div class="source">36氪 · 8月</div>
+</div>
+
+<div class="history-sub">三、具身数据</div>
+<div class="news-item">
+<span class="tag tag-hot">基地</span>
+<div class="title">合肥建成安徽最大机器人训练场：83台机器人+33个场景，年产数万小时数据</div>
+<div class="desc">一期6461m²、投资5895万元，覆盖L1基础操作→L2精准作业→L3复杂决策三层体系。</div>
+<div class="source">澎湃新闻 · 8月6日</div>
+</div>
+<div class="news-item">
+<span class="tag tag-hot">基地</span>
+<div class="title">武汉投1亿建"机器人职业学院"：蚂蚁数科AoE手机即可采集</div>
+<div class="desc">首期1000+人、复刻上百真实场景；AoE体系手机支架低成本采集，原始视频有效率99.9%。</div>
+<div class="source">新华网 · 8月6日</div>
+</div>
+<div class="news-item">
+<span class="tag tag-hot">交易</span>
+<div class="title">自贡完成全国首笔具身智能数据集市场化交易：300条"撕飞边"数据，100元/条</div>
+<div class="desc">300条、总价3万元，产自150台全尺寸人形机器人采集中心，贯通"采集→治理→交易"闭环。</div>
+<div class="source">人民网 · 8月4日</div>
+</div>
+<div class="news-item">
+<span class="tag tag-hot">合作</span>
+<div class="title">黎曼动力×光轮智能×诺亦腾：2026年目标100万小时具身数据采集</div>
+<div class="desc">围绕Riemann-1.0世界动作模型+Matrix-Game 3.5构建数据闭环，重点解决多模态数据时空同步。</div>
+<div class="source">InfoQ · 8月6日</div>
+</div>
+<div class="news-item">
+<span class="tag tag-hot">开源</span>
+<div class="title">智元开源AGIBOT WORLD 2026：自由式遥操采集，含失败/碰撞/纠错轨迹</div>
+<div class="desc">首创自由式采集策略（非脚本化示教），专用于世界模型与物理感知训练。</div>
+<div class="source">智元官网 · 8月</div>
+</div>
+<div class="news-item">
+<span class="tag tag-trend">趋势</span>
+<div class="title">具身数据产业三大趋势：基建化、商品化、低成本化</div>
+<div class="desc">数据缺口99%（有效数据仅50万小时），数采能力正成为具身智能核心竞争维度。</div>
+<div class="source">综合整理 · 8月10日</div>
+</div>
+
+</div></div></div>
+
+</div><div class="footer">具身智能行业周报 · 擎仓机器人产品部 · 最近更新：2026年9月7日</div></body></html>
