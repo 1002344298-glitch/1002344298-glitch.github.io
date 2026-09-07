@@ -1,0 +1,1766 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>具身智能行业日报 — 擎仓机器人产品部</title>
+<meta http-equiv="refresh" content="86400">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#f0f2f5;font-family:'Microsoft YaHei','PingFang SC',sans-serif;color:#1a1a1a;line-height:1.6}
+.header{background:linear-gradient(135deg,#1B3A5C 0%,#2E6B9E 100%);color:#fff;padding:22px 40px;display:flex;justify-content:space-between;align-items:center}
+.header h1{font-size:22px;font-weight:700;letter-spacing:1px}
+.header .date{font-size:13px;opacity:.85}
+.header .auto-badge{background:rgba(255,255,255,.2);padding:6px 14px;border-radius:20px;font-size:12px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:16px 24px;max-width:100%;margin:0 auto}
+.card{background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.card-header{padding:14px 20px;font-size:15px;font-weight:700;color:#fff;display:flex;align-items:center;gap:8px}
+.card-header .icon{font-size:18px}
+.card-body{padding:14px 20px;max-height:720px;overflow-y:auto}
+.card-body::-webkit-scrollbar{width:5px}
+.card-body::-webkit-scrollbar-thumb{background:#ccc;border-radius:10px}
+
+/* Module colors */
+.m1 .card-header{background:linear-gradient(135deg,#3B7DD8,#2E6B9E)}
+.m2 .card-header{background:linear-gradient(135deg,#1F5090,#1B3A5C)}
+.m3 .card-header{background:linear-gradient(135deg,#2E6B9E,#1F5090)}
+.m4 .card-header{background:linear-gradient(135deg,#1B3A5C,#0D1F33)}
+/* Knowledge module today/history */
+.kb-today .day-topic{font-size:15px !important;color:#1B3A5C !important}
+.kb-today .day-header .day-num{background:#D43838 !important}
+.kb-history{opacity:.78;font-size:93%}
+.kb-history .day-topic{font-size:13px !important;color:#555 !important}
+.kb-history .day-header .day-num{background:#999 !important}
+.kb-history .explain{font-size:11px !important;max-height:120px;overflow:hidden;position:relative}
+.kb-history .explain::after{content:'...';position:absolute;bottom:0;right:10px;background:#f7f9fb;padding-left:5px}
+.kb-history .example{display:none}
+
+.news-item{padding:10px 0;border-bottom:1px solid #eee}
+.news-item:last-child{border-bottom:none}
+.news-item .tag{display:inline-block;font-size:10px;padding:2px 8px;border-radius:3px;margin-right:8px;font-weight:600}
+.tag-hot{background:#FFF0F0;color:#D43838}
+.tag-new{background:#E8F4FD;color:#2E6B9E}
+.tag-trend{background:#FFF8E8;color:#B06A2E}
+.news-item .title{font-size:13px;font-weight:600;color:#1a1a1a;margin:4px 0}
+.news-item .title a{color:inherit;text-decoration:none}
+.news-item .title a:hover{color:#2E6B9E}
+.news-item .desc{font-size:11.5px;color:#666;line-height:1.5}
+.news-item .source{font-size:10px;color:#999;margin-top:3px}
+
+/* History sections */
+.today-label{display:inline-block;background:#2E6B9E;color:#fff;font-size:12px;padding:4px 14px;border-radius:4px;margin-bottom:10px;font-weight:700}
+.history-divider{text-align:center;margin:18px 0 12px;font-size:12px;color:#999;border-top:1px dashed #ddd;padding-top:12px;letter-spacing:2px}
+.history-section{opacity:.82;font-size:95%}
+.history-section .day-label{font-size:12px;font-weight:700;color:#555;margin:8px 0 6px;padding-left:4px;border-left:3px solid #ccc}
+.history-section .news-item .title{font-size:12px}
+.history-section .news-item .desc{font-size:11px}
+/* Module 4 - knowledge */
+.knowledge-day{padding:12px 0;border-bottom:1px solid #eee}
+.knowledge-day:last-child{border-bottom:none}
+.knowledge-day .day-header{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.knowledge-day .day-num{background:#1B3A5C;color:#fff;font-size:10px;padding:2px 10px;border-radius:10px;white-space:nowrap}
+.knowledge-day .day-date{font-size:11px;color:#999}
+.knowledge-day .day-topic{font-size:14px;font-weight:700;color:#1B3A5C;margin-bottom:4px}
+.knowledge-day .explain{font-size:11.5px;color:#444;margin:4px 0;padding:8px 12px;background:#f7f9fb;border-radius:6px;border-left:3px solid #2E6B9E}
+.knowledge-day .example{font-size:11px;color:#555;margin:3px 0;padding-left:8px}
+.knowledge-day .term{display:inline-block;background:#E8F0FA;color:#1F5090;font-size:10px;padding:1px 6px;border-radius:3px;margin:2px 3px 2px 0}
+
+/* Responsive */
+@media(max-width:1000px){.grid{grid-template-columns:1fr}}
+.footer{text-align:center;padding:12px;color:#999;font-size:11px}
+.footer a{color:#2E6B9E}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <h1>🤖 具身智能行业日报</h1>
+    <div style="font-size:12px;opacity:.75;margin-top:4px">Embodied AI Daily Briefing · 擎仓机器人产品部</div>
+  </div>
+  <div style="text-align:right">
+    <div class="date" id="today">2026年9月4日 星期五</div>
+    <div class="auto-badge">🔄 每日自动更新</div>
+  </div>
+</div>
+
+<div class="grid">
+
+<!-- ============================================================ -->
+
+<!-- MODULE 1: 商业动态 -->
+<div class="card m1">
+  <div class="card-header"><span class="icon">📊</span> 商业动态 · 融资与市场</div>
+  <div class="card-body">
+
+    <!-- ====== 今日 ====== -->
+        	        	        	        	        	        	        	                <div class="today-label">📌 今日 · 9月4日</div>
+            <div class="news-item">
+              <span class="tag tag-hot">融资</span><span class="tag tag-new">9.02</span>
+              <div class="title"><a href="https://robot.ofweek.com/2026-09/ART-8321206-12003-30701351.html" target="_blank" rel="noopener">小鹏IRON完成超9亿美元首轮融资，投后估值63亿美元创国内纪录</a></div>
+              <div class="desc">IRON首轮融资超9亿美元（约430亿元），IDG领投、腾讯/阿里战略入局；超85%供应链与小鹏汽车重合，人形计划2026年底规模量产。</div>
+              <div class="source">OFweek机器人网 · 9月2日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">合作</span><span class="tag tag-new">9.03</span>
+              <div class="title"><a href="https://www.163.com/dy/article/L5T77I4R053469RG.html" target="_blank" rel="noopener">天创机器人与戴盟机器人签亿元合作框架，聚焦消防/电网/矿山特种场景</a></div>
+              <div class="desc">围绕消防、国防、电网、矿山、化工防爆等特种场景，升级触觉智能感知、柔性精细操作、环境精准辨识的新一代具身机器人。</div>
+              <div class="source">网易 · 9月3日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">融资</span><span class="tag tag-new">9.03</span>
+              <div class="title"><a href="https://robot.ofweek.com/2026-09/ART-8321201-8460-30701465.html" target="_blank" rel="noopener">「细胞壁智能」完成数亿元天使+轮融资，放弃人形、聚焦桌面办公</a></div>
+              <div class="desc">东方富海领投、联想之星/天启资本跟投；资金投入CyboPal ONE量产交付与具身交互系统迭代，差异化绕开人形红海。</div>
+              <div class="source">OFweek机器人网 · 9月3日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">代工</span><span class="tag tag-new">9.02</span>
+              <div class="title"><a href="https://www.163.com/dy/article/L5RFKKJ00519APGA.html" target="_blank" rel="noopener">爱仕达与智元合作推进机器狗代工，产品有望Q4下线</a></div>
+              <div class="desc">四足机器狗委托制造产线推进中，Q4下线进入量产，后续切入人形/四足零部件供应链。</div>
+              <div class="source">网易 · 9月2日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">资本</span><span class="tag tag-new">9.02</span>
+              <div class="title"><a href="https://www.nbd.com.cn/articles/2026-09-02/4570438.html" target="_blank" rel="noopener">兴瑞科技拟认购臻驱科技IPO股份，卡位电驱与机器人双赛道</a></div>
+              <div class="desc">双方联合研发机器人关节结构件工艺与生产设备并共享客户，臻驱已布局人形机器人核心部件方案。</div>
+              <div class="source">每日经济新闻 · 9月2日</div>
+            </div>
+<div class="history-divider">📅 往期回顾</div>
+    <div class="history-section"><div class="day-label">8月20日</div>
+            <div class="news-item">
+              <span class="tag tag-hot">IPO</span><span class="tag tag-new">8.20</span>
+              <div class="title"><a href="https://wap.stockstar.com/detail/IG2026082000028291" target="_blank" rel="noopener">宇树科技科创板首日暴涨629%：王兴兴身家超1300亿成90后新首富</a></div>
+              <div class="desc">开盘价1100元较发行价150.8元涨629.44%、市值一度4449亿，收盘845元涨超460%、市值约3418亿。中一签浮盈47万，美团系浮盈333亿、雷军赚152亿、梁文锋浮盈11亿。</div>
+              <div class="source">证券之星 · 8月20日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">采购</span><span class="tag tag-new">8.20</span>
+              <div class="title"><a href="https://tech.ifeng.com/c/8vgsrCv3cYM" target="_blank" rel="noopener">WRC首设「采购日」：49家央企携12大场景入场，成立「央企机器人创新联合体」</a></div>
+              <div class="desc">国务院国资委现场宣布成立「中央企业机器人创新联合体」（技术共研/场景共用/成果共享），发布央企十大创新成果与十大高价值场景；国家电网计划68亿采购8500台具身设备（含500台带电作业人形）。</div>
+              <div class="source">凤凰网 · 8月20日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">订单</span><span class="tag tag-new">8.20</span>
+              <div class="title"><a href="https://www.henan.gov.cn/2026/08-20/3400763.html" target="_blank" rel="noopener">订单密集披露：优必选U1破1.3万台、智身科技量产破1.5万台、星动纪元千台级交付</a></div>
+              <div class="desc">优必选消费版U1全渠道订单13361台（首批9月16日交付）、智身科技累计量产破1.5万台（6月单月超5000台）、星动纪元Q2千台级批量交付（+300%）、松延动力H1订单超2000台。行业从「秀肌肉」转向「接订单」。</div>
+              <div class="source">河南日报 · 8月20日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">融资</span><span class="tag tag-new">8.20</span>
+              <div class="title"><a href="https://www.sohu.com/a/1065394432_122014422" target="_blank" rel="noopener">Current Robotics（元流）首次披露：累计融资数亿元，百度/高瓴/复星+智元/星海图入局</a></div>
+              <div class="desc">已完成种子/天使/Pre-A三轮，财务方含BV百度风投、高瓴创投、绿洲、Monolith、复星创富，产业方含智元、星海图、极壳。资金投向人类全身数据规模化采集、全身灵巧操作基模、交互式世界模型。</div>
+              <div class="source">搜狐 · 8月20日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">趋势</span><span class="tag tag-new">8.20</span>
+              <div class="title"><a href="https://finance.eastmoney.com/a/202608203847944760.html" target="_blank" rel="noopener">2026上半年机器人产业营收1655亿(+24.5%)，一季度人形出口同比+210%</a></div>
+              <div class="desc">央广财评：机器人从「展台炫技」到「产业实干」。2025年规上企业营收破3000亿、近5年年均增速20%+，2026 H1达1655亿(+24.5%)；Q1人形出口+210%、H1全球出货1.91万台中国占97%。</div>
+              <div class="source">央广/东方财富 · 8月20日</div>
+            </div>
+
+	    <div class="day-label">8月19日</div>
+
+            <div class="news-item">
+              <span class="tag tag-hot">盛会</span><span class="tag tag-new">8.19</span>
+              <div class="title"><a href="https://www.wenweipo.com/a/202608/19/AP6a84f8dde4b0c1e50025647d.html" target="_blank" rel="noopener">2026世界机器人大会今日开幕：300+企业、超2000件展品、150+首发新品</a></div>
+              <div class="desc">第十届WRC 8月19-23日北京亦庄举办，首设四大主题日，8月19日为「新品发布日」。</div>
+              <div class="source">文汇报 · 8月19日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">IPO</span><span class="tag tag-new">8.19</span>
+              <div class="title"><a href="https://hk.stockstar.com/IG2026081900015426.shtml" target="_blank" rel="noopener">逐际动力冲刺港股：半年融资约4亿美元后，机器人开始比拼交付能力</a></div>
+              <div class="desc">以保密形式提交港股IPO、拟募数亿美元，累计数千台订单超一半来自海外。</div>
+              <div class="source">证券之星(港) · 8月19日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">融资</span><span class="tag tag-new">8.18</span>
+              <div class="title"><a href="https://robot.ofweek.com/2026-08/ART-8321202-12005-30699047.html" target="_blank" rel="noopener">嘉腾机器人完成数千万战略融资：2.7亿小时工业数据卡位「物理基座」</a></div>
+              <div class="desc">和而泰领投，工业移动底盘月交付150-200台、沉淀2.7亿小时工业数据。</div>
+              <div class="source">OFweek · 8月18日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">融资</span><span class="tag tag-new">8.18</span>
+              <div class="title"><a href="http://news.10jqka.com.cn/20260818/c679039169.shtml" target="_blank" rel="noopener">数字华夏完成亿元级Pre-A轮：「资本+订单」深度绑定，仿生人形量产</a></div>
+              <div class="desc">同创伟业加注、产业资本带订单入场，仿生人形夏澜R03量产加速。</div>
+              <div class="source">同花顺 · 8月18日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">趋势</span><span class="tag tag-new">8.19</span>
+              <div class="title"><a href="https://fund.eastmoney.com/a/202608193844967679.html" target="_blank" rel="noopener">2026人形机器人：产量H1超4万台、全年或破10万，「应用落地元年」开启</a></div>
+              <div class="desc">主论坛发布《2026人形机器人产业发展报告》，定调「2025量产元年、2026应用落地元年」。</div>
+              <div class="source">东方财富 · 8月19日</div>
+            </div>
+
+	    <div class="day-label">8月15日</div>
+
+            <div class="news-item">
+              <span class="tag tag-hot">订单</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://wap.stockstar.com/detail/IG2026081400028810" target="_blank" rel="noopener">智平方×惠科3年1000台近5亿订单：摩根士丹利认定「全球生产力型机器人最大单一订单」</a></div>
+              <div class="desc">智平方与惠科签3年1000台、近5亿订单，行业从「融资故事」转向「订单验证」。</div>
+              <div class="source">证券之星 · 8月15日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">融资</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://www.zidonghua.com.cn/news/Finance/274857.html" target="_blank" rel="noopener">广汽慧仑科技超亿元融资：GoMate Mini部署近50台，编入中国保安协会安保体系</a></div>
+              <div class="desc">轮足式GoMate Mini已部署近50台、累计运行6.3万公里，编入中国保安协会安保体系。</div>
+              <div class="source">自动化网 · 8月15日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">认证</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://www.jiemian.com/article/14923546.html" target="_blank" rel="noopener">无界动力K15成全球首个工业级CE全指令认证轮式半人形，1亿美元订单发往欧洲</a></div>
+              <div class="desc">国产机器人首次拿下工业级全指令CE认证，从「国内卷」走向「全球卖」。</div>
+              <div class="source">界面新闻 · 8月15日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">量产</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://www.investorscn.com/2026/08/13/135463/" target="_blank" rel="noopener">时耘科技RD3 Ultra全尺寸人形量产下线，面向特种作业场景</a></div>
+              <div class="desc">国家电网2026年计划68亿采购8500台具身设备，工业制造付费意愿最强。</div>
+              <div class="source">投资界 · 8月15日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">反思</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://m.pedaily.cn/news/567588" target="_blank" rel="noopener">融资热背后：谁在真正为具身机器人「买单」？有企业被曝1亿投晚会广告</a></div>
+              <div class="desc">工业场景（智平方/优必选/银河通用千台级订单）付费意愿最强，家庭仍无成熟闭环。</div>
+              <div class="source">投资界 · 8月15日</div>
+            </div>
+
+	    <div class="day-label">8月14日</div>
+
+
+            <div class="news-item">
+              <span class="tag tag-hot">融资</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://dahecube.com/spiderdetail.html?spidid=839308" target="_blank" rel="noopener">原力无限近10亿元融资：具身大脑AtomBrain因果世界模型，A轮+A+轮</a></div>
+              <div class="desc">具身大脑公司原力无限8月14日宣布完成A轮及A+轮近10亿元，敦鸿资产及头部国资平台领投，浙大科创/盐都国控/丽水国资跟投。资金投向AtomBrain因果世界模型、全栈AI Infra DataGrid，及多形态机器人本体的规模化交付验证。"具身大脑"赛道再添近10亿级大额融资。</div>
+              <div class="source">大河财立方 · 8月14日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">融资</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://app.dahecube.com/nweb/pc/spiderdetail.html?spidid=839307" target="_blank" rel="noopener">意优科技超2亿元B轮：三星风投+架桥资本，一体化微型伺服关节</a></div>
+              <div class="desc">上海意优智控完成超2亿元B轮，三星风险投资、架桥资本等投资。专注高性能一体化微型伺服关节，资金用于扩产能、加速人形机器人核心关节量产及下一代高功率密度伺服系统研发。三星首次投资国内具身关节厂商，标志上游核心零部件进入国际资本视野。</div>
+              <div class="source">大河财立方 · 8月14日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">IPO</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://www.eastmoney.com/" target="_blank" rel="noopener">宇树IPO申购倍数8288倍：A股"人形机器人第一股"引发打新热潮</a></div>
+              <div class="desc">宇树科技8月13日披露科创板发行结果：网上初步有效申购倍数约8288.82倍，A股"人形机器人第一股"正式落地。但业内提醒：行业距大规模商业化仍需跨越成本过高、环境适配与自主决策短板、数据积累不足、标准体系不完善等多重考验。打新热≠量产热。</div>
+              <div class="source">东方财富 · 8月14日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">盛会</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://gubapost.eastmoney.com/news,cjpl,1758842130.html" target="_blank" rel="noopener">第二届世界人形机器人运动会8月22日开幕：16国666队2056台机器人</a></div>
+              <div class="desc">第二届世界人形机器人运动会8月22日国家速滑馆"冰丝带"开幕，六大洲16国666支队伍2056台机器人参赛，队伍总量同比+138%，机器人数量翻两番。人形机器人从"实验室"走向"赛场"，成为检验运动控制、动态平衡、全身协调能力的公开竞技场。</div>
+              <div class="source">东方财富 · 8月14日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-trend">整合</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://m.21jingji.com/article/20260813/herald/65efcbc5637b18c2b507ae3c22b6ebaf.html" target="_blank" rel="noopener">众擎机器人等上海成立新公司：产业链上下游加速资源整合</a></div>
+              <div class="desc">上海星意擎坤科技8月12日成立（注册资本6120万），股东含火星人视野（43.81%）、傲意信息（32.68%）、众擎机器人（19.59%），经营范围含智能机器人研发销售。上下游"抱团"成立合资公司成为趋势——整机厂+零部件厂+渠道商资源整合。</div>
+              <div class="source">21世纪经济 · 8月14日</div>
+            </div>
+
+	        
+
+	    <div class="day-label">8月13日</div>
+
+
+            <div class="news-item">
+              <span class="tag tag-hot">IPO</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://www.cfbond.com/14740/14740zgcfw/ejy/ghjx/4896205021.shtml" target="_blank" rel="noopener">超50家具身智能企业"赶考"港交所：行业主线从技术展示切换到量产落地</a></div>
+              <div class="desc">截至8月11日，港交所在审企业中具身智能企业超50家。8月7日梅卡曼德获证监会备案开启港股IPO；智元7月24日启动赴港（大概率秘密递表）。今年以来已有珞石/仙工/翼菲/乐动4家上市。港股在融资效率、规则灵活、国际化上有优势，零部件企业已形成可持续商业闭环。</div>
+              <div class="source">中国财富网 · 8月13日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">融资</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://www.jiemian.com/article/14911396.html" target="_blank" rel="noopener">西湖机器人6个月4轮5亿：西湖大学首个成果转化企业，锚定具身GPT时刻</a></div>
+              <div class="desc">西湖机器人完成A轮，海愿资本领投近亿元。半年4轮累计5亿，投资方含赛富/小苗朗程/河南投资集团/海愿基金。已发布全球首个通用运动大模型GAE和通用大小脑双预训练架构，推出"西湖o1"人形本体，在手订单近亿元，合作阿里/英特尔/京东/港科大。</div>
+              <div class="source">界面/大河财立方 · 8月13日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">融资</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://www.zidonghua.com.cn/news/Finance/274857.html" target="_blank" rel="noopener">广汽孵化慧仑科技完成亿元融资：GoMate Mini部署近50台，运行6.3万公里</a></div>
+              <div class="desc">广汽集团具身智能产业化主体慧仑科技完成亿元融资，投向垂类模型优化和汽车产线场景。第四代轮足式人形机器人GoMate Mini已在7个代表性项目部署近50台，累计运行6.3万公里，完成18.9万次异常处置，获近千万元订单。车企系具身智能加速商业化。</div>
+              <div class="source">自动化网 · 8月13日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">合作</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://www.sohu.com/a/1062207281_100116740" target="_blank" rel="noopener">茂名联手优必选建具身智能应用创新中心：国资持股90%+优必选10%</a></div>
+              <div class="desc">8月13日广东茂优机器人注册成立（茂名港集团90%+优必选10%），建设"一场两站两基地"——数据训练场/6S服务站/二开服务站/人才实训/科普研学。5月市长考察、5月底周剑回访，半年内落地。优必选2025年人形收入8.2亿（+2203%），Walker S2已批量进驻东风柳汽/比亚迪/吉利/富士康/顺丰。</div>
+              <div class="source">搜狐 · 8月13日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-trend">预期</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://guba.eastmoney.com/news,cjpl,1757894989.html" target="_blank" rel="noopener">摩根士丹利上调中国2026出货预期至5万台（原2.8万台），成本降至几十万</a></div>
+              <div class="desc">摩根士丹利大幅上调预期：2026年中国出货5万台（此前2.8万台）。成本曲线陡降：2018年一台人形机器人造价300万且核心部件全进口，2025年降至几十万、90%零件国产。宇树IPO获5526倍超额认购，高盛/海外机构关注量产速度/数据/成本/落地四大维度。行业竞争从"能不能做"转向"能不能量产交付"。</div>
+              <div class="source">东方财富 · 8月13日</div>
+            </div>
+
+	        
+
+	    <div class="day-label">8月12日</div>
+
+
+            <div class="news-item">
+              <span class="tag tag-hot">盛会</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://market.jfinfo.com/news/4075867" target="_blank" rel="noopener">第四届上海具身智能机器人产业展览会开幕（8.12-14）：四大展区，万联证券称"破晓时刻"</a></div>
+              <div class="desc">2026第四届上海EAI Show 8月12-14日在新国际博览中心举行，设整机机器人、核心零部件、大模型与操作系统、场景化解决方案四大展区。万联证券：人形机器人正从技术突破迈向规模化商业化的"破晓时刻"，特斯拉/宇树/智元/优必选稳步推进量产。瑞萨电子、赛感科技等芯片/传感器厂商首次参展，供应链生态加速成形。</div>
+              <div class="source">经济观察报/金融界 · 8月12日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">国际</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://big5.cri.cn/gate/big5/news.cri.cn/20260812/44668c5e-4afa-661b-3cae-87218f80c6b5.html" target="_blank" rel="noopener">CNN头条报道：中国人形机器人加速"进厂"，中国制造全球约90%机器人</a></div>
+              <div class="desc">CNN刊文报道中国企业将人形机器人部署到工厂车间和装配线，单台承重最高50公斤。摩根士丹利数据：到2050年全球人形机器人保有量可达10亿台，市场规模超5万亿美元。中国制造全球约90%的人形机器人。外交部发言人毛宁已四次在X上推介深圳机器人，从地铁配送到快递分拣。</div>
+              <div class="source">CNN/中央广电总台 · 8月12日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">融资</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://www.sohu.com/a/1061746507_114986" target="_blank" rel="noopener">西湖机器人6个月4轮融资5亿元：海愿基金领投A轮，加码通用大脑</a></div>
+              <div class="desc">西湖机器人半年完成四轮融资累计5亿元，投资方包括赛富/小苗朗程/河南投资集团汇融基金/海愿基金。资金投向人形机器人全身统一大模型技术攻关及GAE身外化身系统。具身"大脑"赛道资金加速涌入——蚂蚁灵波15亿首轮/自变量200亿+/灵心巧手B轮近15亿。</div>
+              <div class="source">第一财经 · 8月12日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">标准</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://www.cena.com.cn/robot/20260812/129361.html" target="_blank" rel="noopener">人形机器人标准化体系发布：六大工作组，填补国内标准空白</a></div>
+              <div class="desc">工信部人形机器人与具身智能标准化技术委员会（MIIT/TC8）发布《人形机器人与具身智能标准体系（2026版）》，设立总体组、肢体与部组件、类脑与智算、整机与系统、应用、安全六大工作组，规划推动标准对接国际。标准"硬支撑"筑牢，产业从"野蛮生长"进入"有章可循"。</div>
+              <div class="source">中国电子报 · 8月12日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-trend">量产</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://www.jwview.com/jingwei/html/08-11/683101.shtml" target="_blank" rel="noopener">致同报告：人形机器人加速跨越"样机→产线"鸿沟，H1产量超4万台</a></div>
+              <div class="desc">致同咨询报告指出2026是具身智能从"炫技样机"迈向"量产落地"关键年。2025年产量约2万台，H1超4万台，全年预计破10万。国产供应链降本为大规模商业化提供成本窗口。跨维智能DexForce W1 Pro将在数博会设糖画/咖啡/冰淇淋四个体验展区，已在全国超15城常态化运营。</div>
+              <div class="source">经纬视图/贵阳日报 · 8月12日</div>
+            </div>
+
+	        
+
+	    <div class="day-label">8月11日</div>
+
+
+            <div class="news-item">
+              <span class="tag tag-hot">重磅</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://ai.zol.com.cn/1230/12307177.html" target="_blank" rel="noopener">H1全球人形机器人出货1.91万台增3倍：中国占97%，智元+宇树合占75%</a></div>
+              <div class="desc">2026 H1全球出货约1.91万台（去年同期仅5100台）。智元8400台（44%）居首，宇树5900台（31%）居次，两家合计占全球75%。特斯拉/Figure AI等美国企业出货明显落后。工业+商业应用场景已占七成以上。全年预计6万台，2030年有望突破50万台。中国厂商主导全球人形机器人供应链格局已经确立。</div>
+              <div class="source">中关村在线 · 8月11日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">落地</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://baijiahao.baidu.com/s?id=1873200165759693699" target="_blank" rel="noopener">外交部发言人全球推介：深圳龙华人形机器人投入快递分拣流水线，1200件/h</a></div>
+              <div class="desc">我能具身（深圳）双手臂通用人形机器人在广州邮区中心投入快递分拣商业化试点。外交部发言人毛宁在X平台向全球推介。无需改造原有流水线即可快速接入，峰值供件1200件/h，稳定800件/h。这是人形机器人从"实验室Demo"走向"真实生产岗位"的标志性事件。</div>
+              <div class="source">深圳新闻网 · 8月11日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">融资</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://nw.eastday.com/zq/zh/20260811/fa31d96065adec4f806ce1d3b095ce4b.html" target="_blank" rel="noopener">赛道"滚烫"但投资人变务实：H1融资935亿，摩根士丹利"赚到钱了吗？"</a></div>
+              <div class="desc">H1融资935亿同比5倍，百亿估值企业26家（16家新晋）。但资金加速向头部集中（前十吸金240亿、前五170亿）。投资热点从"身体"转向"大脑"（宇树近半募资砸模型、灵心巧手B轮近15亿）。摩根士丹利指出市场正从"技术突破"转向"ROI评估"——投资人现在只关心"赚到钱了吗，客户续费了吗"。</div>
+              <div class="source">东方网/文汇报 · 8月11日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">产业</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://www.cls.cn/detail/2451093" target="_blank" rel="noopener">国联民生：人形机器人进入"规模制造提速+场景拓展+具身智能升级"三重驱动</a></div>
+              <div class="desc">研报指出近期板块回调释放估值压力，但商业化推进、资本加码与产品迭代仍在加速。巨轮智能、北特科技8月11日双双涨停，斯菱智驱涨超17%。杰克科技2000台人形订单创全球纺织业首单。浙江人形创新中心展示家务/服装/装配/零售多场景应用。</div>
+              <div class="source">财联社 · 8月11日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-trend">上市</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://www.stcn.com/article/detail/4066001.html" target="_blank" rel="noopener">宇树申购+智元冲刺港股+原力灵机股改：超20家人形机器人企业IPO排队</a></div>
+              <div class="desc">宇树8月10日正式申购（150.80元/610亿/219倍PE，104天闪电过会）。智元最快本月递表港交所（目标400-500亿港元，累计下线1.5万台）。原力灵机8月完成股改，估值超200亿。国内超20家核心企业进入IPO阶段，港股排队机器人企业46家。</div>
+              <div class="source">证券时报 · 8月11日</div>
+            </div>
+
+	        
+
+	    <div class="day-label">8月10日</div>
+
+
+            <div class="news-item">
+              <span class="tag tag-hot">重磅</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://finance.sina.cn/2026-08-10/detail-inimuriv2957360.d.html" target="_blank" rel="noopener">宇树科技今日正式申购：150.80元/股，610亿市值，A股人形机器人第一股诞生</a></div>
+              <div class="desc">8月10日宇树科技（688836.SH）启动科创板申购，网上网下同步。网下有效报价313家机构，认购2618倍。2025年人形出货5500台全球第一（市占32.4%），H1营收10.52-11.28亿，净利润2.58-3.06亿。DeepSeek/腾讯/社保基金/中石油昆仑等9家战投入局。219倍PE引发估值大讨论——市场对"人形机器人值不值610亿"给出首份公开答卷。</div>
+              <div class="source">新浪财经 · 8月10日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">数据</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="http://finance.china.com.cn/industry/20260810/6319967.shtml" target="_blank" rel="noopener">H1人形机器人新设企业11.6万户同比+9.5%，全年产量预计破10万台</a></div>
+              <div class="desc">国家市场监管总局8月8日数据：H1人形机器人领域新设企业11.6万户。工信部：H1产量超4万台，全年预计破10万。中商产业研究院：2025年中国出货1.44万台占全球84.7%，预计2026年3.8万台，2030年38万台。H1融资935亿同比5倍，融资事件322笔（+137%），8家估值超200亿。</div>
+              <div class="source">中国网/工信部 · 8月10日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">趋势</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://www.thepaper.cn/newsDetail_forward_33745547" target="_blank" rel="noopener">轮式机器人新品占比首次超越双足（48% vs 45%）——具身智能"形态之争"白热化</a></div>
+              <div class="desc">人形机器人场景应用联盟数据：H1全球人形整机新品超91款（+23%），轮式44款（48%）首次超越双足41款（45%）。银河通用/普渡/优必选/傅利叶等均推轮式新品。行业分化为两派：通用人形"终极形态"派 vs 擎朗等"岗位化"专用派——后者强调先找泛化要求不高的场景"先干起来"形成商业闭环。</div>
+              <div class="source">澎湃新闻 · 8月10日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">观点</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://nw.eastday.com/zq/zh/20260810/91dce05715c2ab68f6be50478872f5a4.html" target="_blank" rel="noopener">宇树王兴兴：纯VLA+RL缺乏泛化性，押注世界模型——行业路线之争公开化</a></div>
+              <div class="desc">王兴兴在IPO路演中明确表态：纯VLA+RL训练新任务需从零开始，泛化性不足，公司并行WMA世界模型+VLA双路线。IPO募资近半（20.22亿）投向模型研发。花旗预测2050年全球人形市场7万亿美元（中国超50%）。分析师警告：80%人形机器人公司可能无法存活。</div>
+              <div class="source">东方网 · 8月10日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-trend">活动</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://www.xcc.com/news/detail/5576086" target="_blank" rel="noopener">瑞萨电子8月12-14日首次亮相中国具身智能机器人产业大会（EAI Show上海）</a></div>
+              <div class="desc">2026中国具身智能机器人产业大会8月12-14日上海新国际博览中心举办。瑞萨电子首秀：传感器融合灵巧手、机器人关节、9轴电机控制、关节编码器方案。芯片巨头从"卖料"转向"卖方案"，具身智能供应链加速成熟。</div>
+              <div class="source">芯智讯 · 8月10日</div>
+            </div>
+
+	        
+
+	    <div class="day-label">8月5日</div>
+
+
+	    <div class="news-item">
+	      <span class="tag tag-hot">重磅</span><span class="tag tag-new">8.15</span>
+	      <div class="title"><a href="https://finance.sina.cn/tech/2026-08-05/detail-inimfshi3657916.d.html" target="_blank" rel="noopener">宇树科技 IPO 今日询价：A股「人形机器人第一股」8月10日申购，估值约420亿</a></div>
+	      <div class="desc">8月5日宇树科技（688836.SH）正式启动科创板IPO询价，8月10日网上网下申购。拟发行4044.64万股募资42亿元，发行估值约420亿元。2025年人形机器人出货5500台全球第一（市占32%），毛利率60.13%。但增长动能放缓：Q1营收增速从332%骤降至68%，扣非净利润同比下滑52.55%。首日流通盘仅7.36%，机构高度控盘，上市后市值分歧大（300亿-1000亿）。</div>
+	      <div class="source">新浪财经 · 8月5日</div>
+	    </div>
+
+	    <div class="news-item">
+	      <span class="tag tag-hot">融资</span><span class="tag tag-new">8.15</span>
+	      <div class="title"><a href="https://www.163.com/dy/article/L2KK0S4J05129QAF.html" target="_blank" rel="noopener">蚂蚁灵波开启 15 亿元首轮融资：具身大脑兼容 17 个机器人品牌，估值目标 200 亿</a></div>
+	      <div class="desc">蚂蚁灵波（Robbyant）8月3日启动总额15亿元首轮融资，主攻通用机器人大脑方案。其LingBot-VLA 2.0已开源，预训练6万小时物理数据，支持17家厂商20+种机器人构型，在GM-100双腕榜超越π0.5和GR00T N1.7。已在零售分拣、物流、工业自动化推进商业试点。</div>
+	      <div class="source">网易科技 · 8月3日</div>
+	    </div>
+
+	    <div class="news-item">
+	      <span class="tag tag-hot">融资</span><span class="tag tag-new">8.15</span>
+	      <div class="title"><a href="https://36kr.com/" target="_blank" rel="noopener">墨奇智能完成超 10 亿元天使轮：具身大脑估值突破 70 亿元</a></div>
+	      <div class="desc">墨奇智能8月初完成超10亿元天使轮融资，估值突破70亿元，投资方含顶级VC与产业资本。公司定位具身智能基础模型，团队来自清华、斯坦福、DeepMind等，主攻通用机器人"大脑"层。纯"具身大脑"赛道半年内已有岩质智能（5亿）、墨奇智能（10亿+）两笔大额融资，资本加速向模型层集中。</div>
+	      <div class="source">36氪 · 8月</div>
+	    </div>
+
+	    <div class="news-item">
+	      <span class="tag tag-hot">IPO</span><span class="tag tag-new">8.15</span>
+	      <div class="title"><a href="https://tidenews.com.cn/news.html?id=3519563" target="_blank" rel="noopener">宇树 IPO 引爆行情：「杭州六小龙」具身智能军团加速证券化</a></div>
+	      <div class="desc">宇树IPO询价带动机器人概念股集体拉涨。同为"杭州六小龙"的云深处科技已于5月完成IPO辅导冲刺上市，四足机器人在瑞士核电站上岗执行高危巡检。智元借壳上纬新材登陆A股+港股双线推进。乐聚智能IPO申请已获受理。杭州2025年具身智能产业集群产值达1068亿元，全国首部具身智能地方法规5月施行。</div>
+	      <div class="source">潮新闻 · 8月5日</div>
+	    </div>
+
+	    <div class="news-item">
+	      <span class="tag tag-trend">趋势</span><span class="tag tag-new">8.15</span>
+	      <div class="title"><a href="http://www.jingjiribao.cn/static/detail.jsp?id=674304" target="_blank" rel="noopener">经济日报：IPO 热潮拷问人形机器人商业化能力——硬件跑得快、智能跟不上</a></div>
+	      <div class="desc">经济日报深度报道指出行业三大挑战：商业化场景碎片化、多数企业仍停留在展览展示阶段；存在"硬件跑得快、智能跟不上"的结构性矛盾；宇树2025年人形收入73.6%来自科研教育场景，万亿级工业/家庭市场尚未大规模验证。全球每10台人形和四足机器人有8台产自中国，但"量大利薄"隐忧浮现。</div>
+	      <div class="source">经济日报 · 8月</div>
+	    </div>
+
+	        
+
+	    <div class="day-label">7月30日</div>
+<div class="news-item">
+      <span class="tag tag-hot">重磅</span><span class="tag tag-new">8.15</span>
+      <div class="title"><a href="https://m.cnstock.com/commonDetail/750562" target="_blank" rel="noopener">智元机器人正式启动赴港上市：目标估值 400-500 亿港元，上半年营收已超 10 亿</a></div>
+      <div class="desc">智元创新7月24日正式宣布启动港股IPO，联席保荐人包括中信证券、中金公司、摩根士丹利，最快8月挂牌。2025年营收10.5亿元，2026年Q1已超10亿，累计人形机器人下线突破1.5万台，全球市占率39%。CEO判断2027底-2028初出现GPT-3.5级通用具身智能。</div>
+      <div class="source">上海证券报 · 7月25日</div>
+    </div>
+
+    <div class="news-item">
+      <span class="tag tag-hot">IPO</span><span class="tag tag-new">8.15</span>
+      <div class="title"><a href="https://36kr.com/p/3894764776996103" target="_blank" rel="noopener">逐际动力 Pre-IPO 近 2 亿美元落地：半年融资 4 亿美元，海外资本占比近七成</a></div>
+      <div class="desc">逐际动力7月14日完成近2亿美元Pre-IPO轮，估值150亿元，2026年半年累计融资近4亿美元。近70%资金来自欧洲、中东、北美等海外机构，全产品线数千台订单过半来自海外。已于3月完成股改，正稳步推进港股IPO。LimX Luna定价29.8万元，不到一月即交付。</div>
+      <div class="source">36氪 · 7月14日</div>
+    </div>
+
+    <div class="news-item">
+      <span class="tag tag-hot">IPO</span><span class="tag tag-new">8.15</span>
+      <div class="title"><a href="https://www.cnbc.com/2026/07/13/chinese-humanoid-startups-ipo-limx-unitree.html" target="_blank" rel="noopener">宇树科技科创板 IPO 注册生效：募资 42 亿、估值 420 亿，具身智能第一股落地</a></div>
+      <div class="desc">宇树科技7月6日科创板IPO注册生效，拟募资42.02亿元，估值约420亿元，104天闪电过会创纪录。2025年H1/G1系列出货5500台，全球人形机器人出货量第一（32%）。港交所机器人产业链秘密递表企业超40家，包括众擎、帕西尼、智平方等。</div>
+      <div class="source">CNBC · 7月13日</div>
+    </div>
+
+    <div class="news-item">
+      <span class="tag tag-hot">融资</span><span class="tag tag-new">8.15</span>
+      <div class="title"><a href="https://eu.36kr.com/en/p/3913213962540164" target="_blank" rel="noopener">岩质智能半年 6 轮融资近 5 亿元：UCLA 团队打造人形机器人基础模型 HFM</a></div>
+      <div class="desc">36氪独家：由UCLA PhD团队创立的岩质智能（Delta Intelligence）7月28日完成近5亿元Angel++轮融资，成立仅半年完成6轮。投资方包括智元机器人、宇树科技、优必选、高瓴创投、联想创投等产业+资本组合，是国内少数纯"具身大脑"定位的创业公司，主攻人形机器人基础模型（HFM）。</div>
+      <div class="source">36氪 · 7月28日</div>
+    </div>
+
+    <div class="news-item">
+      <span class="tag tag-trend">趋势</span><span class="tag tag-new">8.15</span>
+      <div class="title"><a href="https://www.tmtpost.com/8051595.html" target="_blank" rel="noopener">钛媒体深度：2026 资本从"投身体"转向"投大脑"，具身百亿俱乐部扩容至 8 家</a></div>
+      <div class="desc">钛媒体报道：2026上半年具身智能领域288起融资、总额超460亿元，资金投向从机器人本体转向"大脑"和关键零部件（世界模型、灵巧手、关节、电子皮肤）。智平方、自变量、跨维智能相继迈入200亿估值俱乐部，林俊旸（前阿里通义千问）具身大脑创业首轮数亿美元估值135亿。</div>
+      <div class="source">钛媒体 · 7月</div>
+    </div>
+        
+
+
+    <div class="day-label">7月29日</div>
+
+    <div class="news-item">
+      <span class="tag tag-hot">重磅</span><span class="tag tag-new">7.29</span>
+      <div class="title"><a href="https://eu.36kr.com/en/p/3913213962540164" target="_blank" rel="noopener">岩质智能 Angel++ 轮近 5 亿元：UCLA 团队成立半年 6 轮融资，打造人形机器人基础模型</a></div>
+      <div class="desc">UCLA PhD团队创立的岩质智能完成近5亿元Angel++轮融资，成立半年6轮，投资方包括智元、宇树、优必选、高瓴等。</div>
+      <div class="source">36氪 · 7月28日</div>
+    </div>
+
+    <div class="news-item">
+      <span class="tag tag-hot">融资</span><span class="tag tag-new">7.29</span>
+      <div class="title"><a href="https://thenextweb.com/news/genesis-ai-500m-raise-robotics-foundation-model" target="_blank" rel="noopener">Genesis AI 洽谈 5 亿美元融资：通用机器人基础模型估值冲击 30 亿美元</a></div>
+      <div class="desc">前Google DeepMind研究员创立的Genesis AI正洽谈约5亿美元融资，Premji Invest有望领投，投前估值约30亿美元。</div>
+      <div class="source">TNW / Bloomberg · 7月23日</div>
+    </div>
+
+    <div class="news-item">
+      <span class="tag tag-hot">独角兽</span><span class="tag tag-new">7.29</span>
+      <div class="title"><a href="https://en.antaranews.com/news/423825/humanoid-raises-152-million-at-135-billion-post-money-valuation-becoming-europes-first-pure-play-humanoid-robotics-unicorn" target="_blank" rel="noopener">Humanoid 完成 1.52 亿美元 A 轮：欧洲首家人形机器人独角兽，估值 13.5 亿美元</a></div>
+      <div class="desc">英国Humanoid完成1.52亿美元A轮，估值13.5亿美元成为欧洲首家纯人形机器人独角兽，累计融资2.7亿美元。</div>
+      <div class="source">Antara News · 7月21日</div>
+    </div>
+
+    <div class="news-item">
+      <span class="tag tag-hot">合作</span><span class="tag tag-new">7.29</span>
+      <div class="title"><a href="https://www.reuters.com/business/eric-trump-backed-foundation-partners-with-amd-develop-humanoid-robots-2026-07-23/" target="_blank" rel="noopener">Foundation 联手 AMD 开发军工级人形机器人，Eric Trump 背景工厂年产能 5000 台</a></div>
+      <div class="desc">Foundation Future Industries与AMD合作开发Phantom MK-2自主人形机器人，面向军事和工业场景，2026年10月启用5000台年产能工厂。</div>
+      <div class="source">Reuters · 7月23日</div>
+    </div>
+
+    <div class="news-item">
+      <span class="tag tag-trend">IPO</span><span class="tag tag-new">7.29</span>
+      <div class="title"><a href="https://www.cnfin.com/gs-lb/detail/20260714/4440367_1.html" target="_blank" rel="noopener">逐际动力 Pre-IPO 近 2 亿美元落地：估值 150 亿元，海外资本占比近七成</a></div>
+      <div class="desc">逐际动力Pre-IPO近2亿美元，估值150亿，半年累计4亿美元，近70%资金来自海外机构，正推进港股IPO。</div>
+      <div class="source">中国金融新闻网 · 7月14日</div>
+    </div>
+
+
+    <div class="day-label">7月28日</div>
+
+    <div class="news-item">
+      <span class="tag tag-hot">重磅</span><span class="tag tag-new">7.28</span>
+      <div class="title"><a href="https://www.163.com/dy/article/L2KK0S4J05129QAF.html" target="_blank" rel="noopener">智元机器人启动港股 IPO：估值目标 200 亿美元，第 1.5 万台已下线</a></div>
+      <div class="desc">智元确认赴港上市，2025年营收10.5亿、2026年预期45亿，CEO判断2027底-2028初出现GPT-3.5级通用具身智能。</div>
+      <div class="source">网易科技 · 7月24日</div>
+    </div>
+
+    <div class="news-item">
+      <span class="tag tag-hot">IPO</span><span class="tag tag-new">7.28</span>
+      <div class="title"><a href="https://www.cnbc.com/2026/07/13/chinese-humanoid-startups-ipo-limx-unitree.html" target="_blank" rel="noopener">CNBC：中国具身智能企业扎堆 IPO，「上市是必须的，就像当年蔚小理」</a></div>
+      <div class="desc">宇树104天闪电过会、智元估值200亿美元赴港、跨维即将启动IPO，Morgan Stanley预计2026中国出货5万台人形机器人。</div>
+      <div class="source">CNBC · 7月13日</div>
+    </div>
+
+    <div class="news-item">
+      <span class="tag tag-trend">趋势</span><span class="tag tag-new">7.28</span>
+      <div class="title"><a href="https://www.tmtpost.com/8051595.html" target="_blank" rel="noopener">钛媒体深度：2026，谁在为机器「人」买单？—— 工业先行，家庭尚早</a></div>
+      <div class="desc">国家电网采购8500台（68亿）、优必选工业线增长2200%，但消费端仍存疑，成熟家庭机器人尚需5-10年。</div>
+      <div class="source">钛媒体 · 7月</div>
+    </div>
+
+    <div class="news-item">
+      <span class="tag tag-hot">融资</span><span class="tag tag-new">7.28</span>
+      <div class="title"><a href="https://stcn.com/article/detail/4019946.html" target="_blank" rel="noopener">逐际动力 Pre-IPO 近 2 亿美元落地，半年累计 4 亿美元，海外资本占比七成</a></div>
+      <div class="desc">估值150亿，全尺寸LimX Luna定价29.8万，全产品线数千台订单过半来自海外。</div>
+      <div class="source">证券时报 · 7月14日</div>
+    </div>
+
+    <div class="day-label">7月23日</div>
+
+    <div class="news-item">
+      <span class="tag tag-hot">重磅</span><span class="tag tag-new">7.23</span>
+      <div class="title"><a href="https://www.chinaz.com/ainews/29764.shtml" target="_blank" rel="noopener">智元机器人冲刺 IPO：目标估值 200 亿美元，第 1.5 万台机器人下线</a></div>
+      <div class="desc">预计全年收入40亿元，南昌产线六天实操六万件成功率99.99%。</div>
+      <div class="source">站长之家 · 7月24日</div>
+    </div>
+
+    </div>
+
+  </div>
+</div>
+
+<!-- MODULE 2: 技术与模型 -->
+<div class="card m2">
+  <div class="card-header"><span class="icon">🧠</span> 技术与模型 · Foundation & VLA</div>
+  <div class="card-body">
+
+        	        	        	        	        	        	        	                <div class="today-label">📌 今日 · 9月4日</div>
+            <div class="news-item">
+              <span class="tag tag-hot">具身大模型</span><span class="tag tag-new">9.04</span>
+              <div class="title"><a href="https://finance.eastmoney.com/a/202609033864344183.html" target="_blank" rel="noopener">魔法原子Magic-VLA K02亮相IFA 2026欧洲首秀，长程任务准确率92%</a></div>
+              <div class="desc">分层式双系统架构，复杂长程任务准确率92%、中断率≤5%、跨设备适配100%；聚焦柔性搬运与物流分拣两大工业场景。</div>
+              <div class="source">东方财富 · 9月4日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">VLA</span><span class="tag tag-new">9.04</span>
+              <div class="title"><a href="https://finance.eastmoney.com/a/202609033864180369.html" target="_blank" rel="noopener">小鹏第二代VLA重大升级：Infini-VLA长时序架构+预测世界模型，9月推送</a></div>
+              <div class="desc">记忆前30秒场景、预判未来6秒，流式推理提速300%、端侧参数提升3.5倍；9月面向车型推送，并同步迁移至人形IRON。</div>
+              <div class="source">东方财富 · 9月4日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">物理AI</span><span class="tag tag-new">8.31</span>
+              <div class="title"><a href="http://auto.youth.cn/xw/202608/t20260831_16843371.htm" target="_blank" rel="noopener">小鹏70亿元投向物理AI，第二代VLA完整版9月开启推送</a></div>
+              <div class="desc">第二代VLA从「理解空间」跃迁到「理解时空」，完整版9月推送Ultra车型、Lite蒸馏版首发G9L Max。</div>
+              <div class="source">中国青年网 · 8月31日</div>
+            </div>
+<div class="history-divider">📅 往期回顾</div>
+    <div class="history-section"><div class="day-label">8月20日</div>
+            <div class="news-item">
+              <span class="tag tag-hot">重磅</span><span class="tag tag-new">8.20</span>
+              <div class="title"><a href="http://www.chinahightech.com/yaowen/2026-08/20/content_566699.html" target="_blank" rel="noopener">蚂蚁灵波「一脑多机」2.0亮相WRC：LingBot-VLA 2.0适配17品牌20构型，进药房工厂</a></div>
+              <div class="desc">全栈大脑2.0预训练适配17个机器人品牌、20种构型，支持单臂/双臂/双足/轮式/灵巧手协同；已在上海国大药房夜班分拣、工厂上下料、仓储分拣真实落地。</div>
+              <div class="source">中国高新网 · 8月20日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">国内</span><span class="tag tag-new">8.20</span>
+              <div class="title"><a href="https://www.cena.com.cn/robot/20260820/129404.html" target="_blank" rel="noopener">智平方爱宝机器人WRC「跨界打工」：类脑NeuroVLA「皮层-小脑-脊髓」三层体系</a></div>
+              <div class="desc">全球首个类脑式具身系统：大脑管语义理解与任务规划、小脑管高频运动协调、脊髓管毫秒级安全反射；配合臂视触觉系统可「摸出形状、掂出轻重、触出材质」。</div>
+              <div class="source">中国电子报 · 8月20日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">模型</span><span class="tag tag-new">8.18</span>
+              <div class="title"><a href="http://stock.10jqka.com.cn/20260818/c679043032.shtml" target="_blank" rel="noopener">灵巧智能×星际硅途发布TriVLA三指基模：专攻三指灵巧操作的VLA基础模型</a></div>
+              <div class="desc">基于DexHand021 S（8DoF、500g、工业级力觉）打造，原生适配标准化三指动作空间与力觉反馈，解决「仿真模型无法零迁移部署真机」痛点，覆盖拾取/拧转/插拔/精密装配。</div>
+              <div class="source">同花顺 · 8月18日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">论文</span><span class="tag tag-new">8.20</span>
+              <div class="title"><a href="https://arxiv-org.ezproxy.obspm.fr/html/2608.01824v2" target="_blank" rel="noopener">arXiv ReTouch：触觉预测从「固定输出」改为「在线细化」，扰动成功率73.1%</a></div>
+              <div class="desc">提出面向灵巧操作的VLA，执行中在线细化触觉预测与动作块、保留手指级局部接触拓扑；相比最强基线标准/挑战场景成功率+18.4/+23.8pp。</div>
+              <div class="source">arXiv · 8月20日</div>
+            </div>
+
+	    <div class="day-label">8月19日</div>
+
+            <div class="news-item">
+              <span class="tag tag-hot">重磅</span><span class="tag tag-new">8.19</span>
+              <div class="title"><a href="https://robot.ofweek.com/2026-08/ART-898890-8110-30698812.html" target="_blank" rel="noopener">北京人形机器人创新中心发布具身大一统模型Pelican Unify + 开放平台天工Omni</a></div>
+              <div class="desc">整合感知-理解-决策-控制的具身大一统模型Pelican Unify，及全栈开放平台天工Omni。</div>
+              <div class="source">OFweek · 8月19日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">趋势</span><span class="tag tag-new">8.19</span>
+              <div class="title"><a href="https://www.tmtpost.com/nictation/8106163.html" target="_blank" rel="noopener">WRC成立中国电子学会世界模型专家委员会，世界模型从路线之争走向生态共建</a></div>
+              <div class="desc">成立「中国电子学会世界模型专家委员会」并发布《2026人形机器人产业发展报告》。</div>
+              <div class="source">钛媒体 · 8月19日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">合作</span><span class="tag tag-new">8.18</span>
+              <div class="title"><a href="https://www.jiemian.com/article/14942950.html" target="_blank" rel="noopener">灵心巧手×奥比中光战略合作：押注具身「手眼协同」，视觉+触觉+力觉融合</a></div>
+              <div class="desc">灵巧手+视觉龙头共研「手眼协同」，融合视觉/力觉/触觉实现亚毫米级精细操作。</div>
+              <div class="source">界面新闻 · 8月18日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">新品</span><span class="tag tag-new">8.19</span>
+              <div class="title"><a href="https://www.sohu.com/a/1064489014_122014422" target="_blank" rel="noopener">魔法原子MagicBot X1亮相WRC：行业首个完成扣篮的全尺寸通用人形</a></div>
+              <div class="desc">身高180cm、31个主动自由度，行业首个完成扣篮的全尺寸通用人形。</div>
+              <div class="source">搜狐 · 8月19日</div>
+            </div>
+
+	    <div class="day-label">8月15日</div>
+
+            <div class="news-item">
+              <span class="tag tag-hot">重磅</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://www.donews.com/news/detail/4/6666022.html" target="_blank" rel="noopener">戴盟发布全球首个触觉锚定世界模型Daimon-TWM：无扰动64% vs π0.5仅26%</a></div>
+              <div class="desc">真机四类任务无扰动平均64%（π0.5仅26%），加入扰动后差距扩大至9.3倍。</div>
+              <div class="source">DoNews · 8月15日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">范式</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://www.cnbestec.com/newsinfo/11271370.html" target="_blank" rel="noopener">Contactile提出VμA范式：机器人感知三代进化 VLA→VFA→VμA，补齐摩擦系数μ</a></div>
+              <div class="desc">摩擦系数μ无法被相机和编码器识别，是主流VLA/VFA世界模型核心缺失维度。</div>
+              <div class="source">cnbestec · 8月15日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">趋势</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://znyj.ofweek.com/news/2026-08/ART-23013-11000-30698357.html" target="_blank" rel="noopener">VLA正在向VTLA演进：触觉从「有没有碰到」升级为与视觉同等重要的核心模态</a></div>
+              <div class="desc">世界模型需要触觉锚定——纯视觉无法应对插拔/装配/柔性操作，触觉从指尖走向全身「皮肤」。</div>
+              <div class="source">OFweek · 8月15日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">新品</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://www.163.com/dy/article/L48J1K8H0550CRYL.html" target="_blank" rel="noopener">跨维智能DexForce W1 Pro：Sim2Real VLA+100%合成数据，毫米级任务成功率99.9%</a></div>
+              <div class="desc">双目纯视觉+Sim2Real VLA+100%合成数据，±1mm定位、0.1N力控，已落地1000+项目。</div>
+              <div class="source">网易 · 8月15日</div>
+            </div>
+
+	    <div class="day-label">8月14日</div>
+
+
+            <div class="news-item">
+              <span class="tag tag-hot">重磅</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://m.thepaper.cn/detail/33758647" target="_blank" rel="noopener">DynaRobotics发布Dyna-2：从VLA转向世界动作模型，13分钟适配，成功率20%→80-90%</a></div>
+              <div class="desc">前DeepMind科学家创立的DynaRobotics发布新一代基础模型Dyna-2，从上一代VLA架构转向WAM（世界-动作模型）——同一表征中联合预测下一帧视频和下一个电机指令。超100万小时人类视频预训练，仅需约13分钟真机遥操示范即适配新任务（双灵巧手拧瓶盖），高精度制造成功率从20%提升到80-90%。</div>
+              <div class="source">澎湃新闻 · 8月14日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">报告</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="http://www.chuangze.cn/xinxi/18130.html" target="_blank" rel="noopener">甲子光年报告：资本重心转向世界模型/数据/灵巧手，VLA与WAM两大路线</a></div>
+              <div class="desc">甲子光年《2026中国具身智能行业洞察报告》：H1融资934.7亿，资本从整机转向世界模型/数据/灵巧手三大核心环节。VLA（视觉-语言-动作）与WAM（世界-动作模型）成为两大主流路线。成本、泛化能力、数据闭环是三大瓶颈。工业柔性产线预计最先规模化。</div>
+              <div class="source">创泽/甲子光年 · 8月14日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">路线</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://www.infoq.cn/article/rcSr7bVQFB9Uskadg74T" target="_blank" rel="noopener">机器人大脑之争进入深水区：为什么物理世界需要从头设计模型</a></div>
+              <div class="desc">InfoQ深度：VLA只是具身智能的"上层建筑"（冰山10%），灵巧操作、全身运动控制、数据引擎与仿真、触觉感知才是落地底座。Dyna-2从VLA转向WAM印证了行业判断——VLA告诉机器人"抓什么"，但"怎么抓"（姿态贴合/施力/动态调整）需要世界模型预测动作后果。VLA与WAM未来可能融合。</div>
+              <div class="source">InfoQ · 8月14日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">教学</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://www.sgpjbg.com/labelsyh/jushenzhinengjiaoyuyingyong.html" target="_blank" rel="noopener">具身智能教育应用2026：VLA算法层成新价值高地，人形约3/4在高校科研</a></div>
+              <div class="desc">三个皮匠报告：具身智能教育应用中VLA算法层成新价值高地，四足机器人进入职教实训，人形机器人约3/4仍停留在高校科研。教育市场是人形机器人"早期付费"的最大场景之一，但商业化天花板有限——真正的大市场在工业。</div>
+              <div class="source">三个皮匠报告 · 8月14日</div>
+            </div>
+
+	        
+
+	    <div class="day-label">8月13日</div>
+
+
+            <div class="news-item">
+              <span class="tag tag-hot">重磅</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://m.thepaper.cn/detail/33758647" target="_blank" rel="noopener">前DeepMind研究科学家发布具身模型：13分钟适配新任务</a></div>
+              <div class="desc">前DeepMind研究科学家创业团队发布具身智能模型，可在13分钟内适配新任务——大幅压缩从模型到部署的时间。延续Gemini Robotics 2（全身VLA）的技术路线，主打快速任务适配能力。具身模型从"预训练千小时"走向"分钟级微调"，通用性与落地效率双提升。</div>
+              <div class="source">澎湃新闻 · 8月13日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">融资</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://www.thepaper.cn/newsDetail_forward_33758632" target="_blank" rel="noopener">蚂蚁领投戴盟机器人：一个稀缺具身团队崛起</a></div>
+              <div class="desc">蚂蚁集团领投戴盟机器人——具身智能赛道又一起"蚂蚁系"布局。此前蚂蚁已通过灵波（LingBot）15亿首轮、蚂蚁数科武汉数据基地等深度布局具身大脑与数据。稀缺"具身团队"成为资本争夺焦点：具身大脑赛道TOP20企业中7家聚焦，合计融资约145亿元。</div>
+              <div class="source">澎湃新闻 · 8月13日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">开源</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://www.leiphone.com/category/industrynews/4583hFHXszrX7fky.html" target="_blank" rel="noopener">蚂蚁灵波LingBot-VLA 2.0：20+机器人构型开源基座，突破泛化瓶颈</a></div>
+              <div class="desc">LingBot-VLA 2.0开源具身基座模型：预训练6万小时数据，支持20多种机器人构型（单臂/双臂/双足/轮式）。GM-100双腕榜超越π0.5和GR00T N1.7。4090推理<130ms。蚂蚁灵波"一脑多机"软件层策略持续领跑开源路线。</div>
+              <div class="source">雷锋网 · 8月</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">模型</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://www.sohu.com/a/1061747479_439726" target="_blank" rel="noopener">西湖机器人GAE通用运动大模型：全球首个通用大小脑双预训练架构</a></div>
+              <div class="desc">西湖机器人（西湖大学孵化）发布全球首个通用运动大模型GAE+通用大小脑双预训练架构。结合"西湖o1"全栈自研本体，锚定具身智能"GPT时刻"。科教实训/人形数据采集/电力巡检三赛道在手订单近亿元，合作阿里/英特尔/京东/港科大。</div>
+              <div class="source">搜狐/大河财立方 · 8月13日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-trend">路线</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://m8.com.cn/article/dexterous-hand-humanoid-2026-evergreen" target="_blank" rel="noopener">灵巧手成为人形机器人"数据入口"：VLA模型与供应链的真实博弈</a></div>
+              <div class="desc">深度分析：灵巧手正从"执行末端"升级为"数据入口"——真机数据采集、力触觉反馈、遥操作都需要灵巧手承载。VLA模型的进步反过来抬高了对高自由度灵巧手的需求。供应链博弈焦点：谁掌握"手"的数据采集能力，谁就掌握具身智能的数据飞轮入口。</div>
+              <div class="source">M8深度 · 8月</div>
+            </div>
+
+	        
+
+	    <div class="day-label">8月12日</div>
+
+
+            <div class="news-item">
+              <span class="tag tag-hot">盛会</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://market.jfinfo.com/news/4075867" target="_blank" rel="noopener">EAI Show 2026开幕：大模型与操作系统展区首次独立设馆，VLA成焦点</a></div>
+              <div class="desc">8月12日上海EAI Show首次将"大模型与操作系统"设为独立展区。腾讯Hy-Embodied-0.5-VLA（RoboTwin 2.0双榜90.9%/90.1% SOTA）、蚂蚁灵波LingBot-VLA 2.0（17品牌20+构型）、自变量WUM统一架构等集体亮相。瑞萨电子首次参展展示传感器融合灵巧手方案，赛感科技展示离电型触觉传感。VLA从论文走向展台——2026年是"大脑"产品化元年。</div>
+              <div class="source">经济观察报 · 8月12日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">突破</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://huggingface.co/tencent/Hy-Embodied-0.5-VLA-RoboTwin" target="_blank" rel="noopener">腾讯Hy-Embodied-0.5-VLA开源：万小时UMI数据，RoboTwin 2.0双榜SOTA</a></div>
+              <div class="desc">腾讯Robotics X+混元发布Hy-Embodied-0.5-VLA：MoT主干+流匹配动作专家，万小时指尖光捕UMI示教数据训练。RoboTwin 2.0双榜90.9%/90.1%，跨四个真实机器人平台验证。开源后为工业级VLA提供完整参考实现——从数据采集到RL后训练全链路打通。</div>
+              <div class="source">Hugging Face · 8月</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">学术</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://en.papernotes.org/CVPR2026/robotics/cross-hand_latent_representation_for_vision-language-action_models/" target="_blank" rel="noopener">UniDex（CVPR 2026）：通用灵巧手VLA，8只手81%成功率，零样本跨手迁移</a></div>
+              <div class="desc">UniDex发布三大组件：数据集（50K+轨迹覆盖8款灵巧手6-24DOF）、VLA策略（FAAS统一动作空间，零样本跨手泛化）、便携采集套装（RGB-D+手部姿态同步）。工具使用任务平均81%进度，显著超越此前VLA基线。XL-VLA同期提出跨手隐空间表征——多VAE映射异构关节空间到共享潜空间。</div>
+              <div class="source">CVPR 2026 · 8月</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">国内</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://www.thepaper.cn/newsDetail_forward_33760261" target="_blank" rel="noopener">外交部发言人"四推"深圳机器人：从地铁配送到快递分拣，具身智能走向实景</a></div>
+              <div class="desc">毛宁四次在X平台推介深圳具身智能成果：全球首例地铁机器人货运、优必选自主换电机器人、逐际动力Oli做家务、我能具身分拣机器人。深圳具身智能机器人已全面走进物流/交通/养老/家政等真实场景。自变量机器人WALL-B世界统一模型连续4轮融资估值200亿+。</div>
+              <div class="source">澎湃新闻/深圳特区报 · 8月12日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-trend">路线</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://www.toutiao.com/article/7672690210211168803/" target="_blank" rel="noopener">EAI Show观察：2026是"大脑"产品化元年，VLA从学术论文走向展台</a></div>
+              <div class="desc">上海EAI Show首次将大模型展区独立设馆，标志着具身"大脑"从学术热点变为独立产品品类。蚂蚁灵波"一脑多机"软件层策略、自变量WUM原生融合架构、腾讯Hy-VLA全链路开源——三种商业模式同台竞技。行业共识：硬件已跨越量产门槛，下一个瓶颈在"大脑"——谁的VLA能用更少数据覆盖更多场景。</div>
+              <div class="source">综合 · 8月12日</div>
+            </div>
+
+	        
+
+	    <div class="day-label">8月11日</div>
+
+
+            <div class="news-item">
+              <span class="tag tag-hot">重磅</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://hub.baai.ac.cn/view/56786" target="_blank" rel="noopener">Google Gemini Robotics 2 三件套完整解读：全身VLA+推理层+边缘端，从头控到脚</a></div>
+              <div class="desc">Gemini Robotics 2（VLA全身控制Apptronik Apollo 2+22DOF SharpaWave手，蹲下/系绳/封袋等精细操作）、ER 2（具身推理层，多机器人协作+连续进度分类，Google AI Studio可公开测试）、On-Device 2（<200例适配新双臂）。波士顿动力和Agile Robots成为合作伙伴。FCC同日禁止中国类人机器人进口，谷歌软件被视为美国自主标准。</div>
+              <div class="source">Google DeepMind · 8月10日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">国内</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://alibaba-damo-academy.github.io/RynnBrain/" target="_blank" rel="noopener">阿里达摩院RynnBrain 1.1发布：2B/9B/122B三级，统一81维跨本体动作空间</a></div>
+              <div class="desc">具身基础模型家族：统一时空物理训练，新增接触点预测+平面抓取+原生3D grounding。81维跨本体统一动作空间，在宇树G1人形/Astribot-S1双臂/天机无极灵巧手上验证。VLA部分超越Qwen基线的VLA策略。阿里正式入局具身基础模型赛道。</div>
+              <div class="source">阿里达摩院 · 8月</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">突破</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://pandaily.com/x-square-robot-host-29-second-skill-learning-video-aug2026" target="_blank" rel="noopener">X Square HOST框架：29秒人类视频即可学会技能，首试成功率62%，无需微调</a></div>
+              <div class="desc">推理时学习框架HOST开源：机器人观看29秒人类演示视频，首试成功率62%——而行业标准需约50次示教+4小时微调才达38%。核心创新：反转传统离线微调范式，机器人"想象"最终状态并逆向推导动作，视频作为prompt而非训练数据。为人形机器人"看一遍就会"开辟新路径。</div>
+              <div class="source">Pandaily · 8月</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">学术</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://scirate.com/arxiv/2608.06729" target="_blank" rel="noopener">AtlasVLA+EchoVLA双突破：持久记忆VLA，长程任务分别提升17.5%和+0.20</a></div>
+              <div class="desc">AtlasVLA：持久世界-自我状态双记忆架构，仅用腕部摄像头超越多视角基线9.4%（LIBERO-Long），真实长程任务+17.5%。EchoVLA：场景+情景协同记忆，超越π0.5基线+0.20。两篇论文共同指向下一代VLA核心方向——从"无状态反应"到"有记忆推理"。</div>
+              <div class="source">arXiv · 8月7-10日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">本能</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://www.stcn.com/article/detail/4066737.html" target="_blank" rel="noopener">橡木果发布全球首个具身本能模型Natus AGE-0：零样本泛化+毫秒级自适应</a></div>
+              <div class="desc">清华+哈佛团队，招商局创投+蔚来资本天使轮领投。以触觉感知为核心的通用操作基座，不依赖数据预训练，实现零样本泛化。已与多家行业头部客户完成产线POC，未来发布Magis通用技能模型。走"本能驱动"差异化路线——不是"训练得越多越好"，而是"天生就会"。同期西湖机器人6个月4轮5亿、灵心巧手B轮近15亿。</div>
+              <div class="source">证券时报 · 8月10日</div>
+            </div>
+
+	        
+
+	    <div class="day-label">8月10日</div>
+
+
+            <div class="news-item">
+              <span class="tag tag-hot">重磅</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://dev.to/_1a008d053e73e4a54d13a/gemini-robotics-2-deepmind-just-gave-robots-a-whole-body-vla-breakdown-for-developers-2ijj" target="_blank" rel="noopener">Google DeepMind Gemini Robotics 2深度解读：全身VLA从脚趾到指尖，三模型矩阵完整</a></div>
+              <div class="desc">7月30日发布引发开发者社区广泛讨论。Gemini Robotics 2（VLA全身控制Apptronik Apollo 2+22DOF SharpaWave手，蹲下/系绳/封袋等精细操作）、ER 2（具身推理层，Google AI Studio可公开测试）、On-Device 2（边缘端<200例适配新双臂）。全球顶级AI lab正式从"桌面操作"进入"全身人形"战场。</div>
+              <div class="source">Dev.to · 8月</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">国内</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://www.sohu.com/a/1058968246_121778980" target="_blank" rel="noopener">具身大脑竞赛白热化：类脑VLA vs WUM统一架构 vs 双线押注，谁先跑通"GPT时刻"？</a></div>
+              <div class="desc">国内三大技术路线并进：智平方NeuroVLA（皮层-小脑-脊髓三层类脑，脊髓层0.4W/20ms反射）领跑类脑派；自变量WUM原生融合架构挑战VLA"多模块拼凑"范式（2个月4轮融资200亿+估值）；宇树并行WMA+VLA双线（IPO募资20亿投向模型）。卓世ZoeInside-VLA 4B登顶MolmoSpaces全球榜首。复旦陈涛："两年内难迎具身GPT时刻。"</div>
+              <div class="source">搜狐/钛媒体 · 8月</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">学术</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://blog.csdn.net/Discover304/article/details/163511439" target="_blank" rel="noopener">清华Motus（CVPR 2026）统一世界模型：一个模型贯通理解/预测/控制，超π0.5约45pp</a></div>
+              <div class="desc">三专家MoT架构（Wan 2.2 5B视频先验+Qwen3-VL-2B空间理解+动作专家），RoboTwin 2.0平均88.66%。上交大ChronoFlow-Policy/LaMP（ECCV 2026）提出"Flow is interface"——3D运动作观测到动作通用中介，LIBERO 40任务98.3%。中国学术界在具身模型赛道产出密度显著提升。</div>
+              <div class="source">CVPR/ECCV 2026 · 8月</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">开源</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://www.opensourceforu.com/2026/07/robot-ai-model-supports-multiple-platforms/" target="_blank" rel="noopener">蚂蚁灵波LingBot-VLA 2.0国际关注：17品牌20+构型，4090推理<130ms</a></div>
+              <div class="desc">蚂蚁灵波开源模型持续引发国际关注。预训练6万小时物理数据，GM-100双腕榜超越π0.5和GR00T N1.7。已在零售分拣/物流/工业自动化推进商业试点。纯软件层策略（"一脑多机"）避开硬件红海，为具身大脑商业化提供新范式。</div>
+              <div class="source">OpenSourceForU · 7月</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-trend">路线</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://en.tmtpost.com/post/7657782" target="_blank" rel="noopener">钛媒体深度：中国机器人竞赛的7万亿命题——哪条路线会赢？</a></div>
+              <div class="desc">钛媒体英文版深度分析：中国958,000家机器人企业，H1融资935亿。花旗预测2050年全球人形市场7万亿美元（中国超50%）。分析师警告80%企业将被淘汰。赢家将是"既能造身体又能造大脑"的全栈公司。分歧本质：追求通用性 vs 先找场景变现。</div>
+              <div class="source">钛媒体英文版 · 8月</div>
+            </div>
+
+	        
+
+	    <div class="day-label">8月5日</div>
+
+
+	    <div class="news-item">
+	      <span class="tag tag-hot">重磅</span><span class="tag tag-new">8.15</span>
+	      <div class="title"><a href="https://m4snews.com/article/google-deepmind-s-gemini-robotics-2-brings-whole-body-control-to-humanoids" target="_blank" rel="noopener">Google DeepMind 发布 Gemini Robotics 2：首个从脚趾到指尖的全身 VLA 控制</a></div>
+	      <div class="desc">8月3日Google DeepMind发布三件套：Gemini Robotics 2（全身VLA，控制Apptronik Apollo 2+22DOF SharpaWave灵巧手+Franka双臂，实现从足底平衡到指尖操作的全身连贯控制）、Gemini Robotics ER 2（具身推理层，长程任务分解+自我纠错+人机沟通）、Gemini Robotics On-Device 2（边缘端，<200例即适配新双臂）。同步发布ASIMOV-Agentic安全基准。全球顶级AI lab正式从"研究"进入"全身人形"战场。</div>
+	      <div class="source">M4S News · 8月3日</div>
+	    </div>
+
+	    <div class="news-item">
+	      <span class="tag tag-hot">开源</span><span class="tag tag-new">8.15</span>
+	      <div class="title"><a href="https://m.leiphone.com/category/robot/ZLhJjZVkHkws8Ski.html" target="_blank" rel="noopener">ICRA 2026 · Dexora 开源：首个 36DOF 双臂灵巧操作 VLA，成功率 89.6%</a></div>
+	      <div class="desc">ICRA 2026上发布的首个开源36自由度双臂灵巧操作VLA模型。采用"外骨骼+VR"混合遥操作（Apple Vision Pro无标记手指追踪），扩散Transformer策略+数据质量判别器。基础任务成功率89.6%，精细操作（如拧瓶盖）66.7%，超越GR00T N1和π0基线，支持跨本体迁移。灵巧操作从"能抓"到"能拧"的标志性突破。</div>
+	      <div class="source">雷锋网 · 8月</div>
+	    </div>
+
+	    <div class="news-item">
+	      <span class="tag tag-hot">触觉</span><span class="tag tag-new">8.15</span>
+	      <div class="title"><a href="https://arxiv-org.ezproxy.obspm.fr/abs/2608.01824" target="_blank" rel="noopener">ReTouch：首个带触觉预测在线精炼的 VLA，接触-rich 操作提升 23.8%</a></div>
+	      <div class="desc">8月3日提交arXiv的ReTouch VLA模型：Tactile-Patch Encoder保留手指身份和局部接触结构，高频动作模块同时预测未来触觉状态与动作块，执行中利用触觉反馈实时闭环修正。基于XHand-UR7e平台的900个真实演示训练，标准/挑战条件下分别超最强基线18.4和23.8个百分点。VLA模型开始从"纯视觉"走向"视触融合"。</div>
+	      <div class="source">arXiv · 8月3日</div>
+	    </div>
+
+	    <div class="news-item">
+	      <span class="tag tag-hot">模型</span><span class="tag tag-new">8.15</span>
+	      <div class="title"><a href="https://huggingface.co/tencent/Hy-Embodied-0.5-VLA-RoboTwin" target="_blank" rel="noopener">腾讯 Hy-Embodied-0.5-VLA 开源：万小时 UMI 数据+指尖光捕，RoboTwin 2.0 双榜 SOTA</a></div>
+	      <div class="desc">腾讯Robotics X+混元发布Hy-VLA：基于万小时UMI示教数据（指尖光捕接口），覆盖全学习栈的端到端VLA系统。RoboTwin 2.0基准双榜90.9%/90.1% SOTA，跨4个真实机器人平台验证。开源后为社区提供了工业级VLA参考实现。</div>
+	      <div class="source">Hugging Face · 8月</div>
+	    </div>
+
+	    <div class="news-item">
+	      <span class="tag tag-hot">突破</span><span class="tag tag-new">8.15</span>
+	      <div class="title"><a href="https://arxiv-org.ezproxy.obspm.fr/html/2606.22136v2" target="_blank" rel="noopener">VITRA：首个纯人类视频预训练 VLA，仅 1200 条真机微调即部署灵巧操作</a></div>
+	      <div class="desc">MSRA+清华联合成果VITRA：自动将无标注人类视频转化为100万段手部V-L-A数据集（2600万帧），实现强零样本手部运动预测。仅用约1200条真机示教微调后，在星动XHAND1全直驱五指灵巧手上完成精细操作。纯人类视频→真机灵巧操作路径打通，大幅降低真机数据采集成本。</div>
+	      <div class="source">arXiv · 8月</div>
+	    </div>
+
+	        
+
+	    <div class="day-label">7月30日</div>
+<div class="news-item">
+      <span class="tag tag-hot">突破</span><span class="tag tag-new">8.15</span>
+      <div class="title"><a href="https://digital.it168.com/a2026/0728/6943/000006943697.shtml" target="_blank" rel="noopener">τ₀-VLA 正式发布：双系统架构+世界模型推演，长程任务成功率从 27.5% 跃升至 45%</a></div>
+      <div class="desc">上海创智学院联合智元机器人7月28日发布τ₀-VLA：采用"慢思考"高层决策+ "快执行"低层策略双系统设计，首次在子任务决策层引入测试时计算与世界模型推演——先提出多个候选决策，通过世界模型预测视觉状态，由价值模型评估后再执行。基于4万小时真实物理交互数据预训练，覆盖AGIBOT G1、ARX AC One、Franka等多平台。制作奶茶、房间清洁等长程任务平均成功率从27.5%提升至45.0%。</div>
+      <div class="source">IT168 · 7月28日</div>
+    </div>
+
+    <div class="news-item">
+      <span class="tag tag-hot">模型</span><span class="tag tag-new">8.15</span>
+      <div class="title"><a href="https://www.geekpark.net/news/365536" target="_blank" rel="noopener">星海图 G0.5 开源：统一 VLA 架构六大权威榜单第一，配套世界模型 Fast-WAM</a></div>
+      <div class="desc">星海图在全球开发者大会上开源G0.5：统一自回归VLA架构，将视觉理解、语言推理和动作生成放入同一模型链路，原生支持思维链机制。六大权威榜单第一，DROID任务82.5%成功率，BEHAVIOR-1K超越专用模型冠军方案。配套发布世界模型Fast-WAM，推理延迟仅190ms、提速4倍以上。同步启动"百万小时真实数据计划"。</div>
+      <div class="source">极客公园 · 7月</div>
+    </div>
+
+    <div class="news-item">
+      <span class="tag tag-hot">世界模型</span><span class="tag tag-new">8.15</span>
+      <div class="title"><a href="https://arxiv-org.ezproxy.obspm.fr/html/2607.02604v1" target="_blank" rel="noopener">DynaWM：冻结基础 VLA + 世界模型增强，动态操控成功率最高提升 45%</a></div>
+      <div class="desc">新论文DynaWM提出通用世界模型增强方案：无需修改基础VLA内部结构，用Mamba-3动作编码器+V-JEPA 2.1视觉编码器+流匹配DiT包裹冻结的VLA，重新生成运动感知轨迹。在DynaGrasp-32基准上，所有基础VLA组合提升+1.88%~+45.31%，粗调模型受益最大（+26%~45%）。配套发布DynaGrasp-1600数据集。</div>
+      <div class="source">arXiv · 7月</div>
+    </div>
+
+    <div class="news-item">
+      <span class="tag tag-trend">共识</span><span class="tag tag-new">8.15</span>
+      <div class="title"><a href="https://36kr.com/p/3834566686879879" target="_blank" rel="noopener">WAIC 2026 定调：VLA + 世界模型融合成行业共识，三条技术路线分化</a></div>
+      <div class="desc">36氪深度：WAIC 2026具身智能"大脑"路线分化为三大阵营——分层架构派（逐际动力COSA、Figure Helix、英伟达GR00T N1）、统一模型派（它石智航AWE、自变量WALL-A、Skild AI）、场景驱动派（酷哇CooWAIM 2.0、极智嘉Gino 1）。分歧本质在数据观：分层派走真机+合成+互联网视频混合，统一派押注HumanCentric真实操作数据，场景派依赖数千台在岗机器人回流。</div>
+      <div class="source">36氪 · 7月</div>
+    </div>
+
+    <div class="news-item">
+      <span class="tag tag-hot">国产</span><span class="tag tag-new">8.15</span>
+      <div class="title"><a href="https://app.xinhuanet.com/news/article.html?articleId=2026071796bb43dcee0d498f8e8defade85b948f" target="_blank" rel="noopener">擎仓×上海交大 Evo-Depth 登顶 Meta-World：轻量化 VLA 面向工业边缘部署</a></div>
+      <div class="desc">WAIC 2026上擎仓联合上海交大发布Evo-Depth：从多视角RGB图像中隐式提取深度信息，无需额外深度传感器，大幅降低硬件成本。模型在Meta-World基准登顶，推理速度满足产线实时控制要求，为仓储、分拣等场景提供"轻量、便宜、能打"的边缘AI方案。覆盖"数据管道→模型→迭代→交付"全栈架构。</div>
+      <div class="source">新华网 · 7月17日</div>
+    </div>
+        
+
+
+    <div class="day-label">7月29日</div>
+
+    <div class="news-item">
+      <span class="tag tag-hot">突破</span><span class="tag tag-new">7.29</span>
+      <div class="title"><a href="https://digital.it168.com/a2026/0728/6943/000006943697.shtml" target="_blank" rel="noopener">τ₀-VLA 正式发布：双系统架构+世界模型推演，长程任务成功率从 27.5% 跃升至 45%</a></div>
+      <div class="desc">上海创智学院联合智元发布τ₀-VLA，首次在子任务决策层引入测试时计算与世界模型推演，长程任务成功率提升至45%。</div>
+      <div class="source">IT168 · 7月28日</div>
+    </div>
+
+    <div class="news-item">
+      <span class="tag tag-hot">模型</span><span class="tag tag-new">7.29</span>
+      <div class="title"><a href="https://www.geekpark.net/news/365536" target="_blank" rel="noopener">星海图 G0.5 开源：统一 VLA 架构六大权威榜单第一，配套世界模型 Fast-WAM</a></div>
+      <div class="desc">星海图开源G0.5统一自回归VLA架构，六大榜单第一、DROID 82.5%成功率，配套发布世界模型Fast-WAM。</div>
+      <div class="source">极客公园 · 7月</div>
+    </div>
+
+    <div class="news-item">
+      <span class="tag tag-hot">世界模型</span><span class="tag tag-new">7.29</span>
+      <div class="title"><a href="https://arxiv-org.ezproxy.obspm.fr/html/2607.02604v1" target="_blank" rel="noopener">DynaWM：冻结基础 VLA + 世界模型增强，动态操控成功率最高提升 45%</a></div>
+      <div class="desc">新论文DynaWM提出通用世界模型增强方案，不修改VLA内部结构，粗调模型受益最大（+26%~45%）。</div>
+      <div class="source">arXiv · 7月</div>
+    </div>
+
+    <div class="news-item">
+      <span class="tag tag-trend">共识</span><span class="tag tag-new">7.29</span>
+      <div class="title"><a href="https://36kr.com/p/3834566686879879" target="_blank" rel="noopener">WAIC 2026 定调：VLA + 世界模型融合成行业共识，三条技术路线分化</a></div>
+      <div class="desc">WAIC上具身大脑分化为分层架构派、统一模型派、场景驱动派三大阵营，分歧本质在数据观。</div>
+      <div class="source">36氪 · 7月</div>
+    </div>
+
+    <div class="news-item">
+      <span class="tag tag-hot">国产</span><span class="tag tag-new">7.29</span>
+      <div class="title"><a href="https://app.xinhuanet.com/news/article.html?articleId=2026071796bb43dcee0d498f8e8defade85b948f" target="_blank" rel="noopener">擎仓×上海交大 Evo-Depth：轻量化 VLA 登顶 Meta-World，面向工业边缘部署</a></div>
+      <div class="desc">擎仓联合上交大发布Evo-Depth，从RGB图像隐式提取深度信息，Meta-World登顶，面向仓储分拣场景。</div>
+      <div class="source">新华网 · 7月17日</div>
+    </div>
+
+
+    <div class="day-label">7月28日</div>
+
+    <div class="news-item">
+      <span class="tag tag-hot">突破</span><span class="tag tag-new">7.28</span>
+      <div class="title"><a href="http://cn.chinadaily.com.cn/a/202607/09/WS6a4f3e7ea310d709c2fbca02.html" target="_blank" rel="noopener">蚂蚁灵波全栈大脑 2.0：VA 2.0 成行业首个具身原生预训练模型，150Hz 实时闭环</a></div>
+      <div class="desc">6个模型组成"全栈大脑2.0"，LingBot-VA 2.0单GPU实现150Hz实时闭环，20条演示即适配新任务。</div>
+      <div class="source">中国日报 · 7月9日</div>
+    </div>
+
+    <div class="news-item">
+      <span class="tag tag-hot">模型</span><span class="tag tag-new">7.28</span>
+      <div class="title"><a href="https://36kr.com/p/3896147852969603" target="_blank" rel="noopener">智在无界 Being-M0.7：全球首个隐式世界动作模型，万小时人类数据预训练</a></div>
+      <div class="desc">首个面向人形全身移动操作的Latent WAM，Vision-Motion MoT架构在隐空间预测未来状态。</div>
+      <div class="source">36氪 · 7月15日</div>
+    </div>
+
+    <div class="news-item">
+      <span class="tag tag-trend">趋势</span><span class="tag tag-new">7.28</span>
+      <div class="title"><a href="https://www.qbitai.com/2026/07/460542.html" target="_blank" rel="noopener">RSS 2026 国际视角：PI 称 VLA 与世界模型不矛盾，数据 Curation 比堆量更关键</a></div>
+      <div class="desc">Physical Intelligence表示pi0.7已含世界模型组件，斯坦福提出"Data Poor, Model Rich"策略。</div>
+      <div class="source">量子位 · 7月25日</div>
+    </div>
+
+    <div class="news-item">
+      <span class="tag tag-hot">解读</span><span class="tag tag-new">7.28</span>
+      <div class="title"><a href="https://www.qbitai.com/2026/07/450896.html" target="_blank" rel="noopener">原力灵机 DW0.5：世界模型当 VLA 教练，真机数据需求降 60%，训练成本降 40%</a></div>
+      <div class="desc">Video/Action/Value三大Expert组成，在虚拟环境中预演VLA动作后果并打分反馈给RL。</div>
+      <div class="source">量子位 · 7月16日</div>
+    </div>
+
+    <div class="news-item">
+      <span class="tag tag-hot">共识</span><span class="tag tag-new">7.28</span>
+      <div class="title"><a href="https://m.thepaper.cn/newsDetail_forward_33573032" target="_blank" rel="noopener">智源大会+WAIC 定调：VLA 不死了，与世界模型融合是唯一出路</a></div>
+      <div class="desc">蚂蚁灵波沈宇军："不必纠结VLA还是世界模型，未来会出现1+1>2的新模型。"</div>
+      <div class="source">澎湃新闻 · 7月13日</div>
+    </div>
+
+    <div class="day-label">7月23日</div>
+
+    <div class="news-item">
+      <span class="tag tag-hot">突破</span><span class="tag tag-new">7.23</span>
+      <div class="title"><a href="https://www.qbitai.com/2026/07/457698.html" target="_blank" rel="noopener">科大讯飞 3 亿成立爻方智能：提出「本体认知」，iFLYTEK-Embodied-Omni 超越最强 VLA</a></div>
+      <div class="desc">双核大脑LIBERO-Plus零样本89.6%，数据配比反常规：49%为空间推理与任务规划数据。</div>
+      <div class="source">量子位 · 7月23日</div>
+    </div>
+
+    </div>
+
+  </div>
+</div>
+
+<!-- MODULE 3: 硬件与传感 -->
+<div class="card m3">
+  <div class="card-header"><span class="icon">🔧</span> 硬件与传感 · Hands & Sensors</div>
+  <div class="card-body">
+
+        	        	        	        	        	        	        	                <div class="today-label">📌 今日 · 9月4日</div>
+            <div class="news-item">
+              <span class="tag tag-hot">灵巧手</span><span class="tag tag-new">9.03</span>
+              <div class="title"><a href="https://caifuhao.eastmoney.com/news/20260903215552220416140" target="_blank" rel="noopener">自变量发布TwinDEX三指灵巧手：全球首次纯无本体数据驱动的灵巧操作</a></div>
+              <div class="desc">三指九自由度，零真机遥操数据驱动，无本体数采效率达真机遥操5.3倍；演示24个连续化学实验操作。</div>
+              <div class="source">东方财富 · 9月3日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">融资</span><span class="tag tag-new">9.03</span>
+              <div class="title"><a href="http://www.skjcsc.com/newsdetail/2026/09/03/37873.html" target="_blank" rel="noopener">禾赛创始团队二次创业，灵巧手公司Sharpa首披超45亿融资、估值220亿</a></div>
+              <div class="desc">阿里/美团/腾讯/京东/红杉入局；Sharpa Wave已被NVIDIA、Google用于研究，近日发布平衡版Wave SE。</div>
+              <div class="source">数控机床市场网 · 9月3日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">触觉</span><span class="tag tag-new">9.01</span>
+              <div class="title"><a href="https://news.10jqka.com.cn/20260901/c679495261.shtml" target="_blank" rel="noopener">福莱新材向灵心巧手批量交付超3万套触觉传感器</a></div>
+              <div class="desc">搭载Linker Hand O6工业级灵巧手，「芯感一体」架构实现从「感知」到「触觉智能TPU」跨越，全年采购目标10万套。</div>
+              <div class="source">同花顺 · 9月1日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">趋势</span><span class="tag tag-new">9.02</span>
+              <div class="title"><a href="https://5gai.cctv.com/2026/09/02/ARTISGmkl79earcMWgC21WyI260902.shtml" target="_blank" rel="noopener">央视《当机器人开始触摸世界》：灵巧手成最热细分赛道</a></div>
+              <div class="desc">章鱼动力OctoH-Hand 23自由度/1900+触觉单元主打数采孪生闭环；2026灵巧手销量预计7.02万只(+265.63%)。</div>
+              <div class="source">央视5G · 9月2日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">数据</span><span class="tag tag-new">9.03</span>
+              <div class="title"><a href="https://baijiahao.baidu.com/s?id=1875055703364346925" target="_blank" rel="noopener">灵巧手赛道融资热度：2026前7月已超285亿元，超2025全年</a></div>
+              <div class="desc">2025年灵巧手销量1.92万只(+236.84%)，赛道从「参数竞赛」转向稳定性与落地能力。</div>
+              <div class="source">工人日报 · 9月3日</div>
+            </div>
+<div class="history-divider">📅 往期回顾</div>
+    <div class="history-section"><div class="day-label">8月20日</div>
+            <div class="news-item">
+              <span class="tag tag-hot">触觉</span><span class="tag tag-new">8.20</span>
+              <div class="title"><a href="https://www.donews.com/news/detail/4/6678889.html" target="_blank" rel="noopener">华威科「万象系列」触觉传感器首发：0.01N精度、400点/cm²、1%FS精度断层领先</a></div>
+              <div class="desc">最小触发力0.01N（羽毛级）、触点密度400点/cm²、重复精度0.5%FS、时漂1%FS/h，六款型量程15-200N；已被智元临界点OmniPicker 3、松灵UMI夹爪选用量产验证，同步展示VTLA多模态大模型。</div>
+              <div class="source">DoNews · 8月20日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">灵巧手</span><span class="tag tag-new">8.20</span>
+              <div class="title"><a href="https://www.sohu.com/a/1065059341_122014422" target="_blank" rel="noopener">星动纪元XHAND 1 PRO亮相WRC：21自由度+18全掌触觉传感器，±0.1mm定位</a></div>
+              <div class="desc">全直驱灵巧手XHAND 1（12自由度、抓握80N、提25kg）、XHAND 1 PRO（21自由度、18触觉传感器、三维力感知、±0.1mm），面向高精度数采与算法训练；席悦：具身要过ROI和稳定性两道关。</div>
+              <div class="source">搜狐 · 8月20日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">趋势</span><span class="tag tag-new">8.20</span>
+              <div class="title"><a href="https://news.china.com/socialgd/10000169/20260820/49688657_1.html" target="_blank" rel="noopener">中国电子报：感知-决策-控制「割裂」拖累时延与功耗，触觉成物理世界第一道关口</a></div>
+              <div class="desc">三大技术环节硬件独立，单传感器预处理数十至上百毫秒、VLA推理数百毫秒、跨芯片搬运叠加时延；「从感知到决策路径割裂」是核心症结，触觉成为打通物理世界的第一道关口。</div>
+              <div class="source">中国电子报 · 8月20日</div>
+            </div>
+
+	    <div class="day-label">8月19日</div>
+
+            <div class="news-item">
+              <span class="tag tag-hot">新品</span><span class="tag tag-new">8.19</span>
+              <div class="title"><a href="https://i.gasgoo.com/news/70469663.html" target="_blank" rel="noopener">禾赛联创团队Sharpa推出Wave SE触觉灵巧手：22自由度、视触240×240、力灵敏度0.02N</a></div>
+              <div class="desc">新加坡Sharpa发布Wave SE并预售，高分辨率视触传感器240×240、抓握力90N。</div>
+              <div class="source">盖世汽车 · 8月19日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">新品</span><span class="tag tag-new">8.18</span>
+              <div class="title"><a href="https://www.sohu.com/a/1064459453_114838" target="_blank" rel="noopener">知行机器人亮相WRC：束巧灵巧手+优采数采手+撼岳人形全系登场</a></div>
+              <div class="desc">「束巧」绳驱灵巧手、「优采」触觉数采手（0.7mm定位）、「撼岳」轮式人形全系登场。</div>
+              <div class="source">搜狐 · 8月18日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">触觉</span><span class="tag tag-new">8.18</span>
+              <div class="title"><a href="https://www.sohu.com/a/1064520550_489960" target="_blank" rel="noopener">赛感科技离电三维力触觉传感器：0.05N最小力识别、已获批量灵巧手订单</a></div>
+              <div class="desc">技术源自南科大，0.05N识别、10ms响应，WRC首发全尺寸人形电子皮肤系统。</div>
+              <div class="source">搜狐 · 8月18日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">趋势</span><span class="tag tag-new">8.19</span>
+              <div class="title"><a href="https://m.dzplus.dzng.com/share/general/0/NEWS3616399ZPEBRTKCSTTHV" target="_blank" rel="noopener">央视财经：灵巧手销量翻倍、价格降至万元以下，赛道融资突破80亿(+1500%)</a></div>
+              <div class="desc">灵巧手均价从5万降至万元以下，赛道累计融资破80亿（同比+1500%）。</div>
+              <div class="source">央视财经/大众日报 · 8月19日</div>
+            </div>
+
+	    <div class="day-label">8月15日</div>
+
+            <div class="news-item">
+              <span class="tag tag-hot">量产</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://www.investorscn.com/2026/08/13/135463/" target="_blank" rel="noopener">珠海启动全球首条车规级多维压阻触觉传感器量产线：首期年产500万颗</a></div>
+              <div class="desc">首期年产500万颗、总规划1.2亿颗，已获智元机器人等订单，触觉从「实验室小批量」进入「车规级量产」。</div>
+              <div class="source">投资界 · 8月15日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">数采</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://www.sohu.com/a/1045005332_621617" target="_blank" rel="noopener">千觉XTac UMI G1穿戴式触觉数采夹爪：5ms同步+120Hz视触觉，补触觉数据短板</a></div>
+              <div class="desc">5ms多设备同步、120Hz视触觉、200Hz IMU，直击行业「触觉数据饥渴」痛点。</div>
+              <div class="source">搜狐 · 8月15日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">资本</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="http://applocal.myzaker.com/news/article.php?pk=6a7d2f6c8e9f096e0601951d" target="_blank" rel="noopener">「手和皮肤」成第二百亿赛道：灵心巧手15亿+帕西尼35亿+戴盟数亿，产业方密集入场</a></div>
+              <div class="desc">资本逻辑：VLA再聪明，没触觉闭环进不了工厂；产业方「客户变股东」密集入场。</div>
+              <div class="source">ZAKER · 8月15日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">出海</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://www.jiemian.com/article/14923546.html" target="_blank" rel="noopener">国产机器人出海提速：CE认证+车规级触觉产线+1亿美元欧洲订单</a></div>
+              <div class="desc">2026 H1全球人形出货1.91万台中国占97%，从「性价比出海」走向「认证+标准+供应链」出海。</div>
+              <div class="source">界面新闻 · 8月15日</div>
+            </div>
+
+	    <div class="day-label">8月14日</div>
+
+
+            <div class="news-item">
+              <span class="tag tag-hot">重磅</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://znyj.ofweek.com/news/2026-08/ART-23013-11000-30698357.html" target="_blank" rel="noopener">戴盟发布触觉锚定世界模型Daimon-TWM：触觉进入理解/预测/控制主链路</a></div>
+              <div class="desc">戴盟机器人发布Daimon-TWM，将视触觉传感器、原生触觉数据、VTLA和世界模型连成一条路线：先判断接触状态→推演动作后果→100Hz高频修正。其UniTacVLA论文8项任务无扰动成功率64%，远超π0.5的26%。消融实验证明：单纯加触觉输入提升有限，必须理解接触状态+预测未来触觉+高频纠偏。</div>
+              <div class="source">OFweek · 8月14日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">突破</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://cnbytool.com/newsinfo/11271376.html" target="_blank" rel="noopener">Contactile提出VμA范式：摩擦系数μ是世界模型核心缺失维度</a></div>
+              <div class="desc">从VLA到VμA（视觉-摩擦系数-动作）：摩擦系数μ无法被相机和编码器识别，是主流VLA/VFA世界模型的核心缺失。PapillArray阵列式三轴光学触觉传感器原生实时测算摩擦系数，1kHz高频输出，为世界模型植入真实接触力学，解决抓取打滑/物件破损问题。</div>
+              <div class="source">BYtool · 8月14日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">融资</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://www.shobserver.com/" target="_blank" rel="noopener">新智具身（复旦系）近亿元天使轮：全球首家触觉"传感器-数据-大模型"全栈闭环</a></div>
+              <div class="desc">新智具身完成近亿元天使轮，成为全球首家围绕触觉实现"传感器-数据-大模型"全栈闭环的企业。自研视触觉传感器采集力/滑移/形变/边界信息，研发VTLA触觉大模型、触觉世界模型和触觉强化学习，宣称精细化操作成功率提升90%以上。</div>
+              <div class="source">上观新闻 · 8月14日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-trend">趋势</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://m8.com.cn/article/dexterous-hand-humanoid-2026-evergreen" target="_blank" rel="noopener">灵巧手逻辑逆转：从"自由度炫技"到"VLA数据入口"，主流收敛到6-12自由度</a></div>
+              <div class="desc">2026灵巧手逻辑根本转变：从追求21个自由度转向服务VLA的"数据入口"——既是执行器，更是收集触觉/滑移/重力/反作用力的采集器。主流商业化灵巧手主动自由度已收敛到6-12个，不再盲目追高。中国厂商成本降维：灵心巧手6666元起 vs Shadow Hand约53万元，约1/20量级差。</div>
+              <div class="source">M8深度 · 8月14日</div>
+            </div>
+
+	        
+
+	    <div class="day-label">8月13日</div>
+
+
+            <div class="news-item">
+              <span class="tag tag-hot">重磅</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://leaderobot.com/news/8281" target="_blank" rel="noopener">国产首款灵巧手专用一体化芯片方案：0.1mm定位精度，微秒级实时时延</a></div>
+              <div class="desc">国产首款灵巧手专用一体化芯片方案发布：0.1mm极致定位精度、微秒级超低实时时延。将灵巧手的多路电机控制、触觉信号采集、力控计算集成到单一芯片，大幅降低灵巧手成本与体积。继港智创信8mm MEMS六维力芯片之后，国产灵巧手"芯片级"方案再进一步。</div>
+              <div class="source">Leaderobot · 8月13日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">量产</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://www.sohu.com/a/1062207281_100116740" target="_blank" rel="noopener">优必选Walker S2第1000台下线：全年计划万台产能，上半年订单已超去年全年</a></div>
+              <div class="desc">优必选Walker S系列批量进驻东风柳汽/比亚迪/吉利/富士康/顺丰。2025年全尺寸人形收入8.2亿（+2203%），销量1079台全球第一。创始人周剑：上半年订单已超2025全年，今年计划万台产能。人形机器人从"Demo"进入"万台级"真实产能爬坡。</div>
+              <div class="source">搜狐 · 8月13日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">成本</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://guba.eastmoney.com/news,cjpl,1757894989.html" target="_blank" rel="noopener">人形机器人成本曲线：2018年300万→2025年几十万，90%零件国产</a></div>
+              <div class="desc">七年成本下降一个数量级：2018年一台人形机器人造价300万元且核心零部件几乎全进口，2025年降至几十万元、90%零件来自国内。国产供应链（电机/减速器/传感器）复刻新能源车降本曲线。这是量产爆发的底层逻辑——成本是最大的"技术"。</div>
+              <div class="source">东方财富 · 8月13日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">落地</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://www.zidonghua.com.cn/news/Finance/274857.html" target="_blank" rel="noopener">广汽慧仑GoMate Mini轮足式人形：18.9万次异常处置，汽车产线真实验证</a></div>
+              <div class="desc">广汽慧仑第四代轮足式人形GoMate Mini在7个项目部署近50台，累计运行6.3万公里，完成18.9万次异常处置。车企孵化人形机器人，天然拥有产线验证场景和供应链资源——"广汽模式"是具身智能落地的独特路径。</div>
+              <div class="source">自动化网 · 8月13日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-trend">数据</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://m8.com.cn/article/dexterous-hand-humanoid-2026-evergreen" target="_blank" rel="noopener">灵巧手2026：从"执行末端"到"数据入口"，供应链进入芯片级竞争</a></div>
+              <div class="desc">灵巧手赛道三大信号：①芯片化（一体化芯片方案/8mm MEMS六维力）；②数据入口化（真机数采/力触觉反馈/遥操作都靠手）；③量产竞赛（优必选万台产能/灵心巧手月产4000台/中科慧思千元级L1）。供应链从"卖模组"进入"卖芯片+卖数据能力"的新阶段。</div>
+              <div class="source">综合 · 8月13日</div>
+            </div>
+
+	        
+
+	    <div class="day-label">8月12日</div>
+
+
+            <div class="news-item">
+              <span class="tag tag-hot">盛会</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://market.jfinfo.com/news/4075867" target="_blank" rel="noopener">EAI Show硬件看点：瑞萨电子传感器融合灵巧手+赛感离电型触觉首次同台</a></div>
+              <div class="desc">8月12日上海EAI Show，瑞萨电子首秀传感器融合灵巧手（RZ/V2H处理器+电容式触控+9轴电机控制），赛感科技展示离电型触觉传感器（100kPa⁻¹灵敏度）。华威科/他山/一目科技触觉方案同馆竞技。供应链从"卖零件"升级为"卖方案"，灵巧手+触觉+关节编码器一体化集成成趋势。</div>
+              <div class="source">各展商 · 8月12日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">标准</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://www.cena.com.cn/robot/20260812/129361.html" target="_blank" rel="noopener">人形机器人标准体系发布：整机/部件/智算/安全六大类，填补国内空白</a></div>
+              <div class="desc">MIIT/TC8标委会发布《人形机器人与具身智能标准体系（2026版）》，六大工作组覆盖整机与系统、肢体与部组件、类脑与智算、应用、安全、总体。标准对接国际体系规划中。对产品PM意味着：硬件选型/安全设计/测试验收有了"国标"参照系，供应链准入门槛确立。</div>
+              <div class="source">中国电子报 · 8月12日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">量产</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://rb.gywb.cn/epaper/gyrb/html/2026-08/12/content_10930.htm" target="_blank" rel="noopener">跨维智能DexForce W1 Pro全链路自研人形机器人：全国15城常态化运营</a></div>
+              <div class="desc">跨维智能将在数博会展示国内首款"AI引擎→运动控制→大脑→本体"全链路自研的二代通用人形机器人DexForce W1 Pro。设糖画/咖啡/冰淇淋/爆米花四个交互体验展区，已在全国超15城市的多类型商业场景实现常态化运营。"能卖糖画的人形机器人"——商业化从B端工业走向C端体验。</div>
+              <div class="source">贵阳日报 · 8月12日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">国际</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://big5.cri.cn/gate/big5/news.cri.cn/20260812/44668c5e-4afa-661b-3cae-87218f80c6b5.html" target="_blank" rel="noopener">CNN：中国制造全球约90%人形机器人，单台承重最高50公斤</a></div>
+              <div class="desc">CNN专题报道中国人形机器人"进厂"：中国企业聚焦重物搬运和经济生产场景，单台承重最高达50公斤。摩根士丹利预计2050年全球保有量10亿台、市场超5万亿美元。中国供应链（电机/减速器/传感器）正在复刻新能源汽车的降本曲线——整机从百万级拉至十万级。</div>
+              <div class="source">CNN · 8月12日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-trend">数据</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://www.jwview.com/jingwei/html/08-11/683101.shtml" target="_blank" rel="noopener">H1产量超4万台+宇树/智元/优必选占全球近80%份额+标准体系就位</a></div>
+              <div class="desc">2026 H1中国人形机器人产量超4万台（全年预计破10万）。宇树/智元/优必选三家占全球近80%市场份额。标准体系（MIIT/TC8）和资本（H1融资935亿）同步跟进。但部分企业回应"尚未实现规模化量产"——头部集中趋势明显，腰部企业面临"是否能跨过量产门槛"的生死考验。</div>
+              <div class="source">综合 · 8月12日</div>
+            </div>
+
+	        
+
+	    <div class="day-label">8月11日</div>
+
+
+            <div class="news-item">
+              <span class="tag tag-hot">重磅</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://nw.eastday.com/zq/zh/20260811/fa31d96065adec4f806ce1d3b095ce4b.html" target="_blank" rel="noopener">灵心巧手B轮近15亿元：月产4000台，全球高自由度灵巧手市占超80%</a></div>
+              <div class="desc">灵心巧手完成近15亿元B轮融资，月产能达4000台，占据全球高自由度灵巧手市场80%以上份额。核心零部件自研率93%，Linker Hand O30全直驱20DOF仅740g/30kg负载。资本向"有量产能力、有市占率"的头部硬件企业集中——这正是摩根士丹利所说的"从技术突破到ROI评估"的典型案例。</div>
+              <div class="source">东方网 · 8月11日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">新品</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://autonews.gasgoo.com/articles/news/xiaozhi-weekly-news-unitree-ipo-requires-75400-yuan-per-lot-agibot-reshuffles-core-management-2087059429387419649" target="_blank" rel="noopener">越疆DOBOT LUMO全地形人形发布：1.3m，多模态情感感知+3D空间理解</a></div>
+              <div class="desc">8月5日越疆发布DOBOT LUMO：1.3米高，搭载自研"空境"具身大模型，具备多模态情感感知、3D空间理解和自主学习能力，可在草坪/沙地/碎石等非结构化地形行走。消费级人形机器人从"玩具"走向"伙伴"的探索。</div>
+              <div class="source">Gasgoo · 8月10日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">量产</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://eu.36kr.com/en/p/3934449071406212" target="_blank" rel="noopener">魔法原子无锡万台产线动工+蚂蚁灵波15亿首轮+原力灵机股改估值200亿+</a></div>
+              <div class="desc">魔法原子在无锡启动万台级人形机器人产线建设。蚂蚁集团旗下灵波（LingBot）15亿元首轮融资推进中（"一脑多机"软件层策略）。原力灵机8月完成股改（启明/联想/蔚来/阿里/智谱/阶跃/商汤集体押注，估值200亿+）。资本从"广泛撒网"进入"重仓头部"阶段。</div>
+              <div class="source">36氪 · 8月11日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-trend">数据</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://www.inzhejiang.com.cn/News/202608/t20260810_31839318.html" target="_blank" rel="noopener">全球人形机器人出货：工业+商业占七成，中国供应链"链主"地位确立</a></div>
+              <div class="desc">H1全球出货1.91万台，工业与商业应用场景占七成以上。科研教育占比持续下降，真实生产场景（物流分拣/汽车焊装/服装制造）占比快速攀升。宇树上市强化"链主"地位——国产电机/传感器/减速器核心供应链加速升级，整机价格从百万级拉至十万级。</div>
+              <div class="source">浙江在线 · 8月10日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">落地</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="http://www.apcreports.org.cn/index/news/114459.html" target="_blank" rel="noopener">深圳龙华："算力+载体+场景+资本"区域生态推动人形机器人走向真实岗位</a></div>
+              <div class="desc">深圳龙华区以"算力+载体+场景+资本"四位一体生态，推动人形机器人从概念样机加速进入汽车焊装、物流分拣等真实生产岗位。我能具身分拣机器人已获外交部发言人全球推介。标志着地方政府的产业扶持从"给补贴"升级为"建生态"。</div>
+              <div class="source">中国报道 · 8月11日</div>
+            </div>
+
+	        
+
+	    <div class="day-label">8月10日</div>
+
+
+            <div class="news-item">
+              <span class="tag tag-hot">重磅</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://finance.eastmoney.com/a/202608093835983076.html" target="_blank" rel="noopener">中科慧思三款灵巧手发布：L1千元级+D1五指+M1模块化，蓝思科技入局</a></div>
+              <div class="desc">8月7日中科慧灵+蓝思科技+湖南华夏联合设立，长沙揭牌。L1（6DOF/千元级/百万次零故障/用于CASBOT乐队演奏）、D1（近20路传感/数采与双臂研发）、M1（标准化主体+可换指尖/直击3C精密装配）、F系列预发布（37DOF绳驱仿生）。蓝思科技入局——苹果供应链的精密制造能力（公差控制/批量品控）注入灵巧手赛道。</div>
+              <div class="source">东方财富 · 8月9日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">触觉</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://news.qq.com/rain/a/20260807A0C1H800" target="_blank" rel="noopener">帕西尼全球首个足底多维触觉传感器PX-FOOTRIX：双足首次拥有"脚感"</a></div>
+              <div class="desc">8月6日发布，基于6D霍尔阵列式触觉传感技术，足底全域三维力觉+六维力/力矩感知。双足动态平衡从"运动学计算"升级为"物理感知闭环"。计划8月19日WRC首展。同期港智创信发布8mm×8mm硅基MEMS六维力传感器（精度0.3%F.S.），量产后有望颠覆力传感器成本结构（传统2-3万/套）。</div>
+              <div class="source">腾讯新闻/大众日报 · 8月7-8日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">关节</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://stcn.com/article/detail/4061180.html" target="_blank" rel="noopener">瑞萨电子EAI Show首秀（8.12-14）：传感器融合灵巧手+关节编码器方案</a></div>
+              <div class="desc">瑞萨电子首次亮相中国具身智能机器人产业大会。RZ/V2H处理器+传感器信号调节器+电容式触控硬件，实现物体识别/受力判断/自适应抓取。同步展示基于RAA2P3226电涡流传感器的关节编码器及9轴电机控制。芯片巨头正式切入具身智能供应链。</div>
+              <div class="source">证券时报 · 8月6日</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-hot">量产</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://zhidx.com/p/577127.html" target="_blank" rel="noopener">灵巧手行业数据：2025年销1.92万只→2026预计7.02万只（+265%），量产拐点</a></div>
+              <div class="desc">GGII报告：2025年中国灵巧手市场1.92万只（+237%），2026年预计7.02万只（+265%），2030年43万只。蓝思/中科慧灵/拾玥/均胜/临界点/万拿/灵心巧手百花齐放。行业融资57笔约128亿元。核心问题从"能设计什么"转向"能批量造什么"——答案不在设计，在制造。</div>
+              <div class="source">智东西 · 8月</div>
+            </div>
+            <div class="news-item">
+              <span class="tag tag-trend">厂商</span><span class="tag tag-new">8.15</span>
+              <div class="title"><a href="https://zhidx.com/p/577127.html" target="_blank" rel="noopener">曦诺Xynova Flex 2量产23DOF仅400g + 星动XHAND 1 PRO全直驱21DOF发布</a></div>
+              <div class="desc">曦诺Flex 2：23DOF腱绳+直驱混合驱动，集成四类传感器，12kg负载，100万次开合。星动XHAND 1 PRO：21DOF全直驱+18分布式触觉传感器（0.01N分辨率）。行业四大痛点"贵而不稳、集成难、有手无脑、路线未收敛"仍未根本解决，但量产拐点信号已密集出现。</div>
+              <div class="source">智东西/综合 · 8月</div>
+            </div>
+
+	        
+
+	    <div class="day-label">8月5日</div>
+
+
+	    <div class="news-item">
+	      <span class="tag tag-hot">重磅</span><span class="tag tag-new">8.15</span>
+	      <div class="title"><a href="https://www.zidonghua.com.cn/CECTF/ShowInME/252610.html" target="_blank" rel="noopener">英飞凌×赛感科技联合发布离电型触觉方案：100kPa⁻¹灵敏度 + PSoC™4 芯片</a></div>
+	      <div class="desc">8月1-2日第七届中国机器人学术年会（CCRS 2026）上，赛感科技与英飞凌联合展示"高性能采集芯片+离电型触觉传感"完整方案。离电型触觉传感器：100 kPa⁻¹超高灵敏度、0-2 MPa宽量程、R²>0.99高线性度。英飞凌PSoC™4芯片提供低功耗高精度信号采集。预告8月19日北京WRC 2026展示人形机器人全身电子皮肤及<0.05N指尖三维力触觉。</div>
+	      <div class="source">自动化网 · 8月</div>
+	    </div>
+
+	    <div class="news-item">
+	      <span class="tag tag-hot">融资</span><span class="tag tag-new">8.15</span>
+	      <div class="title"><a href="https://finance.eastmoney.com/a/202608043831182967.html" target="_blank" rel="noopener">拾玥科技完成数千万元天使轮：11DOF 灵巧手量产交付，23DOF 旗舰 10 月发布</a></div>
+	      <div class="desc">常友科技旗下基金领投。Lumi-Dex 11DOF灵巧手已小批量量产销售（预计全年营收2000-3000万），23DOF旗舰版搭载全球首创主动散热（温度降>50℃）、寿命>5000h、指尖间隙<1.5mm。Lumi-Tac 2.0视触觉传感器10月升级至120帧全域高频感知。已与中国中车签署技术框架协议，推进高端装备制造场景验证。</div>
+	      <div class="source">东方财富 · 8月4日</div>
+	    </div>
+
+	    <div class="news-item">
+	      <span class="tag tag-hot">电子皮肤</span><span class="tag tag-new">8.15</span>
+	      <div class="title"><a href="http://www.ezhejiang.gov.cn/2026-08/03/c_1202090.htm" target="_blank" rel="noopener">清华柔性电子皮肤：力反馈 1kHz、分辨率 2%，工业级月产 1000 套</a></div>
+	      <div class="desc">清华大学浙江柔性电子技术研究院开发出柔性电子皮肤，可实时检测压力/温度/纹理，力反馈频率1kHz、分辨率2%，最小2N处理易碎物体、最大100N抓取重物，具备防滑自动补偿和不稳定主动预警。工业具身智能训练中心月产1000套智能传感夹爪，为灵巧手和协作机器人提供可量产触觉方案。</div>
+	      <div class="source">浙江在线 · 8月3日</div>
+	    </div>
+
+	    <div class="news-item">
+	      <span class="tag tag-hot">新品</span><span class="tag tag-new">8.15</span>
+	      <div class="title"><a href="https://www.jwview.com/jingwei/html/08-05/682347.shtml" target="_blank" rel="noopener">武汉手智 HANDX 织物触觉手套量产销售：45 传感器/指，5999 元/双</a></div>
+	      <div class="desc">武汉手智创新科技发布HANDX织物触觉手套：单只标配45个高精度指尖触觉传感器（最高可拓展至800点），内置NTP时间同步模块统一多模态采集时序，售价5999元/双。已开始规模化销售（首批20+订单、2000双需求）。触觉数据采集硬件从"实验室定制"走向"标品量产"，大幅降低多模态数据获取门槛。</div>
+	      <div class="source">经纬视图 · 8月5日</div>
+	    </div>
+
+	    <div class="news-item">
+	      <span class="tag tag-trend">趋势</span><span class="tag tag-new">8.15</span>
+	      <div class="title"><a href="https://tech.gmw.cn/2026-08/03/content_38924314.htm" target="_blank" rel="noopener">人形机器人与具身智能学术研讨会：触觉传感器和灵巧手被列为最高优先级攻关方向</a></div>
+	      <div class="desc">7月29日北京研讨会上，与会专家一致认为需加快突破触觉传感器、灵巧手等核心零部件，提升产业链自主可控能力。结合CCRS 2026上赛感/英飞凌、清华柔电院、中科大生物基电子皮肤（0.1mm/千元级）的密集发布，触觉感知正从"学术Demo"进入"工业量产"拐点——技术路线收敛于离电型+柔性+低成本三方向。</div>
+	      <div class="source">光明网 · 8月3日</div>
+	    </div>
+
+	        
+
+	    <div class="day-label">7月30日</div>
+<div class="news-item">
+      <span class="tag tag-hot">重磅</span><span class="tag tag-new">8.15</span>
+      <div class="title"><a href="https://finance.ifeng.com/c/8upkXtedgfa" target="_blank" rel="noopener">均胜电子 WAIC 发布「灵犀」灵巧手：20DOF 掌内混合驱动，控制器已规模量产</a></div>
+      <div class="desc">均胜电子在WAIC 2026发布TeleHand系列灵巧手——20自由度、业内独创"掌内集成+混合驱动"（直驱+腱绳+连杆三种方式合一）、自研微型执行器体积减半/扭矩密度超竞品2-3倍、自研电子皮肤搭载全球首创物理原生解耦三维力感知（分辨率媲美人手）。具身智能大脑EAOS+EAPC算力覆盖40TOPS~2070 TFLOPS。控制器已为头部机器人客户规模量产供货。</div>
+      <div class="source">凤凰财经 · 7月17日</div>
+    </div>
+
+    <div class="news-item">
+      <span class="tag tag-hot">新品</span><span class="tag tag-new">8.15</span>
+      <div class="title"><a href="https://m.cnstock.com/commonDetail/747689" target="_blank" rel="noopener">万拿机器人 WAIC 发布两款任务型灵巧手：Std16A 电缸直驱 + Eco12 轻量拟人</a></div>
+      <div class="desc">万拿机器人在WAIC 2026发布两款任务型灵巧手：Std16A面向工业实战——16主动DOF、电缸直驱、指尖重复定位精度±0.2mm、四指抓握力≥60N，触觉款配备5个指尖三维触觉传感器；Eco12面向遥操作与科研——12DOF、仅500g、微型直流电机+连杆传动、抓握力≥45N。公司形成"微型伺服电缸+仿生灵巧手+操作方案"全栈布局。</div>
+      <div class="source">上海证券报 · 7月17日</div>
+    </div>
+
+    <div class="news-item">
+      <span class="tag tag-hot">触觉</span><span class="tag tag-new">8.15</span>
+      <div class="title"><a href="https://www.zhidx.com/p/580085.html" target="_blank" rel="noopener">智在无界发布全球首个隐式触觉世界模型 Being-H0.8：让机器人学会挤牙膏</a></div>
+      <div class="desc">智在无界7月28日发布全球首个隐式触觉世界动作模型Being-H0.8：首次将触觉模态系统性地引入大规模模型预训练，将视觉、触觉、动作统一到同一隐空间，提出慢快动作专家实时修正动作。基于50万小时人类交互视频训练的UniHand 3.0数据库，配合LinkerHand L25灵巧手完成挤牙膏、摘葡萄、写毛笔字等接触密集型任务。</div>
+      <div class="source">智东西 · 7月28日</div>
+    </div>
+
+    <div class="news-item">
+      <span class="tag tag-trend">传感</span><span class="tag tag-new">8.15</span>
+      <div class="title"><a href="https://www.automation.com/article/xela-robotics-robotic-fingertips-new-tactile-sensor-capabilities" target="_blank" rel="noopener">XELA Robotics 发布行业首款带指甲机器人指尖：30 个三轴力感测点，可拾取名片</a></div>
+      <div class="desc">日本XELA Robotics发布uSkin系列升级版——行业首个带指甲结构的机器人指尖，指甲内置6轴力传感器，指尖"指腹"集成30个三轴力感测点。这一仿生设计使机器人能完成"从桌面拾起卡片/钥匙"等极薄物体抓取任务，支持磁场干扰补偿满足工厂电磁环境。</div>
+      <div class="source">Automation.com · 7月</div>
+    </div>
+
+    <div class="news-item">
+      <span class="tag tag-hot">创业</span><span class="tag tag-new">8.15</span>
+      <div class="title"><a href="https://eu.36kr.com/en/p/3907536767833473" target="_blank" rel="noopener">拾玥科技 LumiBot 天使轮：视触觉+主动散热灵巧手，连续作业突破 5000 小时</a></div>
+      <div class="desc">36氪独家：拾玥科技7月23日完成数千万元天使轮融资，发布Lumi-Dex系列灵巧手——11DOF已小批量量产，23DOF旗舰版全球首创主动散热微型关节模组（温度降低超50℃），空载连续运行寿命超5000小时。自研Lumi-Tac视触觉传感器10μm级分辨率、力控精度0.02N。VTLA架构实现"采集→训练→部署→回流"数据闭环。</div>
+      <div class="source">36氪 · 7月23日</div>
+    </div>
+        
+
+
+    <div class="day-label">7月29日</div>
+
+    <div class="news-item">
+      <span class="tag tag-hot">重磅</span><span class="tag tag-new">7.29</span>
+      <div class="title"><a href="https://www.tmcnet.com/usubmit/2026/07/27/10420503.htm" target="_blank" rel="noopener">Tacta Systems 发布 Tacta Hand：流体肌腱驱动+沙粒级触觉传感器，软银领投 7500 万美元</a></div>
+      <div class="desc">Tacta发布Tacta Hand灵巧手，15个独立关节采用Fluidic Tendon流体肌腱驱动，传感器比沙粒还小、400Hz采样率。</div>
+      <div class="source">TMCnet · 7月27日</div>
+    </div>
+
+    <div class="news-item">
+      <span class="tag tag-hot">新品</span><span class="tag tag-new">7.29</span>
+      <div class="title"><a href="https://m.cnstock.com/commonDetail/747689" target="_blank" rel="noopener">万拿机器人 WAIC 发布两款任务型灵巧手：Std16A 电缸直驱 + Eco12 轻量拟人</a></div>
+      <div class="desc">万拿发布Std16A（16DOF电缸直驱、±0.2mm精度、60N抓握力）和Eco12（12DOF仅500g），全栈布局。</div>
+      <div class="source">上海证券报 · 7月17日</div>
+    </div>
+
+    <div class="news-item">
+      <span class="tag tag-hot">灵巧手</span><span class="tag tag-new">7.29</span>
+      <div class="title"><a href="https://finance.ifeng.com/c/8upkXtedgfa" target="_blank" rel="noopener">均胜电子 WAIC 发布「灵犀」灵巧手：20DOF 掌内混合驱动，控制器已规模量产</a></div>
+      <div class="desc">均胜电子发布TeleHand系列，20DOF混合驱动、自研三维力电子皮肤、控制器已为头部客户规模量产。</div>
+      <div class="source">凤凰财经 · 7月17日</div>
+    </div>
+
+    <div class="news-item">
+      <span class="tag tag-trend">传感</span><span class="tag tag-new">7.29</span>
+      <div class="title"><a href="https://www.automation.com/article/xela-robotics-robotic-fingertips-new-tactile-sensor-capabilities" target="_blank" rel="noopener">XELA Robotics 发布行业首款带指甲机器人指尖：30 个三轴力感测点，可拾取名片</a></div>
+      <div class="desc">XELA发布带指甲结构的机器人指尖，30个三轴力感测点，可完成拾取卡片/钥匙等极薄物体抓取任务。</div>
+      <div class="source">Automation.com · 7月</div>
+    </div>
+
+    <div class="news-item">
+      <span class="tag tag-hot">创业</span><span class="tag tag-new">7.29</span>
+      <div class="title"><a href="https://eu.36kr.com/en/p/3907536767833473" target="_blank" rel="noopener">拾玥科技 LumiBot 天使轮：视触觉+主动散热灵巧手，连续作业突破 5000 小时</a></div>
+      <div class="desc">拾玥科技天使轮数千万元，11DOF已量产，23DOF旗舰版首创主动散热，空载寿命超5000小时。</div>
+      <div class="source">36氪 · 7月23日</div>
+    </div>
+
+
+    <div class="day-label">7月28日</div>
+
+    <div class="news-item">
+      <span class="tag tag-hot">重磅</span><span class="tag tag-new">7.28</span>
+      <div class="title"><a href="https://ningbo.chinadaily.com.cn/2026-07/20/c_1198640.htm" target="_blank" rel="noopener">均胜电子 WAIC 发布首款自研「灵犀」灵巧手：20DOF 掌内混合驱动，控制器已量产</a></div>
+      <div class="desc">业内独创掌内集成直驱+腱绳+连杆混合驱动，自研微型执行器扭矩密度超竞品2-3倍。</div>
+      <div class="source">China Daily · 7月20日</div>
+    </div>
+
+    <div class="news-item">
+      <span class="tag tag-hot">新品</span><span class="tag tag-new">7.28</span>
+      <div class="title"><a href="https://www.36kr.com/p/3907536767833473" target="_blank" rel="noopener">拾玥科技 LumiBot：自研视触觉+主动散热，灵巧手连续作业突破 5000 小时</a></div>
+      <div class="desc">11DOF已小批量量产，23DOF旗舰版全球首创主动散热微型关节模组，温度降低超50℃。</div>
+      <div class="source">36氪 · 7月23日</div>
+    </div>
+
+    <div class="news-item">
+      <span class="tag tag-hot">灵巧手</span><span class="tag tag-new">7.28</span>
+      <div class="title"><a href="https://autonews.gasgoo.com/articles/news/waic-2026-brainco-globally-unveils-dexterous-manipulation-data-matrix-2079210790258184193" target="_blank" rel="noopener">BrainCo WAIC 发布灵巧操作数据矩阵：21DOF 灵巧手+全掌触觉+125g 外骨骼手套</a></div>
+      <div class="desc">21DOF灵巧手全掌触觉覆盖，RevoHuman外骨骼触觉手套仅125g、211触觉点、0.01N触觉分辨率。</div>
+      <div class="source">Gasgoo · 7月</div>
+    </div>
+
+    <div class="news-item">
+      <span class="tag tag-trend">趋势</span><span class="tag tag-new">7.28</span>
+      <div class="title"><a href="https://www.tmcnet.com/usubmit/2026/07/16/10415885.htm" target="_blank" rel="noopener">mimic robotics M1：15DOF 腱绳驱动工业灵巧手，每个关节都是力传感器</a></div>
+      <div class="desc">苏黎世/旧金山团队发布，腱绳驱动电机置于前臂，高可反驱性使每个执行器都是力传感器。</div>
+      <div class="source">TMCnet · 7月16日</div>
+    </div>
+
+    <div class="news-item">
+      <span class="tag tag-trend">元年</span><span class="tag tag-new">7.28</span>
+      <div class="title"><a href="https://news.qq.com/rain/a/20260719A07VQN00" target="_blank" rel="noopener">WAIC 观察：灵巧手行业进入「触觉元年」，从自由度竞赛转向力控与耐久比拼</a></div>
+      <div class="desc">核心命题从"能抓取"升级为"会感知"，混合驱动成高DOF主流，微型执行器+主动散热+视触觉成三大技术高地。</div>
+      <div class="source">腾讯新闻 · 7月19日</div>
+    </div>
+
+    <div class="day-label">7月23日</div>
+
+    <div class="news-item">
+      <span class="tag tag-hot">新品</span><span class="tag tag-new">7.23</span>
+      <div class="title"><a href="https://www.36kr.com/p/3907536767833473" target="_blank" rel="noopener">拾玥科技 LumiBot：自研视触觉+主动散热，灵巧手连续作业破 5000 小时</a></div>
+      <div class="desc">11DOF已量产，23DOF旗舰版全球首创主动散热，Lumi-Tac传感器10μm级分辨率。</div>
+      <div class="source">36氪 · 7月23日</div>
+    </div>
+
+    </div>
+
+  </div>
+</div>
+
+<!-- MODULE 4: 知识补齐 · 每日一个后端知识点 -->
+<!-- ============================================================ -->
+<div class="card m4">
+  <div class="card-header"><span class="icon">📖</span> 知识补齐 · 每日一个具身智能高频知识点 · 21天体系课表</div>
+  <div class="card-body">
+
+            <div class="knowledge-day" data-day="1" id="kb-day-1" style="display:none;">
+      <div class="day-header"><span class="day-num">Day 1</span><span class="day-date">7月13日 周一</span></div>
+      <div class="day-topic">末端执行器的传动路线之争：连杆 vs 肌腱 vs 直驱 —— 为什么 1X NEO 选了肌腱？</div>
+      <div class="explain"><b>一句话总结：</b>灵巧手把电机旋转力变成手指动作有三种主流方案，每种都是「力、精度、集成度」的三角权衡。1X 选肌腱+准直驱，不是因为肌腱最好，而是因为肌腱最能满足「家庭服务」这个场景的核心需求——安全柔顺、轻量灵活。<br><br><b>大白话讲透三种方案：</b><br><br><b>① 连杆传动 — 像挖掘机的机械臂</b><br>电机转→连杆推→关节动。刚性极高、精度好，适合大力出奇迹。缺点：体积大，20多个自由度根本塞不进手掌。国内征和机器人推出的链式传动（单手40kg、600万次寿命）本质是连杆变体。<br><br><b>② 肌腱/绳驱 — 像提线木偶</b><br>电机装在小臂，通过 Dyneema 纤维绳远程拉动手指关节。优点是轻、小、灵活，可以把25个自由度塞进手掌。缺点：腱绳有弹性（影响精度）、会磨损、张力控制难。<br><br><b>③ 直驱 — 电机直接怼关节上</b><br>省去传动部件，响应最快精度最高。但小电机=小力矩，需高减速比→关节变「硬」→失去柔顺性。<br><br><b>④ 准直驱（Quasi-Direct Drive）— 1X 的真正创新</b><br>1X NEO 不是传统肌腱，而是「肌腱+超低减速比（5:1~15:1）」混合。低减速比让关节可<b>反向驱动</b>——你推手指，电机跟着转——电机自己就是力传感器，不需要额外装昂贵的力矩传感器。这叫<b>力透明（Force Transparency）</b>。</div>
+      <div class="example"><b>应用场景对照表：</b><br><br><table style='font-size:11px;width:100%;border-collapse:collapse;margin:8px 0'><tr style='background:#E8F0FA'><th style='padding:6px 8px;text-align:left;border:1px solid #ddd'>方案</th><th style='padding:6px 8px;text-align:left;border:1px solid #ddd'>代表产品</th><th style='padding:6px 8px;text-align:left;border:1px solid #ddd'>负载</th><th style='padding:6px 8px;text-align:left;border:1px solid #ddd'>最适合</th><th style='padding:6px 8px;text-align:left;border:1px solid #ddd'>不适配</th></tr><tr><td style='padding:6px 8px;border:1px solid #ddd'>连杆/链式</td><td style='padding:6px 8px;border:1px solid #ddd'>征和机器人</td><td style='padding:6px 8px;border:1px solid #ddd'>40kg</td><td style='padding:6px 8px;border:1px solid #ddd'>重载搬运、工业装配</td><td style='padding:6px 8px;border:1px solid #ddd'>精细抓取、易碎品</td></tr><tr style='background:#f9f9f9'><td style='padding:6px 8px;border:1px solid #ddd'>肌腱+准直驱</td><td style='padding:6px 8px;border:1px solid #ddd'>1X NEO（25DOF）</td><td style='padding:6px 8px;border:1px solid #ddd'>5-10kg</td><td style='padding:6px 8px;border:1px solid #ddd'>家庭服务、轻量操作</td><td style='padding:6px 8px;border:1px solid #ddd'>重载、连续高强度</td></tr><tr><td style='padding:6px 8px;border:1px solid #ddd'>传统肌腱</td><td style='padding:6px 8px;border:1px solid #ddd'>Shadow Hand</td><td style='padding:6px 8px;border:1px solid #ddd'>3-5kg</td><td style='padding:6px 8px;border:1px solid #ddd'>科研、遥操作</td><td style='padding:6px 8px;border:1px solid #ddd'>量产（成本高）</td></tr><tr style='background:#f9f9f9'><td style='padding:6px 8px;border:1px solid #ddd'>工业夹爪</td><td style='padding:6px 8px;border:1px solid #ddd'>Robotiq 2F-85</td><td style='padding:6px 8px;border:1px solid #ddd'>5-10kg</td><td style='padding:6px 8px;border:1px solid #ddd'>固定形状零件</td><td style='padding:6px 8px;border:1px solid #ddd'>异形/柔性物体</td></tr></table><br><b>仓储场景的实际意义：</b>医药仓分拣——药盒大小不一、形状各异（瓶子、盒子、软袋），这恰恰需要肌腱方案的<b>自适应能力</b>。但如果涉及整箱重载（>20kg），链式/连杆更合适。<br><br><b>技术深度：反射惯量公式 J_reflected = J_motor × N²</b>。5:1 减速比 → 电机惯量放大 25 倍；100:1 → 放大 10,000 倍。这就是为什么高减速比关节「推不动」。<br><br><b>延伸阅读：</b><a href='https://www.ithome.com/0/975/728.htm' target='_blank'>1X NEO 灵巧手完整参数（IT之家 7.12）</a> | <a href='https://www.cannews.com.cn/guanzhu/2026/07-12/9kwqyBNr.html' target='_blank'>征和链式传动灵巧手（中国航空报 7.12）</a></div>
+      <div><span class="term">肌腱驱动</span><span class="term">连杆传动</span><span class="term">准直驱</span><span class="term">反向驱动</span><span class="term">力透明</span><span class="term">Dyneema</span><span class="term">反射惯量</span><span class="term">Shadow Hand</span><span class="term">Robotiq</span><span class="term">征和机器人</span></div>
+    </div>
+    <div class="knowledge-day" data-day="2" id="kb-day-2" style="display:none;">
+      <div class="day-header"><span class="day-num">Day 2</span><span class="day-date">7月14日 周二</span></div>
+      <div class="day-topic">VLA 推理时延：从 729ms 到 130ms，为什么这是「能用」和「好用」的分水岭？</div>
+      <div class="explain"><b>一句话总结：</b>推理时延决定了机器人是「反应快」还是「反应慢」。人类反应时间 150-200ms。LingBot-VLA 2.0 的 <130ms 意味着比你还快——这才是真正的实时交互。<br><br><b>大白话：</b>想象传送带以 0.5m/s 运动，药盒通过操作区只有约 2 秒。如果机器人推理 500ms，等它「想好」时药盒已跑了 25cm——可能移出抓取区了。这就是<b>时延-吞吐量悖论</b>。<br><br><b>今年的两个突破：</b>① LingBot-VLA 2.0：<130ms（RTX 4090），已在物流分拣场景实测；② dVLA-RL：从 729ms 压缩到 387ms（Hybrid Denoising 策略），首次打通扩散+RL。<br><br><b>时延拆解：</b>Vision Encoder（20-30%）→ LLM 推理（30-40%）→ 扩散去噪（25-35%）→ 通信开销（5-10%）。注意：端到端时延还包括摄像头曝光（~5ms）+ 传输（~2ms）+ 指令下发（~1ms）+ 电机执行（~5-50ms）。模型说自己 130ms，实际动作开始约 150-200ms。</div>
+      <div class="example"><b>产能影响：</b>推理 500ms → 单次抓取 3-5 秒 → 每小时 700-1200 件。推理 130ms → 单次抓取 2-3 秒 → 每小时 1200-1800 件。<b>产能提升 40-50%。</b><br><br><b>优化手段对比：</b><br>· KV-Cache 复用（帧间缓存）：-15~25% 时延，几乎无损 ★★★★<br>· INT8 量化：-40~60% 时延，<1% 精度损失 ★★★★★<br>· Hybrid Denoising（dVLA-RL）：-40~50% 时延，几乎无损 ★★★<br>· 投机解码（小模型先猜）：-50~70% 时延 ★★ 实验阶段<br>· Jetson Thor 芯片：-60~80% 时延 ★★ 2026 Q3 量产<br><br><b>边缘 vs 云端：</b>云端推理 +20-50ms 网络延迟。仓储对时延敏感 → <b>边缘推理是必选项</b>。<br><br><b>延伸阅读：</b><a href='https://m.ithome.com/html/975146.htm' target='_blank'>dVLA-RL 完整技术解读（IT之家 7.10）</a> | <a href='https://www.stdaily.com/web/gdxw/2026-07/08/content_544338.html' target='_blank'>LingBot-VLA 2.0 开源（科技日报 7.8）</a></div>
+      <div><span class="term">推理时延</span><span class="term">实时控制</span><span class="term">Hybrid Denoising</span><span class="term">KV-Cache</span><span class="term">INT8量化</span><span class="term">投机解码</span><span class="term">Jetson Thor</span><span class="term">边缘推理</span></div>
+    </div>
+    <div class="knowledge-day" data-day="3" id="kb-day-3" style="display:none;">
+      <div class="day-header"><span class="day-num">Day 3</span><span class="day-date">7月15日 周三</span></div>
+      <div class="day-topic">自由度（DOF）：从 1 到 25，不只是「多了几个关节」—— 是「多了指数级的复杂性」</div>
+      <div class="explain"><b>一句话总结：</b>DOF 每翻一倍，控制复杂度不是翻倍，是指数级增长。1 个 DOF 只需控制「开合」，25 个 DOF 需要实时协同 25 个独立的控制维度——每个维度都影响其他 24 个。<br><br><b>大白话：</b>用夹子（1 DOF）夹积木——只需决定「夹多紧」。用真手（25 DOF）——可以选择拇指食指捏、三指包络、掌心托……每种方式涉及 10+ 个关节的精确协同。<br><br><b>DOF vs 可操作空间：</b>1 DOF 完成 15-20% 人手操作；6 DOF ~40-50%；12 DOF ~70-80%；25 DOF ~90-95%。为什么不是 100%？人手不只有自由度，还有软组织被动顺应性——皮肤弹性变形适应物体表面，目前机械手做不到。<br><br><b>全驱动 vs 欠驱动：</b>欠驱动：电机数 < 关节数，靠弹簧耦合被动适应，简单便宜但控制粗放。全驱动（如 1X NEO）：每个关节独立电机，精细但复杂度和成本暴涨。</div>
+      <div class="example"><b>医药仓 DOF 需求分析：</b><br>· 纸箱搬运：1-2 DOF（开合+旋转）<br>· 药瓶抓取：2-3 DOF（不同直径适应）<br>· 药盒分拣：3-4 DOF（不同尺寸+姿态）<br>· 软袋/异形件：5-8 DOF（需力控+自适应）<br>· 插拔/旋拧操作：6-10 DOF（精细手指协同）<br><br><b>成本非线性：</b>1 DOF：¥2k-10k；6 DOF：¥20k-80k；12 DOF：¥50k-200k；25 DOF（量产）：¥100k-300k。每+1 DOF 硬件增 ¥5k-15k，但软件/控制成本增长更快。<br><br><b>延伸阅读：</b><a href='https://www.ithome.com/0/975/728.htm' target='_blank'>1X NEO 25DOF 参数详解</a></div>
+      <div><span class="term">自由度DOF</span><span class="term">欠驱动</span><span class="term">全驱动</span><span class="term">被动自适应</span><span class="term">Dexterous Workspace</span><span class="term">DOF成本曲线</span></div>
+    </div>
+    <div class="knowledge-day" data-day="4" id="kb-day-4" style="display:none;">
+      <div class="day-header"><span class="day-num">Day 4</span><span class="day-date">7月16日 周四</span></div>
+      <div class="day-topic">🔧 后端知识：RESTful API 设计原则与规范</div>
+      <div class="explain"><b>一句话总结：</b>一切皆资源。URL里用名词不用动词，HTTP方法（GET/POST/PUT/DELETE）表示操作。这是你跟后端提需求的第一课——写出正确的接口格式。<br><br><b>核心概念：</b><br>· <b>资源 vs 动作</b>：/api/robots（正确，资源）vs /api/getRobots（错误，动作）<br>· <b>HTTP动词</b>：GET查、POST增、PUT全量改、PATCH部分改、DELETE删<br>· <b>URL规范</b>：全小写、短横线分隔、名词复数、层级≤3层<br>· <b>状态码</b>：2xx成功、4xx客户端错、5xx服务端错<br>· <b>统一响应</b>：{code, data, message}——所有接口返回格式一致<br><br><b>📋 今天找研发聊：</b>"把我们现在所有对外API的接口文档给我看看——哪些接口你觉得设计得不够RESTful？给我看一个最标准的接口，从请求到响应全链路讲一遍。"<br><br><b>详细内容见：</b>后端知识学习路线.xlsx Day 1</div>
+      <div class="example"></div>
+      <div><span class="term">RESTful</span><span class="term">HTTP方法</span><span class="term">状态码</span><span class="term">资源命名</span><span class="term">统一封装</span><span class="term">API版本</span><span class="term">分页规范</span></div>
+    </div>
+    <div class="knowledge-day" data-day="5" id="kb-day-5" style="display:none;">
+      <div class="day-header"><span class="day-num">Day 5</span><span class="day-date">7月17日 周五</span></div>
+      <div class="day-topic">📊 具身数据标注与质检：数据PM的主场 —— 标什么、怎么查、什么算金标</div>
+      <div class="explain"><b>一句话总结：</b>一条遥操数据录完只是「原料」，标注＋质检后才是「商品」。具身数据标注和图片打框完全是两个物种——<b>标的是过程，不是内容</b>。<br><br><b>具身数据标什么（五件套）：</b><br>① <b>语言指令</b>：整段任务描述（「把红色药盒放进3号筐」）＋子任务分段（接近→抓取→移动→放置）。VLA 的语言对齐全靠它，分层模型（Day 9）更是必需；<br>② <b>关键帧</b>：抓住/松开/接触等关键时刻打点，训练和评估都要用；<br>③ <b>成功/失败标记</b>：整条及每个子段的成败。<b>失败数据不是垃圾</b>——是恢复示教和 RL 训练的原材料；<br>④ <b>异常剔除</b>：传感器掉帧、遥操员手抖、误触发段落打污点标；<br>⑤（可选）物体框/抓取点：给感知辅助任务用。<br><br><b>自动标注双引擎：</b>VLM 自动打描述（Gemini/GPT 类看视频写指令，人只做抽检修正）＋程序化规则（夹爪开合信号自动切分子段）——标注人力成本能砍 60-80%，这是数据业务毛利的关键杠杆。<br><br><b>金标数据（golden data）的定义：</b>全指标达标＋动作风格一致＋覆盖度达标的后训练级数据。同一批采集通常只有 60-80% 能升格为金标——<b>质检损耗必须计入报价</b>，否则做一单亏一单。</div>
+      <div class="example"><b>标注规格书骨架表（可直接抄进合同附件）：</b><br><br><table style="font-size:11px;width:100%;border-collapse:collapse;margin:8px 0"><tr style="background:#E8F0FA"><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">字段</th><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">标准</th><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">检法</th></tr><tr><td style="padding:6px 8px;border:1px solid #ddd">语言指令</td><td style="padding:6px 8px;border:1px solid #ddd">双层：整段+子段</td><td style="padding:6px 8px;border:1px solid #ddd">10%人工复核</td></tr><tr style="background:#f9f9f9"><td style="padding:6px 8px;border:1px solid #ddd">关键帧</td><td style="padding:6px 8px;border:1px solid #ddd">误差±3帧内</td><td style="padding:6px 8px;border:1px solid #ddd">5%抽检</td></tr><tr><td style="padding:6px 8px;border:1px solid #ddd">成败标记</td><td style="padding:6px 8px;border:1px solid #ddd">双人背靠背标注</td><td style="padding:6px 8px;border:1px solid #ddd">不一致仲裁+10%抽检</td></tr><tr style="background:#f9f9f9"><td style="padding:6px 8px;border:1px solid #ddd">时间同步误差</td><td style="padding:6px 8px;border:1px solid #ddd">&lt;5ms</td><td style="padding:6px 8px;border:1px solid #ddd">全量程序检（Day 13详讲）</td></tr><tr><td style="padding:6px 8px;border:1px solid #ddd">掉帧率</td><td style="padding:6px 8px;border:1px solid #ddd">&lt;0.5%</td><td style="padding:6px 8px;border:1px solid #ddd">全量程序检</td></tr></table><br><b>擎仓视角：</b>谈判时「质检标准」比「单价」更能体现专业度、更好谈溢价——把上表做成交付 SLA 附件，就是数据产品的「质检报告」。<br><br><b>📋 找数据标准同事聊：</b>现行标注规范覆盖「子任务分段」和「失败原因归类」了吗？自动打标占比多少、抽检修正率多少？</div>
+      <div><span class="term">数据标注</span><span class="term">语言指令</span><span class="term">关键帧</span><span class="term">金标数据</span><span class="term">质检SLA</span><span class="term">自动标注</span><span class="term">质检损耗</span></div>
+    </div>
+    <div class="knowledge-day" data-day="6" id="kb-day-6" style="display:none;">
+      <div class="day-header"><span class="day-num">Day 6</span><span class="day-date">7月18日 周六</span></div>
+      <div class="day-topic">📊 开源数据集与数据格式：OXE / DROID / AgiBot World —— 以及为什么「格式统一」这么难</div>
+      <div class="explain"><b>一句话总结：</b>开源数据集是行业的「公共粮仓」，数据格式是行业的「集装箱标准」。看懂它们，就知道自家数据产品该长什么样、卖给谁、怎么交付。<br><br><b>四大粮仓速览：</b><br>① <b>OXE</b>（Open X-Embodiment, 2023）：全球拼盘——22 种机器人、100 万+ 条轨迹，第一次证明跨本体混训有效，RT-X 由此而来；<br>② <b>DROID</b>（2024）：13 家机构分布式采集，7.6 万条、564 个场景，主打场景多样性；<br>③ <b>AgiBot World</b>（智元, 2025）：100 万+ 条真机、100+ 台同构机器人、217 个任务——国内「数采工厂」模式的量产范本；<br>④ <b>RoboMIND</b>（北京人形机器人创新中心）：10 万+ 条、覆盖多种本体，国家队背景的标准化尝试。<br><br><b>两大集装箱标准：</b><br>① <b>RLDS</b>（Google 系）：TFRecord 按 episode 组织，OXE 用它，学术圈通行；<br>② <b>LeRobot 格式</b>（HuggingFace）：parquet 表存低维数据＋MP4 存视频＋json 元数据，配套训练框架开箱即用——<b>2025-26 社区事实标准</b>。<br><br><b>为什么统一这么难：</b>本体异构（7 自由度臂 vs 人形）、动作空间不同（关节角 vs 末端位姿 vs 速度）、控制频率不同（10-500Hz）、相机数量位置各异——所以「转格式＋对齐」本身就是一门生意（数据清洗服务）。</div>
+      <div class="example"><b>一条标准数据的 schema 五要素：</b>多路相机图像流｜本体状态（关节角/夹爪开度）｜动作序列｜语言指令｜元数据（本体型号、频率、场景、采集员、标定档案）。<b>缺元数据的数据集＝没有产地证明的农产品，卖不上价。</b><br><br><b>四大数据集对比表：</b><br><br><table style="font-size:11px;width:100%;border-collapse:collapse;margin:8px 0"><tr style="background:#E8F0FA"><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">数据集</th><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">规模</th><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">特点</th><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">对标启示</th></tr><tr><td style="padding:6px 8px;border:1px solid #ddd">OXE</td><td style="padding:6px 8px;border:1px solid #ddd">100万+条/22本体</td><td style="padding:6px 8px;border:1px solid #ddd">跨本体拼盘</td><td style="padding:6px 8px;border:1px solid #ddd">异构数据也有价</td></tr><tr style="background:#f9f9f9"><td style="padding:6px 8px;border:1px solid #ddd">DROID</td><td style="padding:6px 8px;border:1px solid #ddd">7.6万条/564场景</td><td style="padding:6px 8px;border:1px solid #ddd">场景多样性</td><td style="padding:6px 8px;border:1px solid #ddd">多样性>数量</td></tr><tr><td style="padding:6px 8px;border:1px solid #ddd">AgiBot World</td><td style="padding:6px 8px;border:1px solid #ddd">100万+条/217任务</td><td style="padding:6px 8px;border:1px solid #ddd">同构量产采集</td><td style="padding:6px 8px;border:1px solid #ddd">数采工厂模式</td></tr><tr style="background:#f9f9f9"><td style="padding:6px 8px;border:1px solid #ddd">RoboMIND</td><td style="padding:6px 8px;border:1px solid #ddd">10万+条/多本体</td><td style="padding:6px 8px;border:1px solid #ddd">标准化导向</td><td style="padding:6px 8px;border:1px solid #ddd">标准=话语权</td></tr></table><br><b>擎仓视角：</b>对外交付默认「LeRobot 格式（客户拿了就能训）＋原始 rosbag（保底可回溯）」双份；自家 schema 设计直接对标 AgiBot World，少走弯路。<br><br><b>📋 找数据平台同事聊：</b>我们入库格式是什么？转 LeRobot 要几步？元数据字段全不全？</div>
+      <div><span class="term">OXE</span><span class="term">DROID</span><span class="term">AgiBot World</span><span class="term">RoboMIND</span><span class="term">LeRobot格式</span><span class="term">RLDS</span><span class="term">schema</span><span class="term">元数据</span></div>
+    </div>
+    <div class="knowledge-day" data-day="7" id="kb-day-7" style="display:none;">
+      <div class="day-header"><span class="day-num">Day 7</span><span class="day-date">7月19日 周日</span></div>
+      <div class="day-topic">📊 Scaling Law 与数据飞轮：数据业务的商业模式圣经</div>
+      <div class="explain"><b>一句话总结：</b>Scaling Law 回答「数据越多，模型是不是一定越强」（LLM 已证实、具身正在验证），数据飞轮回答「数据从哪持续来」（部署→回传→变强→更多部署）。这两个词是给领导和投资人讲数据业务故事的理论地基。<br><br><b>Scaling Law 大白话：</b>LLM 领域发现，算力/数据/参数每翻 10 倍，模型损失按幂律稳定下降——「大力真的出奇迹」。具身进展：近两年 π 系列、GR00T、国内多家（含小米近期报告）相继给出「数据量↑→成功率↑」的类似曲线，但有一个重要修正——<br><br><b>具身的修正条款：多样性 &gt; 纯数量。</b>同一工位重复采 10 万条，不如 1 万条覆盖 100 种物体/光照/位置。行业黑话叫「多样性墙」：砸钱堆同质数据，曲线很快躺平。→ 数采方案设计必须「扫参数空间」而不是「无脑堆量」——这直接决定采集脚本怎么写（呼应示教数据「覆盖度优先」原则）。<br><br><b>数据飞轮大白话（特斯拉 FSD 剧本）：</b>卖车→车队回传数据→模型变强→车更好卖→更多车回传。具身版：机器人进仓干活→干活数据回流→模型月月变强→客户续费扩仓→数据更多。<b>飞轮的启动扭矩＝第一批部署</b>——这就是为什么全行业抢着「亏钱进场景」。</div>
+      <div class="example"><b>飞轮五环拆解表：</b><br><br><table style="font-size:11px;width:100%;border-collapse:collapse;margin:8px 0"><tr style="background:#E8F0FA"><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">环节</th><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">关键指标</th><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">最大卡点</th></tr><tr><td style="padding:6px 8px;border:1px solid #ddd">① 部署</td><td style="padding:6px 8px;border:1px solid #ddd">台数/工位数</td><td style="padding:6px 8px;border:1px solid #ddd">前期毛利低</td></tr><tr style="background:#f9f9f9"><td style="padding:6px 8px;border:1px solid #ddd">② 回传</td><td style="padding:6px 8px;border:1px solid #ddd">有效数据条/台/天</td><td style="padding:6px 8px;border:1px solid #ddd">数据主权谈判</td></tr><tr><td style="padding:6px 8px;border:1px solid #ddd">③ 训练</td><td style="padding:6px 8px;border:1px solid #ddd">版本迭代周期</td><td style="padding:6px 8px;border:1px solid #ddd">算力+金标质检</td></tr><tr style="background:#f9f9f9"><td style="padding:6px 8px;border:1px solid #ddd">④ 变强</td><td style="padding:6px 8px;border:1px solid #ddd">成功率环比提升</td><td style="padding:6px 8px;border:1px solid #ddd">多样性墙</td></tr><tr><td style="padding:6px 8px;border:1px solid #ddd">⑤ 复购</td><td style="padding:6px 8px;border:1px solid #ddd">续费率/扩仓率</td><td style="padding:6px 8px;border:1px solid #ddd">ROI证明</td></tr></table><br><b>数据主权条款（商务必考题）：</b>客户现场数据归谁？通行解法＝分级授权——原始数据客户独占、脱敏特征/模型增量厂商可用，写进合同附件。<br><br><b>擎仓视角：</b>数据业务的估值故事＝飞轮第②环的「卖铲人」＋第③环的「炼金师」。汇报 PPT 里画这张飞轮图，比任何技术名词都管用。<br><br><b>📋 找商业同事聊：</b>现有客户合同里数据主权怎么写的？部署机器人产生的数据有没有真的进训练管线？</div>
+      <div><span class="term">Scaling Law</span><span class="term">数据飞轮</span><span class="term">数据多样性</span><span class="term">幂律</span><span class="term">数据主权</span><span class="term">FSD</span><span class="term">多样性墙</span></div>
+    </div>
+    <div class="knowledge-day" data-day="8" id="kb-day-8" style="display:none;">
+      <div class="day-header"><span class="day-num">Day 8</span><span class="day-date">7月20日 周一</span></div>
+      <div class="day-topic">📊 具身模型评估体系：别只看「成功率」—— 评测协议里全是坑</div>
+      <div class="explain"><b>一句话总结：</b>「成功率 95%」这句话在没说清「什么任务、什么初始条件、测了几次、谁判的」之前毫无意义。会读评测报告、会写验收标准，是数据 PM 从「采数据的」升级为「懂效果的」的分水岭。<br><br><b>成功率（SR）的四个坑：</b><br>① <b>任务定义坑</b>：「抓取成功」＝碰到？举起？还是放对位置？定义不同，数字差 30%；<br>② <b>初始条件坑</b>：物体永远摆同一个位置测出的 95%，位置随机±10cm 后可能只剩 60%。正规评测必须报告初始分布；<br>③ <b>样本量坑</b>：测 10 次成功 9 次≠90%（置信区间±19%！），严肃评测单任务 ≥50-100 次；<br>④ <b>裁判坑</b>：自动判定还是人判？人判要双盲，不能让训模型的人自己判。<br><br><b>成功率之外的硬指标：</b>节拍（单次任务秒数→直接决定产能）、<b>干预率</b>（每千次任务人工介入次数，Figure 们主推的「自主率」就是它的反面）、MTBF（平均无故障时间）、恢复率（失败后自己救回的比例，呼应 Day 15）。<br><br><b>三种评测场地：</b>真机盲测（金标准，贵）→ 标定仿真（LIBERO / SimplerEnv，便宜可复现，前提是和真机校准过）→ 世界模型评估（最新潮流：1X 用世界模型给新策略「云考试」，不上真机预估成功率）。</div>
+      <div class="example"><b>验收 SLA 模板表（给客户 / 给供应商都用它）：</b><br><br><table style="font-size:11px;width:100%;border-collapse:collapse;margin:8px 0"><tr style="background:#E8F0FA"><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">指标</th><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">示例值</th><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">测法</th></tr><tr><td style="padding:6px 8px;border:1px solid #ddd">成功率</td><td style="padding:6px 8px;border:1px solid #ddd">≥95%</td><td style="padding:6px 8px;border:1px solid #ddd">每任务100次，初始位置±10cm随机，双盲判定</td></tr><tr style="background:#f9f9f9"><td style="padding:6px 8px;border:1px solid #ddd">节拍</td><td style="padding:6px 8px;border:1px solid #ddd">≤8s/件</td><td style="padding:6px 8px;border:1px solid #ddd">连续2小时产线实测取均值</td></tr><tr><td style="padding:6px 8px;border:1px solid #ddd">干预率</td><td style="padding:6px 8px;border:1px solid #ddd">≤2次/千件</td><td style="padding:6px 8px;border:1px solid #ddd">一周试运行统计</td></tr><tr style="background:#f9f9f9"><td style="padding:6px 8px;border:1px solid #ddd">恢复率</td><td style="padding:6px 8px;border:1px solid #ddd">≥80%</td><td style="padding:6px 8px;border:1px solid #ddd">注入10类标准扰动</td></tr></table><br><b>擎仓视角：</b>把「效果」翻译成可签字的数字，是 PM 最值钱的一页纸——PoC 报告和验收单都从这张表出发改。<br><br><b>📋 找算法同事聊：</b>我们内部评测的初始条件随机范围是多少？有没有和真机校准过的仿真评测环境？</div>
+      <div><span class="term">成功率</span><span class="term">评测协议</span><span class="term">置信区间</span><span class="term">干预率</span><span class="term">节拍</span><span class="term">MTBF</span><span class="term">LIBERO</span><span class="term">双盲</span></div>
+    </div>
+    <div class="knowledge-day" data-day="9" id="kb-day-9" style="display:none;">
+      <div class="day-header"><span class="day-num">Day 9</span><span class="day-date">7月21日 周二</span></div>
+      <div class="day-topic">⚙️ 大脑-小脑-脊髓与快慢双系统：2026 主流机器人的「标准解剖图」</div>
+      <div class="explain"><b>一句话总结：</b>机器人智能不是一个模型包打天下，而是三层分工：大脑（想任务，慢）、小脑（出动作，中速）、脊髓（关节伺服，极快）。2026 年最火的「快慢双系统」是它的最新变体。（你在 Day7 文档里学过三级架构——今天用双系统新格局刷新它。）<br><br><b>三层各干什么（频率是灵魂）：</b><br>① <b>大脑</b>：LLM/VLM 做任务理解与分解——「把这批药盒按订单分到 8 个筐」→ 子任务清单。频率 &lt;1Hz，可以放云端；<br>② <b>小脑</b>：VLA/ACT 类策略，把子任务变成连续动作流。5-50Hz，必须端侧；<br>③ <b>脊髓</b>：关节伺服/力控环，100-1000Hz，毫秒级保命（碰撞瞬间卸力）。<br><br><b>快慢双系统（System 1/2，借自心理学「快思慢想」）：</b>Figure Helix——S2 是 7B 级 VLM，7-9Hz 慢慢「理解」场景；S1 是 80M 小模型，200Hz 飞快出动作；两者用隐向量握手。GR00T N1 同款结构。<b>本质＝大脑小脑合并进一个模型框架，但保留频率分工。</b><br><br><b>为什么必须分层：</b>大模型聪明但慢（Day 2 往期时延），关节控制快但笨——频率差 3 个数量级的需求塞不进一个模型。分层＝让每层用自己负担得起的频率干自己的活。<br><br><b>工程含义：</b>层间接口（子目标/隐向量/轨迹点）是系统设计的命门，也是集成商的护城河——<b>谁定义接口，谁说了算。</b></div>
+      <div class="example"><b>三层解剖对照表：</b><br><br><table style="font-size:11px;width:100%;border-collapse:collapse;margin:8px 0"><tr style="background:#E8F0FA"><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">层</th><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">载体</th><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">频率</th><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">部署位置</th><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">挂了会怎样</th></tr><tr><td style="padding:6px 8px;border:1px solid #ddd">大脑</td><td style="padding:6px 8px;border:1px solid #ddd">LLM/VLM</td><td style="padding:6px 8px;border:1px solid #ddd">0.1-1Hz</td><td style="padding:6px 8px;border:1px solid #ddd">云/边皆可</td><td style="padding:6px 8px;border:1px solid #ddd">接不了新任务，但不撞人</td></tr><tr style="background:#f9f9f9"><td style="padding:6px 8px;border:1px solid #ddd">小脑</td><td style="padding:6px 8px;border:1px solid #ddd">VLA/ACT</td><td style="padding:6px 8px;border:1px solid #ddd">5-50Hz</td><td style="padding:6px 8px;border:1px solid #ddd">必须端侧</td><td style="padding:6px 8px;border:1px solid #ddd">动作僵死</td></tr><tr><td style="padding:6px 8px;border:1px solid #ddd">脊髓</td><td style="padding:6px 8px;border:1px solid #ddd">伺服/力控环</td><td style="padding:6px 8px;border:1px solid #ddd">100-1000Hz</td><td style="padding:6px 8px;border:1px solid #ddd">关节驱动器</td><td style="padding:6px 8px;border:1px solid #ddd">安全事故</td></tr></table><br><b>安全设计铁律：</b>急停、限力、避碰永远放最底层实现，<b>绝不依赖大模型</b>——大脑可以断网，脊髓永远在线。和客户 IT 部门谈部署方案时，用这张表说清「哪些必须装机器人里、哪些可以上云」。<br><br><b>📂 配套复习：</b>Day7_大脑小脑脊髓三级架构深度解析.docx、Day7_三级架构手绘图解.html</div>
+      <div><span class="term">分层架构</span><span class="term">快慢双系统</span><span class="term">System1/2</span><span class="term">Helix</span><span class="term">隐向量接口</span><span class="term">控制频率</span><span class="term">伺服</span></div>
+    </div>
+    <div class="knowledge-day" data-day="10" id="kb-day-10" style="display:none;">
+      <div class="day-header"><span class="day-num">Day 10</span><span class="day-date">7月22日 周三</span></div>
+      <div class="day-topic">⚙️ 仿真平台横评：Isaac Sim / MuJoCo / Genesis —— 造数据的「印钞机」怎么选</div>
+      <div class="explain"><b>一句话总结：</b>仿真平台＝数字世界的「摄影棚＋健身房」：既给模型练功（RL 训练），又批量造数据（合成数据）。选型选错，后面全链路返工——数据业务的固定资产决策。<br><br><b>三巨头人话版：</b><br>① <b>Isaac Sim / Isaac Lab</b>（NVIDIA）：全家桶旗舰。PhysX 物理＋RTX 电影级渲染＋GPU 并行（单卡同时跑几千个虚拟机器人），资产生态最全，和 Omniverse/Cosmos 打通。缺点：吃显卡、学习曲线陡、被 N 卡生态绑定。<b>行业 RL 训练与合成数据的事实标准。</b><br>② <b>MuJoCo</b>（DeepMind 开源）：接触动力学精度口碑之王，轻量快速，学术界标配，MJX 版已 GPU 化。渲染朴素——造「照片级」视觉数据不是它的菜；<br>③ <b>Genesis</b>（2024 底开源）：新贵，主打生成式物理引擎＋超高仿真速度，话题度高，生态还年轻。<br>（还有老将 PyBullet / SAPIEN / CoppeliaSim，轻量教学与特定研究用。）<br><br><b>合成数据流水线五步：</b>场景资产（建模/扫描/3DGS 重建）→ 域随机化配置 → 轨迹生成（运动规划 / 仿真内遥操 / MimicGen 增广）→ 传感器仿真渲染 → 按 LeRobot 格式导出（Day 6）。一晚上一张卡＝几万条，这就是「印钞机」的由来——但印出来的是不是钱，取决于 Sim2Real 成色。</div>
+      <div class="example"><b>选型对比表：</b><br><br><table style="font-size:11px;width:100%;border-collapse:collapse;margin:8px 0"><tr style="background:#E8F0FA"><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">维度</th><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">Isaac Sim/Lab</th><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">MuJoCo</th><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">Genesis</th></tr><tr><td style="padding:6px 8px;border:1px solid #ddd">物理精度</td><td style="padding:6px 8px;border:1px solid #ddd">★★★★</td><td style="padding:6px 8px;border:1px solid #ddd">★★★★★</td><td style="padding:6px 8px;border:1px solid #ddd">★★★☆</td></tr><tr style="background:#f9f9f9"><td style="padding:6px 8px;border:1px solid #ddd">渲染真实感</td><td style="padding:6px 8px;border:1px solid #ddd">★★★★★</td><td style="padding:6px 8px;border:1px solid #ddd">★★</td><td style="padding:6px 8px;border:1px solid #ddd">★★★☆</td></tr><tr><td style="padding:6px 8px;border:1px solid #ddd">并行规模</td><td style="padding:6px 8px;border:1px solid #ddd">★★★★★（GPU万级）</td><td style="padding:6px 8px;border:1px solid #ddd">★★★★（MJX）</td><td style="padding:6px 8px;border:1px solid #ddd">★★★★★（宣称）</td></tr><tr style="background:#f9f9f9"><td style="padding:6px 8px;border:1px solid #ddd">资产生态</td><td style="padding:6px 8px;border:1px solid #ddd">★★★★★</td><td style="padding:6px 8px;border:1px solid #ddd">★★★</td><td style="padding:6px 8px;border:1px solid #ddd">★★</td></tr><tr><td style="padding:6px 8px;border:1px solid #ddd">典型用途</td><td style="padding:6px 8px;border:1px solid #ddd">工业级RL+合成数据</td><td style="padding:6px 8px;border:1px solid #ddd">算法研究/动力学验证</td><td style="padding:6px 8px;border:1px solid #ddd">尝鲜/轻量并行</td></tr></table><br><b>擎仓视角：</b>数据业务建仿真产线，默认 Isaac Lab 主力（和 Cosmos/GR00T 生态咬合）＋MuJoCo 做动力学验证小环。评估外包仿真数据供应商时，先要两样东西：<b>域随机化清单</b>和<b>真机校准报告</b>——拿不出来就砍价。<br><br><b>📋 找仿真同事聊：</b>我们 Isaac 环境和真机做过系统辨识吗？单卡每晚能出多少条可用数据、质检通过率多少？</div>
+      <div><span class="term">Isaac Sim</span><span class="term">Isaac Lab</span><span class="term">MuJoCo</span><span class="term">Genesis</span><span class="term">合成数据</span><span class="term">GPU并行</span><span class="term">PhysX</span><span class="term">3DGS</span></div>
+    </div>
+    <div class="knowledge-day" data-day="11" id="kb-day-11" style="display:none;">
+      <div class="day-header"><span class="day-num">Day 11</span><span class="day-date">7月23日 周四</span></div>
+      <div class="day-topic">⚙️ 力控与柔顺控制：插拔、装配、打磨为什么「位置控制」会翻车</div>
+      <div class="explain"><b>一句话总结：</b>位置控制＝「不管三七二十一走到坐标点」——遇到接触类任务（插线束/拧螺丝/打磨）差 0.5mm 就顶飞工件或憋坏电机。力控＝让机械臂「手上有感觉，该让就让」。这是工业精细操作的入场券。<br><br><b>三种力控大白话：</b><br>① <b>阻抗控制</b>（Impedance）：把机械臂末端变成「弹簧＋阻尼」——你设定刚度，碰到东西它顺势退让。像人手插钥匙：插歪了手腕自然歪一下对正，而不是硬怼；<br>② <b>导纳控制</b>（Admittance）：反过来——先用力传感器测到力，再换算成位置修正。多数位置控制型工业臂加装力传感器后走这条路；<br>③ <b>力位混合</b>：某些方向控位置（沿孔轴方向插入），某些方向控力（侧向保持接触力≤5N）。装配任务的标准解法。<br><br><b>「力感」从哪来（硬件三件套）：</b>腕部六维力传感器（测 Fx/Fy/Fz/Mx/My/Mz，数千到数万元）｜关节力矩传感器（协作臂标配）｜准直驱关节电流反推（无需额外传感器——Day 1 往期讲的「力透明」就是它）。<br><br><b>和 VLA 的关系（前沿）：</b>多数 VLA 只输出位置/速度 → 力敏任务是短板。<b>带力反馈的遥操数据（主从臂力回传）＋输出力指令的模型是 2026 热点——力觉数据＝数采业务的差异化溢价点</b>。</div>
+      <div class="example"><b>任务-控制方式对照表：</b><br><br><table style="font-size:11px;width:100%;border-collapse:collapse;margin:8px 0"><tr style="background:#E8F0FA"><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">任务</th><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">纯位置控制行不行</th><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">推荐方案</th></tr><tr><td style="padding:6px 8px;border:1px solid #ddd">空中搬运/取放</td><td style="padding:6px 8px;border:1px solid #ddd">✅ 行</td><td style="padding:6px 8px;border:1px solid #ddd">位置控制</td></tr><tr style="background:#f9f9f9"><td style="padding:6px 8px;border:1px solid #ddd">插线束/USB/网口</td><td style="padding:6px 8px;border:1px solid #ddd">❌ 顶坏端子</td><td style="padding:6px 8px;border:1px solid #ddd">力位混合</td></tr><tr><td style="padding:6px 8px;border:1px solid #ddd">拧螺丝</td><td style="padding:6px 8px;border:1px solid #ddd">❌ 滑牙/过拧</td><td style="padding:6px 8px;border:1px solid #ddd">力矩控制</td></tr><tr style="background:#f9f9f9"><td style="padding:6px 8px;border:1px solid #ddd">打磨去毛刺</td><td style="padding:6px 8px;border:1px solid #ddd">❌ 忽轻忽重</td><td style="padding:6px 8px;border:1px solid #ddd">恒力控制</td></tr><tr><td style="padding:6px 8px;border:1px solid #ddd">双臂协同搬大件</td><td style="padding:6px 8px;border:1px solid #ddd">⚠️ 内力撕扯</td><td style="padding:6px 8px;border:1px solid #ddd">阻抗（内力协调）</td></tr></table><br><b>数字感：</b>精密装配接触力通常控制在 1-10N；插接公差 &lt;1mm 时，纯位置控制成功率断崖下跌。给客户讲「为什么这个工位报价贵」，就讲这两个数字。<br><br><b>📋 找硬件同事聊：</b>我们的臂有没有关节力矩传感？六维力传感器选型价位？遥操主从臂的力反馈延迟多少 ms？</div>
+      <div><span class="term">阻抗控制</span><span class="term">导纳控制</span><span class="term">力位混合</span><span class="term">六维力传感器</span><span class="term">柔顺控制</span><span class="term">力反馈</span><span class="term">恒力控制</span></div>
+    </div>
+    <div class="knowledge-day" data-day="12" id="kb-day-12" style="display:none;">
+      <div class="day-header"><span class="day-num">Day 12</span><span class="day-date">7月24日 周五</span></div>
+      <div class="day-topic">⚙️ 触觉传感：机器人的「指尖」—— 视觉够不着的最后一厘米</div>
+      <div class="explain"><b>一句话总结：</b>抓没抓到？抓得多紧？会不会滑？——这三个问题视觉全答不了（手一挡就瞎）。触觉是操作智能的最后一块传感拼图，也是数据采集的下一个差异化战场。<br><br><b>三大技术路线人话版：</b><br>① <b>视触觉</b>（GelSight 一脉）：指尖装一块软凝胶＋微型相机，凝胶被压变形、相机拍形变 → 超高分辨率的「接触照片」（能看清螺纹纹路）。精度之王；体积、成本、凝胶磨损是痛点。Meta Digit 360 是标杆，国内他山科技、帕西尼等在追；<br>② <b>电子皮肤</b>（阵列式）：压阻/电容传感点阵铺在指面/掌面，输出「压力热力图」。分辨率低于视触觉，但薄、可大面积覆盖、便宜——量产灵巧手的主流选择；<br>③ <b>集中式力觉</b>：指根/腕部单点测力（昨天 Day 11 的六维力）——知道「总共多大力」，不知道「力在哪」。<br><br><b>触觉数据怎么进模型：</b>触觉图像/热力图当作额外的「视觉」通道，编码后和相机图像一起喂给 VLA（tactile-conditioned policy）。<b>行业现状：触觉数据集比视觉少约 3 个数量级——谁有带触觉的遥操数据，谁就握着稀缺货。</b><br><br><b>为什么仓储也需要：</b>软袋（输液袋）抓取防捏破、透明物（玻璃瓶）视觉失效、深筐盲抓（手伸进去相机全被挡）——全是触觉刚需场景。</div>
+      <div class="example"><b>三路线对比表：</b><br><br><table style="font-size:11px;width:100%;border-collapse:collapse;margin:8px 0"><tr style="background:#E8F0FA"><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">维度</th><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">视触觉</th><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">电子皮肤</th><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">集中力觉</th></tr><tr><td style="padding:6px 8px;border:1px solid #ddd">空间分辨率</td><td style="padding:6px 8px;border:1px solid #ddd">微米级</td><td style="padding:6px 8px;border:1px solid #ddd">毫米-厘米级</td><td style="padding:6px 8px;border:1px solid #ddd">无（单点）</td></tr><tr style="background:#f9f9f9"><td style="padding:6px 8px;border:1px solid #ddd">成本/指尖</td><td style="padding:6px 8px;border:1px solid #ddd">数百-数千元</td><td style="padding:6px 8px;border:1px solid #ddd">数十-数百元</td><td style="padding:6px 8px;border:1px solid #ddd">随臂集成</td></tr><tr><td style="padding:6px 8px;border:1px solid #ddd">耐用性</td><td style="padding:6px 8px;border:1px solid #ddd">凝胶易磨损</td><td style="padding:6px 8px;border:1px solid #ddd">好</td><td style="padding:6px 8px;border:1px solid #ddd">好</td></tr><tr style="background:#f9f9f9"><td style="padding:6px 8px;border:1px solid #ddd">数据形态</td><td style="padding:6px 8px;border:1px solid #ddd">接触图像</td><td style="padding:6px 8px;border:1px solid #ddd">压力热力图</td><td style="padding:6px 8px;border:1px solid #ddd">6维力向量</td></tr><tr><td style="padding:6px 8px;border:1px solid #ddd">现阶段角色</td><td style="padding:6px 8px;border:1px solid #ddd">科研+高端手</td><td style="padding:6px 8px;border:1px solid #ddd">量产手标配趋势</td><td style="padding:6px 8px;border:1px solid #ddd">保底必备</td></tr></table><br><b>擎仓视角：</b>竞品都在卖纯视觉数据时，「视觉＋力＋触觉」三模态数采套餐是错位竞争点——溢价菜单上的新一行。<br><br><b>📋 找硬件同事聊：</b>我们灵巧手/夹爪现在有没有触觉？加装电子皮肤的成本和数据接口是什么？</div>
+      <div><span class="term">触觉传感</span><span class="term">GelSight</span><span class="term">视触觉</span><span class="term">电子皮肤</span><span class="term">Digit 360</span><span class="term">触觉数据</span><span class="term">三模态</span></div>
+    </div>
+    <div class="knowledge-day" data-day="13" id="kb-day-13" style="display:none;">
+      <div class="day-header"><span class="day-num">Day 13</span><span class="day-date">7月25日 周六</span></div>
+      <div class="day-topic">⚙️ 手眼标定与时空同步：数采质量的「隐形地基」—— 差之毫厘，数据全废</div>
+      <div class="explain"><b>一句话总结：</b>标定回答「相机看到的坐标和机械臂的坐标怎么对上」，同步回答「多路传感器的时间戳怎么对齐」。这两件事做不好，采回来的数据「看着是对的，训出来是错的」——数据质检的第一性问题。<br><br><b>手眼标定大白话：</b>相机说「杯子在我画面的 (320,240)」，机械臂需要知道「那是我坐标系的 (x,y,z)」——求出相机和机械臂之间的固定变换矩阵，就是手眼标定。两种安装：<b>eye-in-hand</b>（相机装手上，跟着动）、<b>eye-to-hand</b>(相机装架子上，看全局)。经典解法叫 AX=XB（认识名词即可），实操用棋盘格/AprilTag 标定板绕几圈自动求解。<br><br><b>内参 vs 外参：</b>内参＝相机自己的「眼镜度数」（焦距/畸变，出厂定期校）；外参＝相机在世界里的位置朝向（装机后必标，<b>磕一下就要重标</b>）。<br><br><b>时间同步大白话：</b>30Hz 相机、100Hz 关节流、200Hz 力觉各录各的，不对齐时间戳 → 模型看到的画面配上了 0.1 秒前的动作 → 学出一只「延迟手」。两条路：<b>硬同步</b>（触发线/PTP 时钟，微秒级——你在《一课学会_微秒级硬同步》里学过）、<b>软同步</b>（时间戳插值对齐，毫秒级，够用但要监控）。<br><br><b>为什么是地基：</b>外参差 1° → 60cm 外定位偏差 1cm+ → 精细任务直接崩；同步差 50ms → 高速动作段整条作废。<b>这类毛病肉眼看回放根本看不出来——必须程序化质检</b>（呼应 Day 5 质检清单）。</div>
+      <div class="example"><b>数采质检清单表（标定与同步部分）：</b><br><br><table style="font-size:11px;width:100%;border-collapse:collapse;margin:8px 0"><tr style="background:#E8F0FA"><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">检查项</th><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">参考阈值</th><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">频次</th></tr><tr><td style="padding:6px 8px;border:1px solid #ddd">重投影误差</td><td style="padding:6px 8px;border:1px solid #ddd">&lt;0.5px</td><td style="padding:6px 8px;border:1px solid #ddd">每次标定后</td></tr><tr style="background:#f9f9f9"><td style="padding:6px 8px;border:1px solid #ddd">手眼标定残差</td><td style="padding:6px 8px;border:1px solid #ddd">&lt;2mm</td><td style="padding:6px 8px;border:1px solid #ddd">装机/碰撞后</td></tr><tr><td style="padding:6px 8px;border:1px solid #ddd">时间同步误差</td><td style="padding:6px 8px;border:1px solid #ddd">&lt;5ms（软）/ &lt;0.1ms（硬）</td><td style="padding:6px 8px;border:1px solid #ddd">全量程序检</td></tr><tr style="background:#f9f9f9"><td style="padding:6px 8px;border:1px solid #ddd">外参漂移监测</td><td style="padding:6px 8px;border:1px solid #ddd">标定板速检通过</td><td style="padding:6px 8px;border:1px solid #ddd">每日开工前</td></tr></table><br><b>擎仓视角：</b>数据交付包里附「<b>标定档案</b>」（标定日期/方法/残差/标定板照片）＝专业度证明＋验收纠纷时的免责证据。竞品大多不给——又一个低成本差异化点。<br><br><b>📂 配套复习：</b>一课学会_微秒级硬同步.xlsx</div>
+      <div><span class="term">手眼标定</span><span class="term">内参外参</span><span class="term">AX=XB</span><span class="term">AprilTag</span><span class="term">硬同步</span><span class="term">PTP</span><span class="term">重投影误差</span><span class="term">标定档案</span></div>
+    </div>
+    <div class="knowledge-day" data-day="14" id="kb-day-14" style="display:none;">
+      <div class="day-header"><span class="day-num">Day 14</span><span class="day-date">7月26日 周日</span></div>
+      <div class="day-topic">⚙️ 端侧算力与部署：从训练好的模型到机器人肚子里的「最后一公里」</div>
+      <div class="explain"><b>一句话总结：</b>模型训完只是半成品——还要经过「导出→量化→编译→装机→接 ROS」五道工序才能上岗。这条链路决定延迟、成本、功耗三大商务敏感指标。<br><br><b>算力硬件速览：</b>Jetson AGX Orin（275 TOPS，当前主力）→ <b>Jetson Thor</b>（2000+ TOPS，机器人专用旗舰，2026 量产上机潮）→ 国产替代（地平线/瑞芯微/寒武纪边缘卡）。人形/移动操作机器人整机通常预算 1-2 个 Orin 级模组。<br><br><b>TOPS 怎么读不被忽悠：</b>标称 TOPS＝INT8 理想峰值，实际能吃到 30-60%；跑大模型时瓶颈常在<b>内存带宽</b>而非算力（生成 token 是「搬数据」密集型）——所以「TOPS 大」≠「VLA 跑得快」，一切以实测端到端延迟为准（Day 2 往期）。<br><br><b>部署五道工序：</b>①导出（PyTorch→ONNX）②量化（FP16/INT8/FP8：体积减半再减半，延迟降 40-60%，精度损失通常 &lt;1%）③编译（TensorRT 生成引擎）④容器化装机 ⑤接 ROS2 节点联调。加上蒸馏（大模型教小模型）和剪枝，合称「压缩三板斧」。<br><br><b>云边端分工铁律（呼应 Day 9）：</b>大脑可上云（断网只影响接新任务），小脑/脊髓必须端侧（断网不能停也不能撞）。</div>
+      <div class="example"><b>商务敏感指标表：</b><br><br><table style="font-size:11px;width:100%;border-collapse:collapse;margin:8px 0"><tr style="background:#E8F0FA"><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">指标</th><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">典型量级</th><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">影响什么</th></tr><tr><td style="padding:6px 8px;border:1px solid #ddd">端到端延迟</td><td style="padding:6px 8px;border:1px solid #ddd">100-300ms</td><td style="padding:6px 8px;border:1px solid #ddd">节拍与产能承诺</td></tr><tr style="background:#f9f9f9"><td style="padding:6px 8px;border:1px solid #ddd">算力BOM</td><td style="padding:6px 8px;border:1px solid #ddd">数千-数万元/台</td><td style="padding:6px 8px;border:1px solid #ddd">整机毛利</td></tr><tr><td style="padding:6px 8px;border:1px solid #ddd">功耗</td><td style="padding:6px 8px;border:1px solid #ddd">15-60W（模组）</td><td style="padding:6px 8px;border:1px solid #ddd">续航与散热设计</td></tr><tr style="background:#f9f9f9"><td style="padding:6px 8px;border:1px solid #ddd">模型更新OTA</td><td style="padding:6px 8px;border:1px solid #ddd">分钟级灰度</td><td style="padding:6px 8px;border:1px solid #ddd">运维SLA与续费故事</td></tr></table><br><b>擎仓视角：</b>方案书里写清「模型 OTA 机制」（灰度 5% → 全量 → 可回滚，逻辑同后端 CI/CD 灰度发布）——机器人不是一锤子买卖，<b>模型月月变强才有续费故事</b>（呼应 Day 7 飞轮）。<br><br><b>📋 找部署同事聊：</b>我们端侧现在什么芯片？VLA 量化到 INT8 后成功率掉了多少？OTA 全流程走一遍要多久？</div>
+      <div><span class="term">Jetson Thor</span><span class="term">TOPS</span><span class="term">量化</span><span class="term">TensorRT</span><span class="term">蒸馏</span><span class="term">剪枝</span><span class="term">OTA</span><span class="term">内存带宽</span></div>
+    </div>
+    <div class="knowledge-day" data-day="15" id="kb-day-15" style="display:none;">
+      <div class="day-header"><span class="day-num">Day 15</span><span class="day-date">7月27日 周一</span></div>
+      <div class="day-topic">⚙️ 任务规划与长程任务：从「抓一个」到「干完一整单」的鸿沟</div>
+      <div class="explain"><b>一句话总结：</b>单步抓取成功率 95% 听着很高，但一个订单要连续做 20 步 → 整单成功率只剩 36%（0.95 的 20 次方）。长程任务（long-horizon）是具身智能从 Demo 走向生产力的最后一道鸿沟，也是仓储场景的日常形态。<br><br><b>大白话——错误会复利：</b>每一步的小失误不会自动消失，会滚雪球。所以长程任务的解法核心就四个字：<b>分解＋兜底</b>。<br><br><b>主流解法——LLM 当包工头（SayCan 开的头）：</b>大模型把「完成这个订单」分解成子任务清单（去 A 架→取药盒→扫码→放 3 号筐→循环），每个子任务派给 VLA/ACT 这些「熟练工」执行（正是 Day 9 的分层架构在任务维度的投影）。子任务成功率各自打磨，包工头负责调度和验收。<br><br><b>技能库（Skill Library）：</b>把「抓/放/开门/按按钮/扫码」做成标准化原子技能，新任务＝技能排列组合。工程上最务实——新增场景不用重训模型，编排一下就上线。<br><br><b>兜底——失败检测与恢复：</b>VLM 当「监工」盯着执行画面判断成败 → 失败则重试/换策略/呼叫人工（对应 Day 8 的干预率指标）。<b>有恢复能力的系统，整单成功率能从 36% 拉回 85%+。</b><br><br><b>两派之争：</b>端到端派说「数据够多，长程也能端到端学会」；分层派说「工程要可控可诊断」。2026 现状：商用落地几乎全是分层＋技能库，端到端在实验室冲锋。</div>
+      <div class="example"><b>整单成功率速算表（20 步任务）：</b><br><br><table style="font-size:11px;width:100%;border-collapse:collapse;margin:8px 0"><tr style="background:#E8F0FA"><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">单步成功率</th><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">整单成功率（无恢复）</th><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">加恢复能力（80%救回）</th></tr><tr><td style="padding:6px 8px;border:1px solid #ddd">90%</td><td style="padding:6px 8px;border:1px solid #ddd">12%</td><td style="padding:6px 8px;border:1px solid #ddd">约70%</td></tr><tr style="background:#f9f9f9"><td style="padding:6px 8px;border:1px solid #ddd">95%</td><td style="padding:6px 8px;border:1px solid #ddd">36%</td><td style="padding:6px 8px;border:1px solid #ddd">约85%</td></tr><tr><td style="padding:6px 8px;border:1px solid #ddd">99%</td><td style="padding:6px 8px;border:1px solid #ddd">82%</td><td style="padding:6px 8px;border:1px solid #ddd">约97%</td></tr></table><br><b>决策启示：</b>「把单步从 95% 磨到 99%」和「把恢复能力做出来」，哪个投入产出比高？先算这张表再拍板——多数场景答案是后者。<br><br><b>擎仓视角：</b>和客户 WMS/调度系统划边界：订单拆解归调度（客户 IT 地盘），工位内长程执行归机器人（我们地盘）——<b>边界画清楚，验收扯皮少一半。</b><br><br><b>📋 找算法同事聊：</b>我们现在的任务编排是写死的状态机还是 LLM 动态规划？失败检测靠什么信号触发？</div>
+      <div><span class="term">长程任务</span><span class="term">SayCan</span><span class="term">任务分解</span><span class="term">技能库</span><span class="term">失败恢复</span><span class="term">状态机</span><span class="term">整单成功率</span></div>
+    </div>
+    <div class="knowledge-day" data-day="16" id="kb-day-16" style="display:none;">
+      <div class="day-header"><span class="day-num">Day 16</span><span class="day-date">7月28日 周二</span></div>
+      <div class="day-topic">⚙️ 深度相机选型：结构光 / ToF / 双目 —— 数采硬件的第一道选择题</div>
+      <div class="explain"><b>一句话总结：</b>机器人的眼睛不止 RGB。结构光、ToF、双目三种测距原理决定了精度、距离、抗光性——相机选错，后面采的数据全带先天缺陷，怎么标注质检都救不回来。<br><br><b>三种测深原理大白话：</b><br>① <b>结构光</b>：投射红外散斑/条纹图案到物体上，看图案怎么变形反算深度。近距离精度之王（亚毫米级），怕阳光（红外图案被强光淹没），适合室内固定工位；<br>② <b>ToF（飞行时间）</b>：发出红外光、测光飞出去弹回来的时间。中远距稳定、帧率高，精度 mm-cm 级；多台对射会互相干扰，深色吸光物会丢数据；<br>③ <b>双目立体</b>：两个相机像人眼一样靠视差算深度。无红外、不怕阳光、成本低；弱纹理表面（白墙/反光金属）算不出来——所以主流方案是<b>主动双目</b>（双目＋红外散斑投射兜底，RealSense D435/D455 路线，也是数采最常用的通用款）。<br>④ 延伸认识：<b>事件相机</b>（只记录像素变化，微秒级延迟，高速抓取前沿）、激光雷达（导航层的事，Day 18 讲）。<br><br><b>机械臂数采标配布局：</b>全局相机（eye-to-hand 看大局）＋腕部相机（eye-in-hand 看细节），均为 RGB-D、30Hz 起，与手眼标定（Day 13）绑定成套。<br><br><b>仓储坑位：</b>反光收缩膜、透明药瓶、深筐阴影——深度图会出「洞」（无效像素），这是数采现场勘测和数据质检的必查项。</div>
+      <div class="example"><b>选型对比表：</b><br><br><table style="font-size:11px;width:100%;border-collapse:collapse;margin:8px 0"><tr style="background:#E8F0FA"><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">原理</th><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">精度</th><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">工作范围</th><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">抗强光</th><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">代表产品</th><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">适用</th></tr><tr><td style="padding:6px 8px;border:1px solid #ddd">结构光</td><td style="padding:6px 8px;border:1px solid #ddd">亚mm-mm</td><td style="padding:6px 8px;border:1px solid #ddd">0.2-1.5m</td><td style="padding:6px 8px;border:1px solid #ddd">弱</td><td style="padding:6px 8px;border:1px solid #ddd">奥比中光Gemini、梅卡曼德(工业)</td><td style="padding:6px 8px;border:1px solid #ddd">近距精细/工业检测</td></tr><tr style="background:#f9f9f9"><td style="padding:6px 8px;border:1px solid #ddd">ToF</td><td style="padding:6px 8px;border:1px solid #ddd">mm-cm</td><td style="padding:6px 8px;border:1px solid #ddd">0.3-6m</td><td style="padding:6px 8px;border:1px solid #ddd">中</td><td style="padding:6px 8px;border:1px solid #ddd">Azure Kinect、奥比Femto</td><td style="padding:6px 8px;border:1px solid #ddd">中距全局视野</td></tr><tr><td style="padding:6px 8px;border:1px solid #ddd">主动双目</td><td style="padding:6px 8px;border:1px solid #ddd">mm</td><td style="padding:6px 8px;border:1px solid #ddd">0.3-3m(D405近距0.07m起)</td><td style="padding:6px 8px;border:1px solid #ddd">较强</td><td style="padding:6px 8px;border:1px solid #ddd">RealSense D435/D455/D405</td><td style="padding:6px 8px;border:1px solid #ddd">数采通用主力</td></tr><tr style="background:#f9f9f9"><td style="padding:6px 8px;border:1px solid #ddd">被动双目</td><td style="padding:6px 8px;border:1px solid #ddd">cm</td><td style="padding:6px 8px;border:1px solid #ddd">1-15m</td><td style="padding:6px 8px;border:1px solid #ddd">强</td><td style="padding:6px 8px;border:1px solid #ddd">ZED 2</td><td style="padding:6px 8px;border:1px solid #ddd">户外/大范围</td></tr></table><br><b>擎仓视角：</b>数采方案里相机选型直接决定数据质量上限——透明/反光 SKU 多的仓，方案书要写「多模态兜底」（RGB-D＋触觉，Day 12）。勘测清单第一页就是「现场光照＋SKU 材质盘点」。<br><br><b>📋 找硬件同事聊：</b>我们数采工位现在用什么相机？深度图无效像素率大概多少？反光/透明物有没有专门的处理策略？</div>
+      <div><span class="term">结构光</span><span class="term">ToF</span><span class="term">双目视觉</span><span class="term">主动双目</span><span class="term">RGB-D</span><span class="term">RealSense</span><span class="term">事件相机</span><span class="term">无效像素</span></div>
+    </div>
+    <div class="knowledge-day" data-day="17" id="kb-day-17" style="display:none;">
+      <div class="day-header"><span class="day-num">Day 17</span><span class="day-date">7月29日 周三</span></div>
+      <div class="day-topic">🧠 抓取检测与 6D 位姿估计：VLA 之前，仓库机器人靠什么抓东西</div>
+      <div class="explain"><b>一句话总结：</b>在端到端 VLA 成熟之前，拣选机器人的主流方案＝「感知算抓取点 → 规划 → 执行」流水线。它今天仍是料箱拣选（bin picking）的生产力担当——理解它，才能听懂「传统方案 vs VLA」之争，也才能设计混合架构。<br><br><b>两条技术路线大白话：</b><br>① <b>6D 位姿估计</b>：认识这个物体（有 CAD/扫描模型），算出它在空间的位置＋朝向（xyz＋三个转角＝6 个自由度），然后按预定义抓法去抓。工业零件场景王道，前提是「每个 SKU 都建过模」；<br>② <b>通用抓取检测</b>（GraspNet 一脉，上交团队开源，AnyGrasp 已商用）：不认识物体也行——直接从点云上找「哪里捏得住」，生成一堆抓取候选并打分。电商仓万 SKU 场景的主流，免建模。<br><br><b>完整流水线：</b>RGB-D（Day 16 的相机）→ 实例分割（SAM 类大模型正在替代传统分割）→ 位姿/抓取点 → 碰撞检查 → 运动规划（MoveIt 类）→ 执行。每一环都可能错，<b>错误相乘</b>（和 Day 15 长程任务同一个数学）。<br><br><b>vs VLA 怎么看：</b>流水线＝可解释、可调试、单点成熟，但泛化靠工程枚举；VLA＝端到端泛化好，但黑盒难调。2026 现状：<b>商用拣选以「流水线＋学习型抓取」为主，VLA 在柔性物/复杂操作场景渗透</b>；混合架构（VLA 出语义决策，抓取网络出精确点）越来越常见。<br><br><b>关键业务指标：</b>抓取成功率、空抓率、UPH（每小时拣选件数）、SKU 覆盖率。</div>
+      <div class="example"><b>传统流水线 vs VLA 端到端对比表：</b><br><br><table style="font-size:11px;width:100%;border-collapse:collapse;margin:8px 0"><tr style="background:#E8F0FA"><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">维度</th><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">传统流水线</th><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">VLA端到端</th></tr><tr><td style="padding:6px 8px;border:1px solid #ddd">泛化方式</td><td style="padding:6px 8px;border:1px solid #ddd">靠工程枚举/建模</td><td style="padding:6px 8px;border:1px solid #ddd">数据驱动</td></tr><tr style="background:#f9f9f9"><td style="padding:6px 8px;border:1px solid #ddd">可解释性</td><td style="padding:6px 8px;border:1px solid #ddd">强（哪环错查哪环）</td><td style="padding:6px 8px;border:1px solid #ddd">弱（黑盒）</td></tr><tr><td style="padding:6px 8px;border:1px solid #ddd">新SKU上线</td><td style="padding:6px 8px;border:1px solid #ddd">建模/调参数小时-数天</td><td style="padding:6px 8px;border:1px solid #ddd">采数据后训练</td></tr><tr style="background:#f9f9f9"><td style="padding:6px 8px;border:1px solid #ddd">节拍</td><td style="padding:6px 8px;border:1px solid #ddd">快且确定</td><td style="padding:6px 8px;border:1px solid #ddd">取决于推理延迟</td></tr><tr><td style="padding:6px 8px;border:1px solid #ddd">商用成熟度</td><td style="padding:6px 8px;border:1px solid #ddd">高（bin picking标配）</td><td style="padding:6px 8px;border:1px solid #ddd">快速上升期</td></tr></table><br><b>擎仓视角：</b>客户已有传统视觉方案时，切入点是「长尾 SKU / 柔性物 / 复杂工序用 VLA 补位」，而不是全盘推翻——方案书里画混合架构最稳，也最好答标。<br><br><b>📋 找算法同事聊：</b>我们拣选方案的抓取点是网络生成还是规则计算？空抓率多少？新 SKU 上线的标准流程是几步、要多久？</div>
+      <div><span class="term">6D位姿</span><span class="term">GraspNet</span><span class="term">AnyGrasp</span><span class="term">bin picking</span><span class="term">点云</span><span class="term">实例分割</span><span class="term">UPH</span><span class="term">混合架构</span></div>
+    </div>
+    <div class="knowledge-day" data-day="18" id="kb-day-18" style="display:none;">
+      <div class="day-header"><span class="day-num">Day 18</span><span class="day-date">7月30日 周四</span></div>
+      <div class="day-topic">⚙️ SLAM 与导航定位：AMR 的「内功」—— 从建图到无图</div>
+      <div class="explain"><b>一句话总结：</b>SLAM＝机器人边走边画地图、同时在图里定位自己（回答「我在哪」）；导航＝在图上规划怎么走（回答「怎么去」）。这是 AMR/移动机器人的地基能力，也是仓储项目实施阶段最常出扯皮的环节。<br><br><b>技术组件大白话：</b><br>① <b>激光 SLAM</b>（2D/3D LiDAR）：仓储 AMR 主流，定位精度 ±1-3cm，稳定可靠；对环境大变化敏感——货架搬了要重建图；<br>② <b>视觉 SLAM（VSLAM）</b>：用相机做 SLAM，硬件便宜，受光照影响大；激光＋视觉融合是趋势；<br>③ <b>定位增强</b>：地面二维码（KIVA 式货架搬运，±0.5cm 但要贴码施工）、反光柱（叉车 AGV 常用）、UWB；<br>④ <b>导航栈</b>：全局规划（A*/Dijkstra 找路线）＋局部避障（DWA/TEB 躲行人）＋交通规则（Day 21 调度层管多机）。<br><br><b>无图导航（2025-26 热词）：</b>端到端学习导航，不预建图直接走。Demo 惊艳；商用仓储仍以建图方案为主——可审计、可控、出了事能定位原因。<br><br><b>实施四大坑：</b>动态环境（人/叉车乱入）、窄通道会车、地面反光与坡度、<b>地图更新流程</b>——货架布局一改就要重建图，谁负责、多久做完、费用谁出，<b>写进合同</b>。</div>
+      <div class="example"><b>定位方案对比表：</b><br><br><table style="font-size:11px;width:100%;border-collapse:collapse;margin:8px 0"><tr style="background:#E8F0FA"><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">方案</th><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">精度</th><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">成本</th><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">环境要求</th><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">典型应用</th></tr><tr><td style="padding:6px 8px;border:1px solid #ddd">激光SLAM</td><td style="padding:6px 8px;border:1px solid #ddd">±1-3cm</td><td style="padding:6px 8px;border:1px solid #ddd">中</td><td style="padding:6px 8px;border:1px solid #ddd">环境相对稳定</td><td style="padding:6px 8px;border:1px solid #ddd">主流AMR</td></tr><tr style="background:#f9f9f9"><td style="padding:6px 8px;border:1px solid #ddd">地面二维码</td><td style="padding:6px 8px;border:1px solid #ddd">±0.5cm</td><td style="padding:6px 8px;border:1px solid #ddd">低+施工</td><td style="padding:6px 8px;border:1px solid #ddd">地面贴码维护</td><td style="padding:6px 8px;border:1px solid #ddd">KIVA式货到人</td></tr><tr><td style="padding:6px 8px;border:1px solid #ddd">VSLAM</td><td style="padding:6px 8px;border:1px solid #ddd">±2-5cm</td><td style="padding:6px 8px;border:1px solid #ddd">低</td><td style="padding:6px 8px;border:1px solid #ddd">光照稳定</td><td style="padding:6px 8px;border:1px solid #ddd">轻载/融合方案</td></tr><tr style="background:#f9f9f9"><td style="padding:6px 8px;border:1px solid #ddd">反光柱</td><td style="padding:6px 8px;border:1px solid #ddd">±0.5-1cm</td><td style="padding:6px 8px;border:1px solid #ddd">中+施工</td><td style="padding:6px 8px;border:1px solid #ddd">立柱安装</td><td style="padding:6px 8px;border:1px solid #ddd">叉车AGV</td></tr></table><br><b>擎仓视角：</b>具身操作（臂）再火，项目交付里「走不准、堵路口」往往比「抓不住」更先爆雷——SOW 里把<b>建图责任、地图更新 SLA、动态区降速规则</b>三件事写清楚，验收顺利一半。<br><br><b>📋 找导航同事聊：</b>我们底盘用什么定位方案、标称精度多少？换一个仓部署建图要多久？货架挪动后的地图更新流程是什么？</div>
+      <div><span class="term">SLAM</span><span class="term">LiDAR</span><span class="term">VSLAM</span><span class="term">重定位</span><span class="term">A*</span><span class="term">DWA/TEB</span><span class="term">无图导航</span><span class="term">二维码定位</span></div>
+    </div>
+    <div class="knowledge-day" data-day="19" id="kb-day-19" style="display:none;">
+      <div class="day-header"><span class="day-num">Day 19</span><span class="day-date">7月31日 周五</span></div>
+      <div class="day-topic">⚙️ 移动操作（Mobile Manipulation）：底盘＋机械臂，1+1 为什么难于 2</div>
+      <div class="explain"><b>一句话总结：</b>移动操作＝会走的臂。底盘和臂各自都成熟，拼到一起难度指数级上升——误差传导、全身协同、任务衔接三座大山。它是复合机器人（仓储新物种）的核心技术词。<br><br><b>三难大白话：</b><br>① <b>误差传导</b>：底盘停靠精度 ±1-2cm，臂末端要 ±2mm——差一个数量级。所以臂必须「到了再看一眼」：腕部相机<b>二次定位</b>/视觉伺服现场修正，不能按预存坐标盲抓；<br>② <b>全身协同（Whole-body Control）</b>：高级玩法是走着伸手、腰腿臂一起动（人形路线）；务实玩法是「停稳再操作」——商用主流，牺牲节拍换可靠；<br>③ <b>任务衔接</b>：导航栈说「到了」，操作栈说「没对准」——两套系统的交接协议（停靠精度怎么定义、谁触发重停）是集成的命门。<br><br><b>形态谱系：</b>复合机器人（AMR＋协作臂，仓储主流）→ 轮式人形（双臂＋升降躯干，2025-26 上量）→ 足式人形（远期）。仓储拣选/补货场景里，<b>复合机器人是当下性价比之王</b>。<br><br><b>VLA 与移动操作：</b>目前多数 VLA 只管臂；「导航＋操作」统一进一个模型（π0.5 在家庭场景展示过）是前沿方向，商用仍是「导航栈＋操作栈」分治——正是 Day 9 分层思想在整机维度的体现。</div>
+      <div class="example"><b>停靠精度与任务匹配表：</b><br><br><table style="font-size:11px;width:100%;border-collapse:collapse;margin:8px 0"><tr style="background:#E8F0FA"><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">任务</th><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">需要的末端精度</th><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">停靠策略</th></tr><tr><td style="padding:6px 8px;border:1px solid #ddd">整箱搬运</td><td style="padding:6px 8px;border:1px solid #ddd">±2cm</td><td style="padding:6px 8px;border:1px solid #ddd">直接停靠即可</td></tr><tr style="background:#f9f9f9"><td style="padding:6px 8px;border:1px solid #ddd">料箱拣选</td><td style="padding:6px 8px;border:1px solid #ddd">±5mm</td><td style="padding:6px 8px;border:1px solid #ddd">停靠+视觉二次定位</td></tr><tr><td style="padding:6px 8px;border:1px solid #ddd">精密插接</td><td style="padding:6px 8px;border:1px solid #ddd">±1mm</td><td style="padding:6px 8px;border:1px solid #ddd">二次定位+力控搜孔（Day 11）</td></tr></table><br><b>数字感：</b>商用复合机器人停靠重复精度 ±5-10mm，配腕部相机二次定位后可到 ±1-2mm；二次定位耗时 0.5-2s——<b>直接吃节拍</b>，产能测算别漏这一项。<br><br><b>擎仓视角：</b>评估复合机器人方案三连问：停靠精度多少？二次定位耗时几秒？底盘和臂是谁家的、接口开放吗？——第三问决定后期能不能自己迭代。<br><br><b>📋 找产品同事聊：</b>我们复合机器人从停靠到抓起第一件的全流程节拍拆解？二次定位失败率和重试逻辑？</div>
+      <div><span class="term">移动操作</span><span class="term">复合机器人</span><span class="term">视觉伺服</span><span class="term">二次定位</span><span class="term">全身控制</span><span class="term">停靠精度</span><span class="term">轮式人形</span></div>
+    </div>
+    <div class="knowledge-day" data-day="20" id="kb-day-20" style="display:none;">
+      <div class="day-header"><span class="day-num">Day 20</span><span class="day-date">8月1日 周六</span></div>
+      <div class="day-topic">⚙️ ROS2 与机器人中间件：研发嘴里的「节点」「话题」到底是什么</div>
+      <div class="explain"><b>一句话总结：</b>ROS2＝机器人软件的「操作系统＋快递系统」：把感知/规划/控制拆成一个个节点（独立程序），节点之间用话题（topic）传数据。听懂这套词汇，看架构图、聊需求就不再鸡同鸭讲。<br><br><b>五个核心词大白话：</b><br>① <b>节点 Node</b>：一个功能一个程序（相机节点/SLAM 节点/臂控节点），像互联网后端的「微服务」；<br>② <b>话题 Topic</b>：广播频道。相机节点往 /camera/image 发图，谁订阅谁收到——发布-订阅解耦，加一个消费者不影响生产者；<br>③ <b>服务 Service / 动作 Action</b>：Service＝一问一答（触发拍一张照）；Action＝带进度反馈的长任务（去 A 点，可随时取消）；<br>④ <b>DDS</b>：ROS2 的底层通信协议，支持实时性配置（QoS 服务质量）——这是 ROS1→ROS2 升级的核心原因（从实验室玩具到工业可用）；<br>⑤ <b>rosbag</b>：把选定话题原样录制下来——<b>数采的底层录制格式</b>，你交付的「原始数据包」就是它（Day 6 说的双份交付里的那份 rosbag）。<br><br><b>PM 为什么要懂：</b>需求评审时「加一路相机」＝加节点＋带宽＋算力＋同步四件事，不是插根线；看 rqt_graph 节点图能定位「这个功能归哪个组」；数据回传、OTA 升级全挂在这套总线上。<br><br><b>实时性提醒：</b>ROS2 默认非硬实时——脊髓级关节控制（Day 9）走 EtherCAT 等实时总线，ROS2 管上层调度和数据流。</div>
+      <div class="example"><b>ROS2 概念 → 后端概念类比表（和 Day 4 往期的后端知识串起来）：</b><br><br><table style="font-size:11px;width:100%;border-collapse:collapse;margin:8px 0"><tr style="background:#E8F0FA"><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">ROS2概念</th><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">后端类比</th><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">例子</th></tr><tr><td style="padding:6px 8px;border:1px solid #ddd">Node</td><td style="padding:6px 8px;border:1px solid #ddd">微服务</td><td style="padding:6px 8px;border:1px solid #ddd">SLAM节点</td></tr><tr style="background:#f9f9f9"><td style="padding:6px 8px;border:1px solid #ddd">Topic</td><td style="padding:6px 8px;border:1px solid #ddd">消息队列MQ</td><td style="padding:6px 8px;border:1px solid #ddd">/camera/image</td></tr><tr><td style="padding:6px 8px;border:1px solid #ddd">Service</td><td style="padding:6px 8px;border:1px solid #ddd">HTTP接口</td><td style="padding:6px 8px;border:1px solid #ddd">触发标定</td></tr><tr style="background:#f9f9f9"><td style="padding:6px 8px;border:1px solid #ddd">Action</td><td style="padding:6px 8px;border:1px solid #ddd">异步任务+进度条</td><td style="padding:6px 8px;border:1px solid #ddd">导航到A点</td></tr><tr><td style="padding:6px 8px;border:1px solid #ddd">rosbag</td><td style="padding:6px 8px;border:1px solid #ddd">全链路日志回放</td><td style="padding:6px 8px;border:1px solid #ddd">数采原始包</td></tr></table><br><b>擎仓视角：</b>数据平台入库的上游就是 rosbag 解析——和平台同事对齐三件事：<b>录哪些话题、什么频率、丢包告警阈值</b>，数据完整率从源头保起（呼应 Day 5 质检指标）。<br><br><b>📋 找研发聊：</b>给我看一眼我们机器人的 rqt_graph 节点图；数采时默认录制哪些话题、单条数据包多大？</div>
+      <div><span class="term">ROS2</span><span class="term">节点</span><span class="term">话题</span><span class="term">DDS</span><span class="term">QoS</span><span class="term">rosbag</span><span class="term">Action</span><span class="term">EtherCAT</span></div>
+    </div>
+    <div class="knowledge-day" data-day="21" id="kb-day-21" style="display:none;">
+      <div class="day-header"><span class="day-num">Day 21</span><span class="day-date">8月2日 周日</span></div>
+      <div class="day-topic">📊 多机调度与 WMS/WCS/RCS：一台机器人是产品，一百台是系统</div>
+      <div class="explain"><b>一句话总结：</b>仓里跑 100 台机器人，难的不再是单机智能，而是「谁干哪单、谁走哪条道、谁先过路口」。调度系统（RCS）和客户仓储系统（WMS/WCS）的对接，是仓储项目 PM 的日常主战场。<br><br><b>三层系统大白话：</b><br>① <b>WMS（仓储管理系统）</b>：客户的「账房先生」——管订单、库存、波次策略；<br>② <b>WCS（仓储控制系统）</b>：「车间主任」——把 WMS 的单拆成设备任务，协调输送线/提升机/机器人各干各的；<br>③ <b>RCS（机器人调度系统）</b>：「车队队长」——任务分配（哪台最近最闲派哪台）、路径规划、交通管制（路口锁/单行道）、充电调度。<br><br><b>高频概念卡：</b>任务分配算法（拍卖法/匈牙利算法，认识名词即可）｜<b>死锁</b>（两台车互相等对方让路，永远僵住——系统设计大忌）｜峰值吞吐 vs 平均吞吐（大促按峰值设计）｜充电策略（机会充电 vs 阈值充电，直接影响出勤率）。<br><br><b>具身智能带来的新变量：</b>会抓取的操作型机器人加入车队后，调度要多管两件事：<b>任务-技能匹配</b>（这单软袋 → 派有触觉手的那台，Day 12）和<b>操作时长不确定性</b>（抓取可能重试，节拍有方差 → 排程要留缓冲），传统 AGV 调度没这些概念。</div>
+      <div class="example"><b>系统对接界面表：</b><br><br><table style="font-size:11px;width:100%;border-collapse:collapse;margin:8px 0"><tr style="background:#E8F0FA"><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">系统</th><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">归属</th><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">对接内容</th><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">常见扯皮点</th></tr><tr><td style="padding:6px 8px;border:1px solid #ddd">WMS</td><td style="padding:6px 8px;border:1px solid #ddd">客户</td><td style="padding:6px 8px;border:1px solid #ddd">订单下发/执行回执</td><td style="padding:6px 8px;border:1px solid #ddd">字段口径、异常单归属</td></tr><tr style="background:#f9f9f9"><td style="padding:6px 8px;border:1px solid #ddd">WCS</td><td style="padding:6px 8px;border:1px solid #ddd">客户/第三方</td><td style="padding:6px 8px;border:1px solid #ddd">设备任务流</td><td style="padding:6px 8px;border:1px solid #ddd">谁是主控方</td></tr><tr><td style="padding:6px 8px;border:1px solid #ddd">RCS</td><td style="padding:6px 8px;border:1px solid #ddd">我们</td><td style="padding:6px 8px;border:1px solid #ddd">任务/状态/地图</td><td style="padding:6px 8px;border:1px solid #ddd">接口协议、并发上限</td></tr><tr style="background:#f9f9f9"><td style="padding:6px 8px;border:1px solid #ddd">现场网络</td><td style="padding:6px 8px;border:1px solid #ddd">客户IT</td><td style="padding:6px 8px;border:1px solid #ddd">WiFi/5G覆盖</td><td style="padding:6px 8px;border:1px solid #ddd">漫游丢包（重灾区！）</td></tr></table><br><b>数字感：</b>百台级车队若交通管制做得差，有效出勤率能从 95% 掉到 70%——<b>调度好坏＝直接产能</b>，和单机成功率同等重要。<br><br><b>擎仓视角：</b>项目启动会必问四件：WMS 是谁家的？接口文档有没有？现场网络测过吗？峰值单量多少？——四问答不清，工期必延。<br><br><b>📋 找交付同事聊：</b>我们 RCS 对接过哪些 WMS？标准接口文档拿一份；历史项目最大车队规模和实际出勤率？</div>
+      <div><span class="term">WMS</span><span class="term">WCS</span><span class="term">RCS</span><span class="term">交通管制</span><span class="term">死锁</span><span class="term">任务分配</span><span class="term">机会充电</span><span class="term">出勤率</span></div>
+    </div>
+    <div class="knowledge-day" data-day="22" id="kb-day-22" style="display:none;">
+      <div class="day-header"><span class="day-num">Day 22</span><span class="day-date">8月3日 周一</span></div>
+      <div class="day-topic">📊 人形/复合机器人整机 BOM 拆解：一台机器人的钱都花在哪</div>
+      <div class="explain"><b>一句话总结：</b>BOM（物料清单）＝整机成本的解剖图。看懂它才能算毛利、谈降本、判断供应商报价虚不虚——PM 商务谈判的底牌知识。<br><br><b>人形机器人的钱花在哪（占比为行业量级感，随量产波动）：</b><br>① <b>关节模组</b>（电机＋减速器＋编码器＋驱动器）× 30-40 个：占整机 <b>40-60%</b>，降本主战场。谐波减速器/行星减速器是关键件，国产化最猛的赛道；<br>② <b>灵巧手 × 2</b>：高配灵巧手一双可占 10-20%（Day 3 往期讲过 DOF 成本曲线）；<br>③ <b>算力模组</b>：Orin 级 1-2 块（Day 14 讲过算力 BOM）；<br>④ <b>传感器包</b>：相机 × N＋LiDAR＋IMU＋力觉/触觉（Day 11/12 的选配就是在这里加钱）；<br>⑤ 电池＋结构件＋线束。<br><br><b>量产降本曲线：</b>原型机百万级 → 小批量几十万 → 规模量产竞速 10-20 万（2026 年多家已把入门人形打到 20 万内，宇树甚至打到 10 万级）。降本三来源：关节模组国产化、结构集成化、量产摊薄。<br><br><b>复合机器人的务实账：</b>底盘 10-20 万＋协作臂 5-15 万＋视觉 2-5 万＋集成调试 ≈ 总价 30-60 万区间（配置差异大）——比人形便宜、今天就能干活，这是它当下更好卖的根本原因（Day 19 讲过它的技术形态）。</div>
+      <div class="example"><b>BOM 占比对照表：</b><br><br><table style="font-size:11px;width:100%;border-collapse:collapse;margin:8px 0"><tr style="background:#E8F0FA"><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">部件</th><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">人形占比</th><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">复合机器人占比</th></tr><tr><td style="padding:6px 8px;border:1px solid #ddd">关节/运动模组</td><td style="padding:6px 8px;border:1px solid #ddd">40-60%</td><td style="padding:6px 8px;border:1px solid #ddd">底盘+臂合计50-70%</td></tr><tr style="background:#f9f9f9"><td style="padding:6px 8px;border:1px solid #ddd">灵巧手/末端</td><td style="padding:6px 8px;border:1px solid #ddd">10-20%</td><td style="padding:6px 8px;border:1px solid #ddd">夹爪2-8%</td></tr><tr><td style="padding:6px 8px;border:1px solid #ddd">算力</td><td style="padding:6px 8px;border:1px solid #ddd">5-10%</td><td style="padding:6px 8px;border:1px solid #ddd">5-10%</td></tr><tr style="background:#f9f9f9"><td style="padding:6px 8px;border:1px solid #ddd">传感器</td><td style="padding:6px 8px;border:1px solid #ddd">8-15%</td><td style="padding:6px 8px;border:1px solid #ddd">10-15%</td></tr><tr><td style="padding:6px 8px;border:1px solid #ddd">电池/结构/线束</td><td style="padding:6px 8px;border:1px solid #ddd">15-25%</td><td style="padding:6px 8px;border:1px solid #ddd">20-30%</td></tr></table><br><b>擎仓视角：</b>用 BOM 理解供应商底价，谈判空间心里有数；也能正向解释报价——「为什么带力控/触觉的配置贵 X 万」直接指到部件（Day 11/12）。客户 ROI 会算到设备价的每一万元，这张表就是你的弹药库（ROI 算法明后天 Day 25 压轴讲）。<br><br><b>📋 找硬件同事聊：</b>我们整机 BOM 前五大成本项是什么？哪个部件国产替代空间最大、降本路线图怎么排？</div>
+      <div><span class="term">BOM</span><span class="term">关节模组</span><span class="term">谐波减速器</span><span class="term">灵巧手成本</span><span class="term">量产降本</span><span class="term">国产化</span><span class="term">复合机器人</span></div>
+    </div>
+    <div class="knowledge-day" data-day="23" id="kb-day-23" style="display:none;">
+      <div class="day-header"><span class="day-num">Day 23</span><span class="day-date">8月4日 周二</span></div>
+      <div class="day-topic">⚙️ 协作安全与标准合规：ISO 10218 / ISO/TS 15066 —— 机器人进厂的「准生证」</div>
+      <div class="explain"><b>一句话总结：</b>机器人再聪明，进不了厂的第一原因往往是安全评审不过。安全标准词汇是和客户 EHS 部门、集成商对话的通行证——也是新兴具身机器人公司最容易翻车的合规盲区。<br><br><b>核心标准人话版：</b><br>① <b>ISO 10218（-1/-2）</b>：工业机器人安全总纲（-1 管机器人本体、-2 管集成应用），2025 新版把协作要求整合强化；<br>② <b>ISO/TS 15066</b>：协作机器人专篇——定义人机共处的四种协作模式，还给出「碰到人时不同身体部位允许的最大力/压强」数值表；<br>③ 国内 GB 标准跟随 ISO 体系；出海必备 CE（欧）/UL（美）认证。<br><br><b>四种协作模式：</b>安全监控停止（人进来就停）｜手动引导（人拖着教）｜速度与间距监控（人越近走越慢）｜功率与力限制（碰到也不疼——协作臂卖点）。<br><br><b>具身智能的新麻烦：</b>传统安全逻辑是确定性的（光栅＋安全 PLC，可认证）；<b>VLA 是概率模型，不可认证</b>——所以商用架构必须「安全层独立于 AI 层」（Day 9 那条铁律的合规版本）：急停/限速/电子围栏由安全 PLC 硬件兜底，AI 只在围栏内自由发挥。<br><br><b>风险评估流程（每个项目必走）：</b>危险源辨识 → 风险打分 → 降险措施（隔离/限速/限力）→ 残余风险确认签字。PM 至少要能看懂这份报告、知道谁签字。</div>
+      <div class="example"><b>四种协作模式对照表：</b><br><br><table style="font-size:11px;width:100%;border-collapse:collapse;margin:8px 0"><tr style="background:#E8F0FA"><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">模式</th><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">人机关系</th><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">典型场景</th><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">对效率的代价</th></tr><tr><td style="padding:6px 8px;border:1px solid #ddd">安全监控停止</td><td style="padding:6px 8px;border:1px solid #ddd">分时共处</td><td style="padding:6px 8px;border:1px solid #ddd">上下料工位</td><td style="padding:6px 8px;border:1px solid #ddd">人来即停</td></tr><tr style="background:#f9f9f9"><td style="padding:6px 8px;border:1px solid #ddd">速度间距监控</td><td style="padding:6px 8px;border:1px solid #ddd">同区不同时</td><td style="padding:6px 8px;border:1px solid #ddd">仓储通道</td><td style="padding:6px 8px;border:1px solid #ddd">近人降速30-70%</td></tr><tr><td style="padding:6px 8px;border:1px solid #ddd">功率力限制</td><td style="padding:6px 8px;border:1px solid #ddd">可直接接触</td><td style="padding:6px 8px;border:1px solid #ddd">人机同工位</td><td style="padding:6px 8px;border:1px solid #ddd">全程限速限力</td></tr><tr style="background:#f9f9f9"><td style="padding:6px 8px;border:1px solid #ddd">手动引导</td><td style="padding:6px 8px;border:1px solid #ddd">人拖动示教</td><td style="padding:6px 8px;border:1px solid #ddd">示教/搬运辅助</td><td style="padding:6px 8px;border:1px solid #ddd">仅示教时用</td></tr></table><br><b>擎仓视角：</b>售前就把「安全方案」做成标准章节（围栏/光栅/降速区布局图＋标准条款引用），比中标后被 EHS 打回补救省 2-4 周工期。<b>具身数采现场（遥操有人在场）同样要过安全评审——别漏。</b><br><br><b>📋 找交付同事聊：</b>我们过往项目的风险评估报告模板拿一份；降速区设置对节拍的实测影响多少？</div>
+      <div><span class="term">ISO 10218</span><span class="term">ISO/TS 15066</span><span class="term">协作模式</span><span class="term">安全PLC</span><span class="term">功率力限制</span><span class="term">风险评估</span><span class="term">CE认证</span></div>
+    </div>
+    <div class="knowledge-day" data-day="24" id="kb-day-24" style="display:none;">
+      <div class="day-header"><span class="day-num">Day 24</span><span class="day-date">8月5日 周三</span></div>
+      <div class="day-topic">📊 具身数据合规与隐私：采回来的数据，哪些能用、哪些烫手</div>
+      <div class="explain"><b>一句话总结：</b>数采相机扫过的一切——人脸、工牌、产线工艺、白板上的报价——都可能是合规雷区。数据业务做大之前合规框架必须先立住，否则一单事故毁掉整条业务线。<br><br><b>四类烫手数据：</b><br>① <b>个人信息</b>：路过员工的人脸/工牌/声音——《个人信息保护法》管辖：采集需告知＋最小必要，交付前必须脱敏（人脸/文字自动打码管线）；<br>② <b>商业秘密</b>：客户产线布局、工艺参数、SKU 与单量——NDA＋分级授权（Day 7 讲的数据主权条款在执行层的落地）；<br>③ <b>数据出境</b>：训练数据传到境外（海外模型厂/海外云）可能触发数据出境安全评估——和海外基座模型厂商合作时的关键审查点；<br>④ <b>敏感场景</b>：医药仓（药品与处方信息）、保税仓等特殊监管场景，采集清单要提前报备。<br><br><b>工程化合规四板斧：</b>采集端告知牌＋授权条款 → 管线自动脱敏（人脸/OCR 文字打码）＋人工抽检 → 存储分级加密＋访问审计 → 交付白名单字段（元数据剔除敏感项，呼应 Day 6 的 schema 设计）。<br><br><b>商务话术转化：</b>合规不是成本，是卖点——「我们交付的数据带脱敏报告和审计日志」是大客户招标的加分项，也是小作坊数采队伍跨不过去的门槛。</div>
+      <div class="example"><b>数采合规检查表（可直接做成项目 SOP 一页纸）：</b><br><br><table style="font-size:11px;width:100%;border-collapse:collapse;margin:8px 0"><tr style="background:#E8F0FA"><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">环节</th><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">动作</th><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">责任人</th></tr><tr><td style="padding:6px 8px;border:1px solid #ddd">进场前</td><td style="padding:6px 8px;border:1px solid #ddd">告知+NDA+数据授权清单</td><td style="padding:6px 8px;border:1px solid #ddd">销售/法务</td></tr><tr style="background:#f9f9f9"><td style="padding:6px 8px;border:1px solid #ddd">采集中</td><td style="padding:6px 8px;border:1px solid #ddd">敏感区遮挡/禁采清单执行</td><td style="padding:6px 8px;border:1px solid #ddd">现场负责人</td></tr><tr><td style="padding:6px 8px;border:1px solid #ddd">处理</td><td style="padding:6px 8px;border:1px solid #ddd">自动脱敏+比例抽检</td><td style="padding:6px 8px;border:1px solid #ddd">数据平台</td></tr><tr style="background:#f9f9f9"><td style="padding:6px 8px;border:1px solid #ddd">交付</td><td style="padding:6px 8px;border:1px solid #ddd">脱敏报告+字段白名单</td><td style="padding:6px 8px;border:1px solid #ddd">数据PM</td></tr><tr><td style="padding:6px 8px;border:1px solid #ddd">存证</td><td style="padding:6px 8px;border:1px solid #ddd">访问日志留存≥6个月</td><td style="padding:6px 8px;border:1px solid #ddd">平台/安全</td></tr></table><br><b>擎仓视角：</b>把这张表落成《数采合规 SOP》放进每个项目启动包——这是数据业务规模化的护栏，也是数据 PM 能亲手主导、见效最快的高价值动作。<br><br><b>📋 找法务/平台同事聊：</b>我们现在人脸脱敏是自动化的吗、准确率多少？客户数据授权条款有标准模板吗？</div>
+      <div><span class="term">个保法</span><span class="term">数据脱敏</span><span class="term">NDA</span><span class="term">数据出境</span><span class="term">分级授权</span><span class="term">审计日志</span><span class="term">合规SOP</span></div>
+    </div>
+    <div class="knowledge-day" data-day="25" id="kb-day-25" style="display:none;">
+      <div class="day-header"><span class="day-num">Day 25</span><span class="day-date">8月6日 周四</span></div>
+      <div class="day-topic">📊 商业模式与 ROI 测算：客户凭什么买单 —— 21 天压轴课</div>
+      <div class="explain"><b>一句话总结：</b>技术再炫，客户只算一笔账：多久回本。会算 ROI、会选商业模式，是把前面 20 天的技术知识变成订单的最后一公里。<br><br><b>四种主流商业模式：</b><br>① <b>整机买断＋维保</b>：传统模式，现金流好；客户决策重（资本开支 CAPEX，要过投委会）；<br>② <b>RaaS 租赁</b>（Robot as a Service）：按月/年付租金，客户零门槛（运营开支 OPEX）；厂商压资金但锁定长期收入——而且<b>数据回传顺理成章</b>（Day 7 数据飞轮的商务载体）；<br>③ <b>按件计费</b>：按拣选件数收费，和客户共担产能风险——对成功率/出勤率要求极高（Day 8 的评估指标直接变成收入公式）；<br>④ <b>数据/模型服务</b>：卖数采、卖标注、卖后训练、卖评测（Day 5/6/8 内容的业务化）——轻资产高毛利，正是数据业务线的定位。<br><br><b>ROI 公式（背下来）：</b>回本月数 ＝ 设备总投入 ÷（月替代人力成本 − 月运维成本）。<br><br><b>两个魔鬼细节：</b>人力按「综合成本」算（工资 × 1.4-1.6 倍，含社保/管理/招聘流失），不按裸工资——差 40%；<b>班次是杠杆</b>——两班倒场景机器人价值直接翻倍，所以销售优先攻两班/三班的仓。<br><br><b>数字感：</b>仓储人力综合成本约 8 千-1.2 万/月/人；一台复合机器人顶 1.5-2.5 个人力班次；回本期 &lt;24 个月客户才容易点头，&lt;18 个月是好生意。</div>
+      <div class="example"><b>ROI 测算示例（复合机器人拣选工位）：</b><br><br><table style="font-size:11px;width:100%;border-collapse:collapse;margin:8px 0"><tr style="background:#E8F0FA"><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">项目</th><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">两班倒场景</th><th style="padding:6px 8px;text-align:left;border:1px solid #ddd">单班场景</th></tr><tr><td style="padding:6px 8px;border:1px solid #ddd">设备投入</td><td style="padding:6px 8px;border:1px solid #ddd">45万</td><td style="padding:6px 8px;border:1px solid #ddd">45万</td></tr><tr style="background:#f9f9f9"><td style="padding:6px 8px;border:1px solid #ddd">月替代人力</td><td style="padding:6px 8px;border:1px solid #ddd">2人×2班×1万=4万</td><td style="padding:6px 8px;border:1px solid #ddd">2人×1万=2万</td></tr><tr><td style="padding:6px 8px;border:1px solid #ddd">月运维+电费</td><td style="padding:6px 8px;border:1px solid #ddd">0.5万</td><td style="padding:6px 8px;border:1px solid #ddd">0.5万</td></tr><tr style="background:#f9f9f9"><td style="padding:6px 8px;border:1px solid #ddd">月净节省</td><td style="padding:6px 8px;border:1px solid #ddd">3.5万</td><td style="padding:6px 8px;border:1px solid #ddd">1.5万</td></tr><tr><td style="padding:6px 8px;border:1px solid #ddd">回本期</td><td style="padding:6px 8px;border:1px solid #ddd"><b>约13个月 ✅ 好生意</b></td><td style="padding:6px 8px;border:1px solid #ddd">30个月 ⚠️ 难卖</td></tr></table><br><b>擎仓视角：</b>方案书永远带一页「客户账」——用客户自己的人力数据现场算给他看。数据业务线的报价锚点＝「帮客户模型提升的成功率 × 产能价值」，而不是成本加成——卖效果，不卖工时。<br><br><b>📋 找商业同事聊：</b>我们主推哪种模式？历史项目的实际回本期数据有吗？按件计费试点过吗？</div>
+      <div><span class="term">RaaS</span><span class="term">CAPEX/OPEX</span><span class="term">按件计费</span><span class="term">ROI</span><span class="term">回本期</span><span class="term">综合人力成本</span><span class="term">两班倒</span></div>
+    </div>
+
+    
+	    <div class="knowledge-day" data-day="26" id="kb-day-26" style="display:none;"><div class="day-header"><span class="day-num">Day 26</span><span class="day-date">8月7日 周五</span></div><div class="day-topic">📡 具身数据采集技术全景：遥操作 vs VR vs 无本体</div><div class="explain"><b>一句话总结：</b>数据荒是最大瓶颈（有效数据仅50万小时，缺口99%）。选错采集方式比缺数据更致命。<br><br><b>三大路线对比：</b>①遥操作——人类直接操控机器人，质量最高但成本数千元/小时；②VR/外骨骼——人戴VR做动作→算法重定向，成本200-500元/小时，有embodiment gap；③无本体——手机拍人类干活→AI重建3D轨迹，几块钱/小时但精度差。业界趋势是三合一：无本体做预训练→VR做微调→遥操作做关键场景精调。<br><br><b>擎仓视角：</b>数采设备矩阵（手持→固定→移动）就是三个档位各占生态位。报价时贵有贵的道理，便宜有便宜的用法。</div><div class="example"><b>📋 找数据同事聊：</b>三种方式各占比多少？每条数据成本算过吗？采集效率怎么样？</div><div><span class="term">遥操作</span><span class="term">VR采集</span><span class="term">无本体</span><span class="term">embodiment gap</span><span class="term">数据成本</span></div></div>
+	    <div class="knowledge-day" data-day="27" id="kb-day-27" style="display:none;"><div class="day-header"><span class="day-num">Day 27</span><span class="day-date">8月8日 周六</span></div><div class="day-topic">🔄 Sim2Real 实战：为什么仿真里99%到真机变0%</div><div class="explain"><b>一句话总结：</b>仿真好真机崩，是具身智能最经典的坑。四大gap——视觉（渲染vs真实）、物理（简化公式vs复杂接触）、传感（完美vs噪声）、动作（瞬移vs惯量）。补救公式：sim→随机化→少量真机微调→闭环适应。关键不是"仿真更逼真"而是"仿真够多样"——多样性>逼真度。<br><br><b>擎仓视角：</b>别问"仿真行不行"，要问"加了哪些随机化？用多少真机微调过？"。客户现场翻车第一排查：光照/背景和训练数据差多少。</div><div class="example"><b>📋 找算法同事聊：</b>我们Sim2Real流程？成功率仿真到真机掉多少？最大gap是什么？</div><div><span class="term">Sim2Real</span><span class="term">域随机化</span><span class="term">视觉gap</span><span class="term">物理gap</span><span class="term">在线适应</span></div></div>
+	    <div class="knowledge-day" data-day="28" id="kb-day-28" style="display:none;"><div class="day-header"><span class="day-num">Day 28</span><span class="day-date">8月9日 周日</span></div><div class="day-topic">📏 模型评测指南：怎么判断VLA模型"好不好"</div><div class="explain"><b>一句话总结：</b>算法说SOTA，你怎么判断是真好还是自嗨？评测金字塔：学术Benchmark（驾照科目二）→场测Benchmark（RoboTwin/GM-100）→场景验收（客户现场成功率/节拍/干预率）。最常被忽略的三指标：干预率（做不了假）、首次成功率（一次过vs试五次）、尾部分布（平均95%最难5%全0分）。竞品对标关键：不是"我们高多少"而是"哪些场景我们赢、哪些输"——输的场景就是研发优先级。</div><div class="example"><b>📋 找算法同事聊：</b>用了几个Benchmark？最难任务？和竞品对比输的场景有哪些？</div><div><span class="term">Benchmark</span><span class="term">干预率</span><span class="term">首次成功率</span><span class="term">QuicBenchmark</span><span class="term">尾部分布</span></div></div>
+	    <div class="knowledge-day" data-day="29" id="kb-day-29" style="display:none;"><div class="day-header"><span class="day-num">Day 29</span><span class="day-date">8月10日 周一</span></div><div class="day-topic">🌍 世界模型入门：机器人怎么"想象"未来</div><div class="explain"><b>一句话总结：</b>2026="世界模型元年"。三层：视频预测型（生成未来画面，贵）、隐空间预测型（压缩后预测，快省，产业主方向）、物理仿真型（传统引擎，缺细节）。"VLA vs WM"之争已结束——答案是融合，世界模型是VLA的核心组件。当前水位：普遍10B以下，相当于LLM的GPT-2阶段。<br><br><b>擎仓视角：</b>QuicWM主打透明物/流体/柔性体推演。给客户讲时不说"我们有世界模型"，说"机器人能预判塑料袋被夹起后会怎么变形"。</div><div class="example"><b>📋 找算法同事聊：</b>QuicWM跑什么场景？WM和VLA怎么配合？预测一帧多少毫秒？</div><div><span class="term">世界模型</span><span class="term">World Model</span><span class="term">隐空间预测</span><span class="term">WAM</span><span class="term">QuicWM</span></div></div>
+	    <div class="knowledge-day" data-day="30" id="kb-day-30" style="display:none;"><div class="day-header"><span class="day-num">Day 30</span><span class="day-date">8月11日 周二</span></div><div class="day-topic">📦 供应链实战：机器人BOM里哪些部件最容易被"卡脖子"</div><div class="explain"><b>一句话总结：</b>知道哪些"必须自研"、哪些"可以外采"、哪些"有断供风险"——是产品PM做硬件定义的核心能力。🔴高价值高壁垒（自研）：灵巧手/关节/力触觉传感器；🟡高价值低壁垒（比价外采）：算力/电池；🟢低价值高壁垒（小卡脖子）：精密减速器/高精度编码器（海德汉/雷尼绍垄断）；⚪低价值低壁垒（标准化）：线束/结构件。国产替代进度：绿的谐波→宇树批量供货；编码器→严重依赖进口最大风险；MEMS六维力→港智创信8mm芯片级突破。<br><br><b>擎仓视角：</b>硬件图谱不只标价格，要标"可替代性评分"——供应商几家？国产有没有？切换成本多大？供应链安全SOP就这三问。</div><div class="example"><b>📋 找硬件/采购同事聊：</b>我们自研率多少？最担心断供的部件？国产替代路线图？</div><div><span class="term">BOM</span><span class="term">供应链风险</span><span class="term">自研vs外采</span><span class="term">减速器</span><span class="term">编码器</span><span class="term">国产替代</span></div></div>
+
+	    <div id="kb-syllabus" style="margin-top:14px;padding:10px 12px;background:#f7f9fb;border-radius:8px;border:1px solid #e3e9f0;">
+      <div style="font-size:12px;font-weight:700;color:#1B3A5C;margin-bottom:6px;">📚 课表总览（7.17-8.11 · D5-D30 · 已学主题跳过 · 每天讲透一个）</div>
+      <table style="font-size:10.5px;width:100%;border-collapse:collapse;">
+        <tr style="background:#E8F0FA;">
+          <th style="padding:4px 6px;text-align:left;border:1px solid #ddd;width:33%;">第1周（7.17-7.23）数据与系统</th>
+          <th style="padding:4px 6px;text-align:left;border:1px solid #ddd;width:33%;">第2周（7.24-7.30）硬件与感知</th>
+          <th style="padding:4px 6px;text-align:left;border:1px solid #ddd;">第3周（7.31-8.6）集成与商务</th>
+        </tr>
+        <tr>
+          <td style="padding:4px 6px;border:1px solid #ddd;vertical-align:top;">D5 数据标注与质检<br>D6 开源数据集与格式<br>D7 Scaling Law与数据飞轮<br>D8 模型评估体系<br>D9 分层架构与快慢系统<br>D10 仿真平台横评<br>D11 力控与柔顺控制</td>
+          <td style="padding:4px 6px;border:1px solid #ddd;vertical-align:top;">D12 触觉传感<br>D13 手眼标定与时空同步<br>D14 端侧算力与部署<br>D15 任务规划与长程任务<br>D16 深度相机选型<br>D17 抓取检测与6D位姿<br>D18 SLAM与导航</td>
+          <td style="padding:4px 6px;border:1px solid #ddd;vertical-align:top;">D19 移动操作<br>D20 ROS2与中间件<br>D21 多机调度与WMS对接<br>D22 整机BOM成本拆解<br>D23 协作安全与合规<br>D24 数据合规与隐私<br>D25 商业模式与ROI</td>
+        </tr>
+      </table>
+      <div style="font-size:10px;color:#999;margin-top:5px;">Day 1-4 往期：肌腱传动 / VLA推理时延 / 自由度DOF / RESTful API ｜ 已掌握跳过：VLA全景、模仿学习、遥操数采、数据金字塔、ACT、Diffusion Policy、Sim2Real、预训练后训练、强化学习、世界模型</div>
+    </div>
+
+
+    </div>
+  </div>
+
+</div>
+<div class="footer">
+  具身智能行业日报 · 擎仓机器人产品部 · 每日自动更新 · <span id="updateTime"></span>
+</div>
+
+<script>
+// Set today's date
+const d = new Date();
+const weekdays = ['日','一','二','三','四','五','六'];
+document.getElementById('today').textContent =
+  d.getFullYear()+'年'+(d.getMonth()+1)+'月'+d.getDate()+'日 星期'+weekdays[d.getDay()];
+document.getElementById('updateTime').textContent =
+  '最近更新：'+d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')+' '+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');
+</script>
+
+
+<script>
+// Knowledge module - today at top, history below (matching news modules)
+(function() {
+  var START_DATE = new Date(2026, 6, 13); // July 13, 2026 = Day 1
+  var today = new Date();
+  today.setHours(0, 0, 0, 0);
+  
+  var diffDays = Math.floor((today - START_DATE) / (1000 * 60 * 60 * 24));
+  var todayDay = Math.max(1, Math.min(30, diffDays + 1));
+  
+  var cardBody = document.querySelector('.m4 .card-body');
+  if (!cardBody) return;
+  
+  // Hide all entries and reset styles
+  document.querySelectorAll('[id^="kb-day-"]').forEach(function(el) {
+    el.style.display = 'none';
+    el.classList.remove('kb-today', 'kb-history');
+  });
+  
+  // Remove old injected elements
+  cardBody.querySelectorAll('.today-label, .kb-divider').forEach(function(el) { el.remove(); });
+  
+  // --- TODAY: move it to the TOP of cardBody ---
+  var todayEl = document.getElementById('kb-day-' + todayDay);
+  if (todayEl) {
+    // Move todayEl to be the first child of cardBody (reorder DOM)
+    cardBody.insertBefore(todayEl, cardBody.firstChild);
+    
+    // Add label
+    var todayLabel = document.createElement('div');
+    todayLabel.className = 'today-label';
+    todayLabel.textContent = '📌 今日学习 · Day ' + todayDay;
+    cardBody.insertBefore(todayLabel, todayEl);
+    
+    todayEl.style.display = 'block';
+    todayEl.classList.add('kb-today');
+  }
+  
+  // --- HISTORY ---
+  var historyEntries = [];
+  for (var i = 1; i <= 3; i++) {
+    var prevDay = todayDay - i;
+    if (prevDay >= 1) {
+      var prevEl = document.getElementById('kb-day-' + prevDay);
+      if (prevEl) historyEntries.push(prevEl);
+    }
+  }
+  
+  if (historyEntries.length > 0) {
+    // Insert divider after todayEl
+    var divider = document.createElement('div');
+    divider.className = 'history-divider kb-divider';
+    divider.textContent = '📅 知识往期回顾';
+    if (todayEl) {
+      todayEl.parentNode.insertBefore(divider, todayEl.nextSibling);
+    } else {
+      cardBody.appendChild(divider);
+    }
+    
+    // Show history entries after divider
+    historyEntries.forEach(function(el) {
+      el.style.display = 'block';
+      el.classList.add('kb-history');
+    });
+  }
+  
+  // Update header
+  var headerBadge = document.querySelector('.m4 .card-header');
+  if (headerBadge && todayDay) {
+    headerBadge.innerHTML = '<span class="icon">&#x1F4D6;</span> 知识补齐 · Day ' + todayDay + ' / 25（每日一个具身智能高频知识点）';
+  }
+})();
+</script>
+
+</body>
+</html>
