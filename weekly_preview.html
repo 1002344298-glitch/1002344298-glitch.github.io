@@ -10,7 +10,8 @@ body{background:#f0f2f5;font-family:'Microsoft YaHei','PingFang SC',sans-serif;c
 .header h1{font-size:22px;font-weight:700;letter-spacing:2px}
 .header .date{font-size:13px;opacity:.85}
 .week-summary{background:#f7f9fb;border-radius:8px;padding:14px 20px;margin:0 24px 16px;max-width:1600px;font-size:12px;color:#444;line-height:1.7}
-.grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;padding:0 24px 16px;max-width:1600px;margin:0 auto}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:0 24px 16px;max-width:1600px;margin:0 auto;align-items:start}
+.grid>.card:first-child{grid-row:span 2}
 .card{background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.06)}
 .card-header{padding:14px 20px;font-size:15px;font-weight:700;color:#fff}
 .card-body{padding:14px 20px;max-height:1100px;overflow-y:auto}
@@ -35,343 +36,11 @@ body{background:#f0f2f5;font-family:'Microsoft YaHei','PingFang SC',sans-serif;c
 .company-label{font-size:12px;font-weight:700;color:#1B3A5C;margin:12px 0 6px;padding:4px 10px;background:#EEF3F8;border-left:3px solid #2E6B9E;border-radius:3px}
 .history-sub{font-size:11px;font-weight:700;color:#888;margin:10px 0 4px}
 .footer{text-align:center;padding:12px;color:#999;font-size:11px}
-@media(max-width:1300px){.grid{grid-template-columns:1fr}}
+@media(max-width:900px){.grid{grid-template-columns:1fr}}
 </style></head><body>
 <div class="header"><div><h1>🤖 具身智能行业周报</h1><div style="font-size:12px;opacity:.75;margin-top:4px">Embodied AI Weekly Briefing · 擎仓机器人产品部</div></div><div style="text-align:right"><div class="date">周一9.28</div></div></div>
 <div class="week-summary" style="margin-top:16px"><b>📌 本周关键词：</b>特斯拉Optimus批量订单5000台 · 人形IPO监管踩刹车 · 小鹏供应链定点量产 · VLA与世界模型融合 · 觅蜂派众包数采 · 帕西尼启动A股IPO · 智元9位合伙人亮相 · 北京经开区产业政策申报 · 赛那德/寅成/昆腾对标更新 · 特斯拉Optimus批量订单5000台 · 人形IPO监管踩刹车 · 小鹏供应链定点量产 · VLA与世界模型融合 · 觅蜂派众包数采 · 帕西尼启动A股IPO · 智元9位合伙人亮相 · 北京经开区产业政策申报</div><div class="grid">
 
-<div class="card">
-<div class="card-header" style="background:linear-gradient(135deg,#0D1F33,#1B3A5C)">📊 具身行业动态</div>
-<div class="card-body">
-
-<div class="sub-header" style="background:linear-gradient(135deg,#1F5090,#1B3A5C)">🏢 一、头部公司组织变动</div>
-
-    <div class="news-item">
-    <span class="tag tag-hot">重磅</span><span class="tag tag-new">9月</span>
-    <div class="title"><a href="https://www.yemacaijing.com/Index/view/id/95121.html" target="_blank">智元IPO班底亮相：9位合伙人、至少6人华为系</a></div>
-    <div class="desc">智元披露9位合伙人（8男1女，至少6人出自华为系），6人进入董事会；董事长邓泰华、总裁兼CTO彭志辉（稚晖君），目标估值400-500亿港元赴港IPO。</div>
-    <div class="source">野马财经/Edgen · 9月</div>
-    </div>
-    <div class="news-item">
-    <span class="tag tag-hot">组织</span><span class="tag tag-new">9月</span>
-    <div class="title"><a href="https://36kr.jp/502625/" target="_blank">帕西尼迁址北京、完成股份制改造，启动A股上市</a></div>
-    <div class="desc">帕西尼总部由深圳迁至北京，完成股份制改造并更名，为A股上市铺路；股东含比亚迪、京东、三星。</div>
-    <div class="source">36Kr · 9月</div>
-    </div>
-
-
-<div class="sub-header" style="background:linear-gradient(135deg,#2E6B9E,#1F5090)">💰 二、资金变动</div>
-
-    <div class="news-item">
-    <span class="tag tag-hot">监管</span><span class="tag tag-new">9月</span>
-    <div class="title"><a href="https://www.sohu.com/a/1080593240_122014422" target="_blank">人形机器人IPO「踩刹车」：监管收紧，估值遭重估</a></div>
-    <div class="desc">路透9月21日报道监管为人形企业上市潮「踩刹车」，重点审视高估值及政府项目收入真实性，剔除数采中心收入后部分企业估值或降60-70%；港股具身新股破发率超七成。</div>
-    <div class="source">路透/搜狐 · 9月21日</div>
-    </div>
-    <div class="news-item">
-    <span class="tag tag-hot">IPO</span><span class="tag tag-new">9月</span>
-    <div class="title"><a href="https://36kr.jp/502625/" target="_blank">帕西尼完成A股上市辅导备案，股东含比亚迪/京东/三星</a></div>
-    <div class="desc">帕西尼9月20日向北京证监局完成A股上市辅导备案；A股在审具身企业增至云深处、越疆、乐聚智能等多家。</div>
-    <div class="source">36Kr · 9月20日</div>
-    </div>
-    <div class="news-item">
-    <span class="tag tag-hot">投资</span><span class="tag tag-new">9月</span>
-    <div class="title"><a href="https://news.qq.com/rain/a/20260923A07LVL00" target="_blank">松延动力入股人形机器人通用系统研发商橡树清溪</a></div>
-    <div class="desc">橡树清溪科技完成工商变更，新增松延动力等股东；本体厂商反向投资上游通用系统，产业链纵向整合加速。</div>
-    <div class="source">腾讯新闻 · 9月23日</div>
-    </div>
-    <div class="news-item">
-    <span class="tag tag-hot">行情</span><span class="tag tag-new">9月</span>
-    <div class="title"><a href="https://www.sohu.com/a/1080593240_122014422" target="_blank">宇树市值较高点蒸发2475亿，人形IPO「踩刹车」</a></div>
-    <div class="desc">宇树科技9月24日收盘488元，较上市首日盘中峰值4449亿市值蒸发约2475亿（回撤约55%）；梅卡曼德较上市首日高点跌近20%，成为监管收紧的诱因。</div>
-    <div class="source">搜狐/钛媒体 · 9月24日</div>
-    </div>
-
-
-<div class="history-divider">📅 往期回顾</div>
-<div class="history-section">
-
-<div class="week-label">9月14日 — 9月20日</div>
-
-
-<div class="history-sub">一、头部公司组织变动</div>
-    <div class="news-item">
-    <span class="tag tag-hot">重磅</span>
-    <div class="title">银河通用IPO前夜管理层「十出九进」大换血：尹方鸣接任董事长</div>
-    <div class="desc">又遭举报材料与邵天兰点名，赴港IPO承压。</div>
-    <div class="source">TMT观察/新浪财经 · 9月</div>
-    </div>
-    <div class="news-item">
-    <span class="tag tag-hot">争议</span>
-    <div class="title">梅卡曼德创始人邵天兰点名「攒局型」具身企业，银河通用回应</div>
-    <div class="desc">商业模式与估值争议升温。</div>
-    <div class="source">中国能源报/钛媒体 · 9月</div>
-    </div>
-
-
-<div class="history-sub">二、资金变动</div>
-    <div class="news-item">
-    <span class="tag tag-hot">信号</span>
-    <div class="title">阿里/蚂蚁/腾讯同日集体下注具身智能</div>
-    <div class="desc">分投墨奇智能、天机智能、启元机器人。</div>
-    <div class="source">OFweek机器人网 · 9月20日</div>
-    </div>
-    <div class="news-item">
-    <span class="tag tag-hot">重磅</span>
-    <div class="title">地瓜机器人完成4亿美元C轮融资：韩国未来资产领投</div>
-    <div class="desc">旭日芯片累计出货破800万片。</div>
-    <div class="source">上海证券报 · 9月17日</div>
-    </div>
-    <div class="news-item">
-    <span class="tag tag-hot">融资</span>
-    <div class="title">帕西尼完成数亿元B++轮融资，累计突破40亿元</div>
-    <div class="desc">触觉芯片+灵巧手全栈闭环。</div>
-    <div class="source">科技日报/界面 · 9月16日</div>
-    </div>
-    <div class="news-item">
-    <span class="tag tag-hot">融资</span>
-    <div class="title">智身科技完成数亿元B轮：阿联酋Stone Venture领投</div>
-    <div class="desc">投向本体、具身大小脑与任务作业。</div>
-    <div class="source">搜狐 · 9月20日</div>
-    </div>
-    <div class="news-item">
-    <span class="tag tag-hot">IPO</span>
-    <div class="title">微亿智造获证监会境外上市备案，迦智科技二度递表</div>
-    <div class="desc">排队港股机器人企业达46家。</div>
-    <div class="source">东方财富/联索科技 · 9月18日</div>
-    </div>
-
-
-
-<div class="week-label">9月7日 — 9月13日</div>
-
-
-<div class="history-sub">一、头部公司组织变动</div>
-    <div class="news-item">
-    <span class="tag tag-hot">人事</span>
-    <div class="title">小米智驾核心王乃岩离职，投身具身智能创业做物理AI大模型</div>
-    <div class="desc">团队核心多为图森旧部。</div>
-    <div class="source">网易 · 9月</div>
-    </div>
-    <div class="news-item">
-    <span class="tag tag-hot">人事</span>
-    <div class="title">地瓜机器人具身智能负责人何泳澔离职，加盟新公司押注工业落地</div>
-    <div class="desc">判断轻量化VA模型更适配工业场景。</div>
-    <div class="source">IT采购网 · 9月10日</div>
-    </div>
-
-
-<div class="history-sub">二、资金变动</div>
-    <div class="news-item">
-    <span class="tag tag-hot">重磅</span>
-    <div class="title">超维动力完成超5亿元天使+轮系列融资，淡马锡系祥峰资本加注</div>
-    <div class="desc">全栈具身大模型公司，推KAIBot人形及灵巧手。</div>
-    <div class="source">上海证券报 · 9月11日</div>
-    </div>
-    <div class="news-item">
-    <span class="tag tag-hot">融资</span>
-    <div class="title">费莫一科技完成近亿美元种子轮，IDG领投、滴滴跟投</div>
-    <div class="desc">成立半年构建BRAIN/BODY/DATA/LINK全栈。</div>
-    <div class="source">东方财富 · 9月9日</div>
-    </div>
-    <div class="news-item">
-    <span class="tag tag-hot">融资</span>
-    <div class="title">西湖机器人完成数亿元A1轮融资，押注强化学习+大模型融合</div>
-    <div class="desc">高校系具身创业持续吸金。</div>
-    <div class="source">东方财富 · 9月11日</div>
-    </div>
-    <div class="news-item">
-    <span class="tag tag-hot">融资</span>
-    <div class="title">千诀科技完成数亿元A+轮融资，加速机器人智能基础设施</div>
-    <div class="desc">预测式世界模型+多项式表征做机器人大脑。</div>
-    <div class="source">上海证券报 · 9月8日</div>
-    </div>
-
-
-
-<div class="week-label">9月1日 — 9月6日</div>
-
-
-<div class="history-sub">一、头部公司组织变动</div>
-    <div class="news-item">
-    <span class="tag tag-hot">人事</span>
-    <div class="title">理想新设「具身行为部」，引入世界模型专家刘宇</div>
-    <div class="desc">为机器人单独研发基座模型。</div>
-    <div class="source">21财经 · 9月5日</div>
-    </div>
-    <div class="news-item">
-    <span class="tag tag-hot">组织</span>
-    <div class="title">蔚来任少卿独立创立具身机器人公司</div>
-    <div class="desc">车企剥离本体/量产业务。</div>
-    <div class="source">电动汽车出海 · 9月3日</div>
-    </div>
-    <div class="news-item">
-    <span class="tag tag-hot">人事</span>
-    <div class="title">前字节RL专家孙鹏博加盟星尘智能</div>
-    <div class="desc">具身「大脑」人才争夺加剧。</div>
-    <div class="source">腾讯新闻 · 9月4日</div>
-    </div>
-
-
-<div class="history-sub">二、资金变动</div>
-    <div class="news-item">
-    <span class="tag tag-hot">IPO</span>
-    <div class="title">梅卡曼德港交所上市：具身「眼脑手」第一股</div>
-    <div class="desc">首日市值约125亿港元。</div>
-    <div class="source">河北日报 · 9月1日</div>
-    </div>
-    <div class="news-item">
-    <span class="tag tag-hot">重磅</span>
-    <div class="title">Sharpa（大裂谷）累计融资超45亿、估值220亿</div>
-    <div class="desc">产业资本重注「灵巧操作」。</div>
-    <div class="source">百度百家号 · 9月4日</div>
-    </div>
-    <div class="news-item">
-    <span class="tag tag-hot">融资</span>
-    <div class="title">泉智博数亿元B轮：一体化关节模组出货超10万台</div>
-    <div class="desc">国产关节供应链加速放量。</div>
-    <div class="source">具身研习社 · 9月5日</div>
-    </div>
-    <div class="news-item">
-    <span class="tag tag-hot">融资</span>
-    <div class="title">天工机器人数亿元A轮，前京东VP肖军带队</div>
-    <div class="desc">分拣机器人扩产。</div>
-    <div class="source">大河财立方 · 9月6日</div>
-    </div>
-
-
-
-<div class="week-label">8月24日 — 8月30日</div>
-
-
-<div class="history-sub">一、头部公司组织变动</div>
-    <div class="news-item">
-    <span class="tag tag-hot">人事</span>
-    <div class="title">前小鹏产品副总裁陈永海加盟众擎任运营总裁</div>
-    <div class="desc">车企高管密集流入量产时代人才争夺。</div>
-    <div class="source">机器人大讲堂 · 8月</div>
-    </div>
-    <div class="news-item">
-    <span class="tag tag-hot">人事</span>
-    <div class="title">极智嘉刘凯调任非执行董事、专注具身技术研发</div>
-    <div class="desc">技术研发与公司治理分工趋势。</div>
-    <div class="source">观点网 · 8月28日</div>
-    </div>
-    <div class="news-item">
-    <span class="tag tag-hot">IPO</span>
-    <div class="title">智元披露董事会班底：港股IPO目标估值400-500亿港元</div>
-    <div class="desc">9名合伙人过半华为背景。</div>
-    <div class="source">智通财经 · 8月</div>
-    </div>
-
-
-<div class="history-sub">二、资金变动</div>
-    <div class="news-item">
-    <span class="tag tag-hot">重磅</span>
-    <div class="title">小鹏机器人完成超9亿美元首轮融资，刷新国内单轮私募纪录</div>
-    <div class="desc">IDG领投、腾讯阿里入局，投后估值超63亿美元。</div>
-    <div class="source">21世纪经济报道 · 8月25日</div>
-    </div>
-    <div class="news-item">
-    <span class="tag tag-hot">行情</span>
-    <div class="title">小鹏融资引爆A股机器人板块：石头科技20CM涨停</div>
-    <div class="desc">兆威机电封板，产业链个股跟涨。</div>
-    <div class="source">网易财经 · 8月25日</div>
-    </div>
-
-
-
-<div class="week-label">8月17日 — 8月23日</div>
-
-
-<div class="history-sub">一、头部公司组织变动</div>
-    <div class="news-item">
-    <span class="tag tag-hot">重磅</span>
-    <div class="title">银河通用发布双足ET1+全球首场自主网球赛，赴港IPO估值30-40亿美元</div>
-    <div class="desc">AstraBrain-Agent架构实现即时感知-决策-全身控制。</div>
-    <div class="source">Edgen · 8月22日</div>
-    </div>
-    <div class="news-item">
-    <span class="tag tag-hot">分拆</span>
-    <div class="title">奇瑞孵化墨甲机器人启动IPO筹备，投后估值25亿元</div>
-    <div class="desc">车企分拆机器人资产独立上市成为新趋势。</div>
-    <div class="source">搜狐 · 8月21日</div>
-    </div>
-
-
-<div class="history-sub">二、资金变动</div>
-    <div class="news-item">
-    <span class="tag tag-hot">IPO</span>
-    <div class="title">宇树科技科创板首日暴涨460%，王兴兴身家超千亿成90后新首富</div>
-    <div class="desc">收盘845元、市值约3418亿，中一签浮盈47万。</div>
-    <div class="source">证券之星 · 8月19日</div>
-    </div>
-    <div class="news-item">
-    <span class="tag tag-hot">IPO</span>
-    <div class="title">具身智能密集赴港超50家：本末动力递表、梅卡曼德过讯</div>
-    <div class="desc">港交所18C章+「科企专线」保密递表红利驱动。</div>
-    <div class="source">证券时报 · 8月23日</div>
-    </div>
-    <div class="news-item">
-    <span class="tag tag-hot">IPO</span>
-    <div class="title">逐际动力保密递表港股，估值150亿、半年融资4亿美元</div>
-    <div class="desc">累计数千台订单超一半来自海外。</div>
-    <div class="source">证券之星(港) · 8月19日</div>
-    </div>
-
-
-
-<div class="week-label">8月10日 — 8月16日</div>
-
-
-<div class="history-sub">一、头部公司组织变动</div>
-    <div class="news-item">
-    <span class="tag tag-hot">重磅</span>
-    <div class="title">银河通用IPO前夜「十出九进」大换血：尹方鸣接任董事长</div>
-    <div class="desc">宇树首位天使投资人尹方鸣接任董事长，正值冲击上市关键期。</div>
-    <div class="source">网易 · 8月16日</div>
-    </div>
-    <div class="news-item">
-    <span class="tag tag-hot">变动</span>
-    <div class="title">智元罗剑岚去向坐实：加入上海创智学院任全职导师</div>
-    <div class="desc">个人主页删除智元任职，主导SERL/HIL-SERL、AgiBot World等成果。</div>
-    <div class="source">澎湃新闻 · 8月</div>
-    </div>
-
-
-<div class="history-sub">二、资金变动</div>
-    <div class="news-item">
-    <span class="tag tag-hot">IPO</span>
-    <div class="title">睿尔曼智能加入IPO大潮、科沃斯押注</div>
-    <div class="desc">港股排队具身企业超50家。</div>
-    <div class="source">东方财富 · 8月16日</div>
-    </div>
-    <div class="news-item">
-    <span class="tag tag-hot">IPO</span>
-    <div class="title">梅卡曼德传预路演筹23亿港元</div>
-    <div class="desc">美团/红杉/IDG/英特尔为股东。</div>
-    <div class="source">Now财经 · 8月</div>
-    </div>
-    <div class="news-item">
-    <span class="tag tag-hot">融资</span>
-    <div class="title">原力无限A轮+A+轮近10亿</div>
-    <div class="desc">「Ego原生世界模型」加速具身大脑。</div>
-    <div class="source">钛媒体 · 8月14日</div>
-    </div>
-    <div class="news-item">
-    <span class="tag tag-hot">融资</span>
-    <div class="title">诺因5亿天使++轮（经纬领投）</div>
-    <div class="desc">消费级家庭机器人赛道升温。</div>
-    <div class="source">机器人家 · 8月10日</div>
-    </div>
-    <div class="news-item">
-    <span class="tag tag-hot">融资</span>
-    <div class="title">戴盟获蚂蚁领投数亿、发布Daimon-TWM</div>
-    <div class="desc">全球首个触觉锚定世界模型。</div>
-    <div class="source">证券时报 · 8月10日</div>
-    </div>
-
-</div></div></div>
 <div class="card">
 <div class="card-header" style="background:linear-gradient(135deg,#00695C,#26A69A)">🎯 竞对/招采动态</div>
 <div class="card-body">
@@ -742,6 +411,338 @@ body{background:#f0f2f5;font-family:'Microsoft YaHei','PingFang SC',sans-serif;c
     <div class="title">浙江人形NAVIAI：社区养老/生鲜店实测3个月</div>
     <div class="desc">已在宁波社区养老中心、杭州生鲜店实测3个月，WRC现场炒菜扫地。</div>
     <div class="source">今日头条 · 8月14日</div>
+    </div>
+
+</div></div></div>
+<div class="card">
+<div class="card-header" style="background:linear-gradient(135deg,#0D1F33,#1B3A5C)">📊 具身行业动态</div>
+<div class="card-body">
+
+<div class="sub-header" style="background:linear-gradient(135deg,#1F5090,#1B3A5C)">🏢 一、头部公司组织变动</div>
+
+    <div class="news-item">
+    <span class="tag tag-hot">重磅</span><span class="tag tag-new">9月</span>
+    <div class="title"><a href="https://www.yemacaijing.com/Index/view/id/95121.html" target="_blank">智元IPO班底亮相：9位合伙人、至少6人华为系</a></div>
+    <div class="desc">智元披露9位合伙人（8男1女，至少6人出自华为系），6人进入董事会；董事长邓泰华、总裁兼CTO彭志辉（稚晖君），目标估值400-500亿港元赴港IPO。</div>
+    <div class="source">野马财经/Edgen · 9月</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">组织</span><span class="tag tag-new">9月</span>
+    <div class="title"><a href="https://36kr.jp/502625/" target="_blank">帕西尼迁址北京、完成股份制改造，启动A股上市</a></div>
+    <div class="desc">帕西尼总部由深圳迁至北京，完成股份制改造并更名，为A股上市铺路；股东含比亚迪、京东、三星。</div>
+    <div class="source">36Kr · 9月</div>
+    </div>
+
+
+<div class="sub-header" style="background:linear-gradient(135deg,#2E6B9E,#1F5090)">💰 二、资金变动</div>
+
+    <div class="news-item">
+    <span class="tag tag-hot">监管</span><span class="tag tag-new">9月</span>
+    <div class="title"><a href="https://www.sohu.com/a/1080593240_122014422" target="_blank">人形机器人IPO「踩刹车」：监管收紧，估值遭重估</a></div>
+    <div class="desc">路透9月21日报道监管为人形企业上市潮「踩刹车」，重点审视高估值及政府项目收入真实性，剔除数采中心收入后部分企业估值或降60-70%；港股具身新股破发率超七成。</div>
+    <div class="source">路透/搜狐 · 9月21日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">IPO</span><span class="tag tag-new">9月</span>
+    <div class="title"><a href="https://36kr.jp/502625/" target="_blank">帕西尼完成A股上市辅导备案，股东含比亚迪/京东/三星</a></div>
+    <div class="desc">帕西尼9月20日向北京证监局完成A股上市辅导备案；A股在审具身企业增至云深处、越疆、乐聚智能等多家。</div>
+    <div class="source">36Kr · 9月20日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">投资</span><span class="tag tag-new">9月</span>
+    <div class="title"><a href="https://news.qq.com/rain/a/20260923A07LVL00" target="_blank">松延动力入股人形机器人通用系统研发商橡树清溪</a></div>
+    <div class="desc">橡树清溪科技完成工商变更，新增松延动力等股东；本体厂商反向投资上游通用系统，产业链纵向整合加速。</div>
+    <div class="source">腾讯新闻 · 9月23日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">行情</span><span class="tag tag-new">9月</span>
+    <div class="title"><a href="https://www.sohu.com/a/1080593240_122014422" target="_blank">宇树市值较高点蒸发2475亿，人形IPO「踩刹车」</a></div>
+    <div class="desc">宇树科技9月24日收盘488元，较上市首日盘中峰值4449亿市值蒸发约2475亿（回撤约55%）；梅卡曼德较上市首日高点跌近20%，成为监管收紧的诱因。</div>
+    <div class="source">搜狐/钛媒体 · 9月24日</div>
+    </div>
+
+
+<div class="history-divider">📅 往期回顾</div>
+<div class="history-section">
+
+<div class="week-label">9月14日 — 9月20日</div>
+
+
+<div class="history-sub">一、头部公司组织变动</div>
+    <div class="news-item">
+    <span class="tag tag-hot">重磅</span>
+    <div class="title">银河通用IPO前夜管理层「十出九进」大换血：尹方鸣接任董事长</div>
+    <div class="desc">又遭举报材料与邵天兰点名，赴港IPO承压。</div>
+    <div class="source">TMT观察/新浪财经 · 9月</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">争议</span>
+    <div class="title">梅卡曼德创始人邵天兰点名「攒局型」具身企业，银河通用回应</div>
+    <div class="desc">商业模式与估值争议升温。</div>
+    <div class="source">中国能源报/钛媒体 · 9月</div>
+    </div>
+
+
+<div class="history-sub">二、资金变动</div>
+    <div class="news-item">
+    <span class="tag tag-hot">信号</span>
+    <div class="title">阿里/蚂蚁/腾讯同日集体下注具身智能</div>
+    <div class="desc">分投墨奇智能、天机智能、启元机器人。</div>
+    <div class="source">OFweek机器人网 · 9月20日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">重磅</span>
+    <div class="title">地瓜机器人完成4亿美元C轮融资：韩国未来资产领投</div>
+    <div class="desc">旭日芯片累计出货破800万片。</div>
+    <div class="source">上海证券报 · 9月17日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">融资</span>
+    <div class="title">帕西尼完成数亿元B++轮融资，累计突破40亿元</div>
+    <div class="desc">触觉芯片+灵巧手全栈闭环。</div>
+    <div class="source">科技日报/界面 · 9月16日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">融资</span>
+    <div class="title">智身科技完成数亿元B轮：阿联酋Stone Venture领投</div>
+    <div class="desc">投向本体、具身大小脑与任务作业。</div>
+    <div class="source">搜狐 · 9月20日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">IPO</span>
+    <div class="title">微亿智造获证监会境外上市备案，迦智科技二度递表</div>
+    <div class="desc">排队港股机器人企业达46家。</div>
+    <div class="source">东方财富/联索科技 · 9月18日</div>
+    </div>
+
+
+
+<div class="week-label">9月7日 — 9月13日</div>
+
+
+<div class="history-sub">一、头部公司组织变动</div>
+    <div class="news-item">
+    <span class="tag tag-hot">人事</span>
+    <div class="title">小米智驾核心王乃岩离职，投身具身智能创业做物理AI大模型</div>
+    <div class="desc">团队核心多为图森旧部。</div>
+    <div class="source">网易 · 9月</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">人事</span>
+    <div class="title">地瓜机器人具身智能负责人何泳澔离职，加盟新公司押注工业落地</div>
+    <div class="desc">判断轻量化VA模型更适配工业场景。</div>
+    <div class="source">IT采购网 · 9月10日</div>
+    </div>
+
+
+<div class="history-sub">二、资金变动</div>
+    <div class="news-item">
+    <span class="tag tag-hot">重磅</span>
+    <div class="title">超维动力完成超5亿元天使+轮系列融资，淡马锡系祥峰资本加注</div>
+    <div class="desc">全栈具身大模型公司，推KAIBot人形及灵巧手。</div>
+    <div class="source">上海证券报 · 9月11日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">融资</span>
+    <div class="title">费莫一科技完成近亿美元种子轮，IDG领投、滴滴跟投</div>
+    <div class="desc">成立半年构建BRAIN/BODY/DATA/LINK全栈。</div>
+    <div class="source">东方财富 · 9月9日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">融资</span>
+    <div class="title">西湖机器人完成数亿元A1轮融资，押注强化学习+大模型融合</div>
+    <div class="desc">高校系具身创业持续吸金。</div>
+    <div class="source">东方财富 · 9月11日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">融资</span>
+    <div class="title">千诀科技完成数亿元A+轮融资，加速机器人智能基础设施</div>
+    <div class="desc">预测式世界模型+多项式表征做机器人大脑。</div>
+    <div class="source">上海证券报 · 9月8日</div>
+    </div>
+
+
+
+<div class="week-label">9月1日 — 9月6日</div>
+
+
+<div class="history-sub">一、头部公司组织变动</div>
+    <div class="news-item">
+    <span class="tag tag-hot">人事</span>
+    <div class="title">理想新设「具身行为部」，引入世界模型专家刘宇</div>
+    <div class="desc">为机器人单独研发基座模型。</div>
+    <div class="source">21财经 · 9月5日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">组织</span>
+    <div class="title">蔚来任少卿独立创立具身机器人公司</div>
+    <div class="desc">车企剥离本体/量产业务。</div>
+    <div class="source">电动汽车出海 · 9月3日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">人事</span>
+    <div class="title">前字节RL专家孙鹏博加盟星尘智能</div>
+    <div class="desc">具身「大脑」人才争夺加剧。</div>
+    <div class="source">腾讯新闻 · 9月4日</div>
+    </div>
+
+
+<div class="history-sub">二、资金变动</div>
+    <div class="news-item">
+    <span class="tag tag-hot">IPO</span>
+    <div class="title">梅卡曼德港交所上市：具身「眼脑手」第一股</div>
+    <div class="desc">首日市值约125亿港元。</div>
+    <div class="source">河北日报 · 9月1日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">重磅</span>
+    <div class="title">Sharpa（大裂谷）累计融资超45亿、估值220亿</div>
+    <div class="desc">产业资本重注「灵巧操作」。</div>
+    <div class="source">百度百家号 · 9月4日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">融资</span>
+    <div class="title">泉智博数亿元B轮：一体化关节模组出货超10万台</div>
+    <div class="desc">国产关节供应链加速放量。</div>
+    <div class="source">具身研习社 · 9月5日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">融资</span>
+    <div class="title">天工机器人数亿元A轮，前京东VP肖军带队</div>
+    <div class="desc">分拣机器人扩产。</div>
+    <div class="source">大河财立方 · 9月6日</div>
+    </div>
+
+
+
+<div class="week-label">8月24日 — 8月30日</div>
+
+
+<div class="history-sub">一、头部公司组织变动</div>
+    <div class="news-item">
+    <span class="tag tag-hot">人事</span>
+    <div class="title">前小鹏产品副总裁陈永海加盟众擎任运营总裁</div>
+    <div class="desc">车企高管密集流入量产时代人才争夺。</div>
+    <div class="source">机器人大讲堂 · 8月</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">人事</span>
+    <div class="title">极智嘉刘凯调任非执行董事、专注具身技术研发</div>
+    <div class="desc">技术研发与公司治理分工趋势。</div>
+    <div class="source">观点网 · 8月28日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">IPO</span>
+    <div class="title">智元披露董事会班底：港股IPO目标估值400-500亿港元</div>
+    <div class="desc">9名合伙人过半华为背景。</div>
+    <div class="source">智通财经 · 8月</div>
+    </div>
+
+
+<div class="history-sub">二、资金变动</div>
+    <div class="news-item">
+    <span class="tag tag-hot">重磅</span>
+    <div class="title">小鹏机器人完成超9亿美元首轮融资，刷新国内单轮私募纪录</div>
+    <div class="desc">IDG领投、腾讯阿里入局，投后估值超63亿美元。</div>
+    <div class="source">21世纪经济报道 · 8月25日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">行情</span>
+    <div class="title">小鹏融资引爆A股机器人板块：石头科技20CM涨停</div>
+    <div class="desc">兆威机电封板，产业链个股跟涨。</div>
+    <div class="source">网易财经 · 8月25日</div>
+    </div>
+
+
+
+<div class="week-label">8月17日 — 8月23日</div>
+
+
+<div class="history-sub">一、头部公司组织变动</div>
+    <div class="news-item">
+    <span class="tag tag-hot">重磅</span>
+    <div class="title">银河通用发布双足ET1+全球首场自主网球赛，赴港IPO估值30-40亿美元</div>
+    <div class="desc">AstraBrain-Agent架构实现即时感知-决策-全身控制。</div>
+    <div class="source">Edgen · 8月22日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">分拆</span>
+    <div class="title">奇瑞孵化墨甲机器人启动IPO筹备，投后估值25亿元</div>
+    <div class="desc">车企分拆机器人资产独立上市成为新趋势。</div>
+    <div class="source">搜狐 · 8月21日</div>
+    </div>
+
+
+<div class="history-sub">二、资金变动</div>
+    <div class="news-item">
+    <span class="tag tag-hot">IPO</span>
+    <div class="title">宇树科技科创板首日暴涨460%，王兴兴身家超千亿成90后新首富</div>
+    <div class="desc">收盘845元、市值约3418亿，中一签浮盈47万。</div>
+    <div class="source">证券之星 · 8月19日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">IPO</span>
+    <div class="title">具身智能密集赴港超50家：本末动力递表、梅卡曼德过讯</div>
+    <div class="desc">港交所18C章+「科企专线」保密递表红利驱动。</div>
+    <div class="source">证券时报 · 8月23日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">IPO</span>
+    <div class="title">逐际动力保密递表港股，估值150亿、半年融资4亿美元</div>
+    <div class="desc">累计数千台订单超一半来自海外。</div>
+    <div class="source">证券之星(港) · 8月19日</div>
+    </div>
+
+
+
+<div class="week-label">8月10日 — 8月16日</div>
+
+
+<div class="history-sub">一、头部公司组织变动</div>
+    <div class="news-item">
+    <span class="tag tag-hot">重磅</span>
+    <div class="title">银河通用IPO前夜「十出九进」大换血：尹方鸣接任董事长</div>
+    <div class="desc">宇树首位天使投资人尹方鸣接任董事长，正值冲击上市关键期。</div>
+    <div class="source">网易 · 8月16日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">变动</span>
+    <div class="title">智元罗剑岚去向坐实：加入上海创智学院任全职导师</div>
+    <div class="desc">个人主页删除智元任职，主导SERL/HIL-SERL、AgiBot World等成果。</div>
+    <div class="source">澎湃新闻 · 8月</div>
+    </div>
+
+
+<div class="history-sub">二、资金变动</div>
+    <div class="news-item">
+    <span class="tag tag-hot">IPO</span>
+    <div class="title">睿尔曼智能加入IPO大潮、科沃斯押注</div>
+    <div class="desc">港股排队具身企业超50家。</div>
+    <div class="source">东方财富 · 8月16日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">IPO</span>
+    <div class="title">梅卡曼德传预路演筹23亿港元</div>
+    <div class="desc">美团/红杉/IDG/英特尔为股东。</div>
+    <div class="source">Now财经 · 8月</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">融资</span>
+    <div class="title">原力无限A轮+A+轮近10亿</div>
+    <div class="desc">「Ego原生世界模型」加速具身大脑。</div>
+    <div class="source">钛媒体 · 8月14日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">融资</span>
+    <div class="title">诺因5亿天使++轮（经纬领投）</div>
+    <div class="desc">消费级家庭机器人赛道升温。</div>
+    <div class="source">机器人家 · 8月10日</div>
+    </div>
+    <div class="news-item">
+    <span class="tag tag-hot">融资</span>
+    <div class="title">戴盟获蚂蚁领投数亿、发布Daimon-TWM</div>
+    <div class="desc">全球首个触觉锚定世界模型。</div>
+    <div class="source">证券时报 · 8月10日</div>
     </div>
 
 </div></div></div>
